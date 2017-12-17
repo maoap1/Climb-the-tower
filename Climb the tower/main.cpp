@@ -6,7 +6,7 @@
 #include<list>
 
 #define WALL_SIZE 50
-#define FPS 90 // bylo 60
+#define FPS 60
 
 using namespace Setup;
 
