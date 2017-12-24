@@ -21,12 +21,18 @@ namespace Setup2
 	float snek_x;
 	float snek_y;
 
+	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT };
+
 
 	int initialize()
 	{
 		if (!al_install_mouse()) {
 			fprintf(stderr, "failed to initialize the mouse!\n");
 			return 0;
+		}
+		if (!al_install_keyboard()) {
+			fprintf(stderr, "failed to initialize the keyboard!\n");
+			return -1;
 		}
 		timer = al_create_timer(1.0 / FPS);
 		if (!timer) {
@@ -56,6 +62,9 @@ namespace Setup2
 		al_register_event_source(event_queue, al_get_timer_event_source(timer));
 
 		al_register_event_source(event_queue, al_get_mouse_event_source());
+
+		al_register_event_source(event_queue, al_get_keyboard_event_source());
+
 
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 
@@ -118,10 +127,9 @@ int main(int argc, char **argv)
 
 	if (!initialize()) return 0;
 
-	list<Wall*> Drawables;
+	list<GameObject*> Drawables;
 
-	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100);
-
+	bool key[4]{ false, false, false, false };
 
 	for (int i = 0; i < al_get_display_width(display)/WALL_SIZE; i++)
 	{
@@ -135,7 +143,9 @@ int main(int argc, char **argv)
 
 	}
 
+	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100);
 	
+	Drawables.push_back(player);
 
 	while (1)
 	{
@@ -143,10 +153,73 @@ int main(int argc, char **argv)
 		al_wait_for_event(event_queue, &ev);
 
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
+			
+			if (key[KEY_UP])
+			{
+				player->MoveUp(); // move should be done with respect to collisions: https://wiki.allegro.cc/index.php?title=Bounding_Box
+			}
+
+			if (key[KEY_DOWN])
+			{
+				player->MoveDown();
+
+			}
+
+			if (key[KEY_LEFT])
+			{
+				player->MoveLeft();
+			}
+
+			if (key[KEY_RIGHT])
+			{
+				player->MoveRight();
+			}
+			
 			redraw = true;
+
 		}
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			break;
+		}
+		else if (ev.type == ALLEGRO_EVENT_KEY_DOWN)
+		{
+			switch (ev.keyboard.keycode)
+			{
+			case ALLEGRO_KEY_UP:
+				key[KEY_UP] = true;
+				break;
+
+			case ALLEGRO_KEY_DOWN:
+				key[KEY_DOWN] = true;
+				break;
+
+			case ALLEGRO_KEY_LEFT:
+				key[KEY_LEFT] = true;
+				break;
+
+			case ALLEGRO_KEY_RIGHT:
+				key[KEY_RIGHT] = true;
+				break;
+			}
+		}
+		else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+			switch (ev.keyboard.keycode) {
+			case ALLEGRO_KEY_UP:
+				key[KEY_UP] = false;
+				break;
+
+			case ALLEGRO_KEY_DOWN:
+				key[KEY_DOWN] = false;
+				break;
+
+			case ALLEGRO_KEY_LEFT:
+				key[KEY_LEFT] = false;
+				break;
+
+			case ALLEGRO_KEY_RIGHT:
+				key[KEY_RIGHT] = false;
+				break;
+			}
 		}
 		else if (ev.type == ALLEGRO_EVENT_MOUSE_AXES ||
 			ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
@@ -163,11 +236,12 @@ int main(int argc, char **argv)
 
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 
-			for each (Wall* it in Drawables)
+			for each (GameObject* it in Drawables)
 			{
 				it->Draw();
 			}
-			player->Draw();
+
+
 			al_draw_bitmap(snek, snek_x, snek_y, 0);
 
 			al_flip_display();

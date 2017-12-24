@@ -13,14 +13,42 @@ void Player::Draw()
 	{
 	case 1:
 		al_draw_bitmap(image2, x, y, 0);
-		last_drawn = 2;
+		if (frame++ >= frame_delay)
+		{
+			last_drawn = 2;
+			frame = 0;
+		}
 		break;
 	case 2:
 		al_draw_bitmap(image, x, y, 0);
-		last_drawn = 1;
+		if (frame++ >= frame_delay)
+		{
+			last_drawn = 1;
+			frame = 0;
+		}
 		break;
 	default:
 		break;
 	}
 
+}
+
+void Player::MoveUp()
+{
+	y -= 10;
+}
+
+void Player::MoveDown()
+{
+	y += 10;
+}
+
+void Player::MoveLeft()
+{
+	x -= 10;
+}
+
+void Player::MoveRight()
+{
+	x += 10;
 }
