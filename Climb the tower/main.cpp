@@ -3,7 +3,7 @@
 #include "Setup.h"
 #include "Objects.h"
 
-#include<list>
+#include <list>
 
 #define WALL_SIZE 50
 #define FPS 60
@@ -20,6 +20,7 @@ namespace Setup2
 
 	float snek_x;
 	float snek_y;
+
 
 	int initialize()
 	{
@@ -119,7 +120,8 @@ int main(int argc, char **argv)
 
 	list<Wall*> Drawables;
 
-	
+	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100);
+
 
 	for (int i = 0; i < al_get_display_width(display)/WALL_SIZE; i++)
 	{
@@ -165,7 +167,7 @@ int main(int argc, char **argv)
 			{
 				it->Draw();
 			}
-
+			player->Draw();
 			al_draw_bitmap(snek, snek_x, snek_y, 0);
 
 			al_flip_display();

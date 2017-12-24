@@ -30,6 +30,9 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Zdrojové soubory</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Zdrojové soubory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setup.h">
@@ -47,5 +50,19 @@
     <ClInclude Include="Objects.h">
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Hlavičkové soubory</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\image.png">
+      <Filter>Soubory zdrojů</Filter>
+    </Image>
+    <Image Include="Resources\Player1.png">
+      <Filter>Soubory zdrojů</Filter>
+    </Image>
+    <Image Include="Resources\Player2.png">
+      <Filter>Soubory zdrojů</Filter>
+    </Image>
   </ItemGroup>
 </Project>
