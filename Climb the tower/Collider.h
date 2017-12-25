@@ -1,5 +1,6 @@
 #pragma once
 #include "Header.h"
+
 class Collider // this is a box collider
 {
 private:

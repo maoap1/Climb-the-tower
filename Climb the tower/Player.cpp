@@ -2,10 +2,11 @@
 
 
 
-Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider) : GameObject(fileName, x, y)
+Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider,list<Collider*>* Colliders) : GameObject(fileName, x, y)
 {
 	image2 = al_load_bitmap(fileName2);
 	this->collider = collider;
+	this->Colliders = Colliders;
 }
 
 void Player::Draw()
@@ -42,6 +43,7 @@ void Player::Move(Direction direction)
 {
 	//!!!!!!!!!!!!!!!!!!!!!BUG BUG BUG BUG BUG!!!!!!!!!!!!!!!!!!!!!
 	// When moving diagonally, the player is walking faster
+	// Is it needed to be fixed?
 	int xNew = x;
 	int yNew = y;
 	switch (direction)
@@ -61,31 +63,41 @@ void Player::Move(Direction direction)
 	default:
 		break;
 	}
-
+	collider->SetXY(xNew, yNew); // check the new location for collisions
+	for each (Collider* it in *Colliders)
+	{
+		if (it->flag != "Player")
+		{
+			// check for collision
+			if (collider->HasCollided(*it))
+			{
+				collider->SetXY(x, y);
+				return;
+			}
+		}
+	}
+	// if collision didnt occur
 	x = xNew;
 	y = yNew;
+	
 }
 
 void Player::MoveUp()
 {
 	Move(Player::UP);
-	collider->SetXY(x, y);
 }
 
 void Player::MoveDown()
 {
 	Move(Player::DOWN);
-	collider->SetXY(x, y);
 }
 
 void Player::MoveLeft()
 {
 	Move(Player::LEFT);
-	collider->SetXY(x, y);
 }
 
 void Player::MoveRight()
 {
 	Move(Player::RIGHT);
-	collider->SetXY(x, y);
 }

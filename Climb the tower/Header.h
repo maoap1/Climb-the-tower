@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <string>
+#include <list>
 
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"
@@ -12,3 +13,13 @@
 #define DEBUG
 
 using namespace std;
+
+/* List of BUGS:
+
+Player.cpp
+	-Move() -> Player moves faster diagonally than straight // Is it needed to be fixed??
+
+
+
+
+*/

@@ -8,8 +8,9 @@ class Player : public GameObject
 {
 private:
 	enum Direction {UP,DOWN,LEFT,RIGHT};
-	const int speed = 2;
+	const int speed = 10; //2 worked fine
 	void Move(Direction direction);
+	list<Collider*>* Colliders;
 
 protected:
 	ALLEGRO_BITMAP* image2;
@@ -26,7 +27,8 @@ public:
 	/// <param name="x">The x coordinate</param>
 	/// <param name="y">The y coordinate</param>
 	/// <param name="collider">The collider of the player</param>
-	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider);
+	/// <param name="Colliders">The reference to the list of all colliders in the game</param>
+	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, list<Collider*>* Colliders);
 
 
 	/// <summary>
@@ -58,8 +60,8 @@ public:
 	/// <summary>
 	/// Moves to the right.
 	/// </summary>
-
 	void MoveRight();
+
 	// is destructor needed?
 };
 

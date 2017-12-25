@@ -3,7 +3,6 @@
 #include "Setup.h"
 #include "Objects.h"
 
-#include <list>
 
 #define WALL_SIZE 50
 #define FPS 60
@@ -143,7 +142,7 @@ int main(int argc, char **argv)
 		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE)-1), WALL_SIZE*i));
 	}
 
-	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100, new Collider(100, 100, 50, 50,"Player"));
+	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100, new Collider(100, 100, 50, 50,"Player"), &Colliders);
 	Colliders.push_back(player->GetCollider());
 
 	//Walls:
