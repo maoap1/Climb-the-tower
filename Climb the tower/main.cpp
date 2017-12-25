@@ -128,6 +128,7 @@ int main(int argc, char **argv)
 	if (!initialize()) return 0;
 
 	list<GameObject*> Drawables;
+	list<Collider*> Colliders;
 
 	bool key[4]{ false, false, false, false };
 
@@ -140,11 +141,19 @@ int main(int argc, char **argv)
 	{
 		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i));
 		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE)-1), WALL_SIZE*i));
-
 	}
 
-	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100);
-	
+	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100, new Collider(100, 100, 50, 50,"Player"));
+	Colliders.push_back(player->GetCollider());
+
+	//Walls:
+	Colliders.push_back(new Collider(0, 0, al_get_display_height(display), WALL_SIZE));				// Western wall
+	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE, al_get_display_width(display)));		// Northern wall
+	Colliders.push_back(new Collider(WALL_SIZE*(int)((al_get_display_width(display) - 1) / WALL_SIZE - 1),
+									 WALL_SIZE, al_get_display_height(display), WALL_SIZE));		// Eastern wall
+	Colliders.push_back(new Collider(WALL_SIZE, WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1),
+									 WALL_SIZE, al_get_display_width(display)));					// Southern wall
+
 	Drawables.push_back(player);
 
 	while (1)
@@ -240,6 +249,13 @@ int main(int argc, char **argv)
 			{
 				it->Draw();
 			}
+
+			#ifdef DEBUG
+			for each (Collider* it in Colliders)
+			{
+				it->Draw();
+			}
+			#endif // DEBUG
 
 
 			al_draw_bitmap(snek, snek_x, snek_y, 0);

@@ -1,15 +1,22 @@
 #pragma once
 
+#include "Collider.h"
 #include "GameObject.h"
 #include "Header.h"
 
 class Player : public GameObject
 {
+private:
+	enum Direction {UP,DOWN,LEFT,RIGHT};
+	const int speed = 2;
+	void Move(Direction direction);
+
 protected:
 	ALLEGRO_BITMAP* image2;
 	int last_drawn = 2;
 	int frame = 0;
 	int frame_delay = 6; // Wouldn't it be a constant?
+	Collider* collider;
 public:
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Player"/> class.
@@ -18,7 +25,15 @@ public:
 	/// <param name="fileName2">Name of the second sprite file.</param>
 	/// <param name="x">The x coordinate</param>
 	/// <param name="y">The y coordinate</param>
-	Player(const char* fileName, const char* fileName2, float x, float y);
+	/// <param name="collider">The collider of the player</param>
+	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider);
+
+
+	/// <summary>
+	/// Returns the collider.
+	/// </summary>
+	/// <returns></returns>
+	Collider* GetCollider();
 
 	/// <summary>
 	/// Draws this instance.
