@@ -63,7 +63,7 @@ void Player::Move(Direction direction)
 	default:
 		break;
 	}
-	collider->SetXY(xNew, yNew); // check the new location for collisions
+	collider->SetXY(xNew+8, yNew+4); // check the new location for collisions
 	for each (Collider* it in *Colliders)
 	{
 		if (it->flag != "Player")
@@ -71,7 +71,7 @@ void Player::Move(Direction direction)
 			// check for collision
 			if (collider->HasCollided(*it))
 			{
-				collider->SetXY(x, y);
+				collider->SetXY(x+8, y+4);
 				return;
 			}
 		}

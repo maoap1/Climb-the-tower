@@ -142,7 +142,10 @@ int main(int argc, char **argv)
 		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE)-1), WALL_SIZE*i));
 	}
 
-	Player* player = new Player("Resources/Player1.png", "Resources/Player2.png", 100, 100, new Collider(100, 100, 50, 50,"Player"), &Colliders);
+	int player_starting_x = 100;
+	int player_starting_y = 100;
+	Player* player = new Player("Resources/Player_left_going1.png", "Resources/Player_left_going2.png", player_starting_x, player_starting_y,
+								new Collider(player_starting_x + 8, player_starting_y + 4, 42, 33,"Player"), &Colliders);
 	Colliders.push_back(player->GetCollider());
 
 	//Walls:

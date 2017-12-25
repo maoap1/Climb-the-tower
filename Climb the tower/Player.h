@@ -8,7 +8,7 @@ class Player : public GameObject
 {
 private:
 	enum Direction {UP,DOWN,LEFT,RIGHT};
-	const int speed = 10; //2 worked fine
+	const int speed = 2; //2 worked fine
 	void Move(Direction direction);
 	list<Collider*>* Colliders;
 
