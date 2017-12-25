@@ -1,0 +1,6 @@
+top left corner: 8;4 (x;y)
+top right corner: 40;4
+down left corner: 8;45
+
+=> width = 33 ??
+=> height = 42 ??
