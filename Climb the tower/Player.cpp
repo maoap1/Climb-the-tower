@@ -2,19 +2,25 @@
 
 
 
-Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider,list<Collider*>* Colliders) : GameObject(fileName, x, y)
+Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
 {
 	image2 = al_load_bitmap(fileName2);
 	this->collider = collider;
 	this->Colliders = Colliders;
+	this->collider_shift_x = collider_shift_x;
+	this->collider_shift_y = collider_shift_y;
+	image3 = al_load_bitmap("Resources/Player_front.png");
 }
 
 void Player::Draw()
 {
+	al_draw_scaled_bitmap(image3, 0, 0, 50, 50, x, y, 90, 90, 0);
+	/*
 	switch (last_drawn)
 	{
 	case 1:
-		al_draw_bitmap(image2, x, y, 0);
+		al_draw_scaled_bitmap(image2, 0, 0, 50, 50, x, y, 100, 100, 0);
+		//al_draw_bitmap(image2, x, y, 0);
 		if (frame++ >= frame_delay)
 		{
 			last_drawn = 2;
@@ -22,7 +28,7 @@ void Player::Draw()
 		}
 		break;
 	case 2:
-		al_draw_bitmap(image, x, y, 0);
+		al_draw_scaled_bitmap(image, 0, 0, 50, 50, x, y, 100, 100, 0);
 		if (frame++ >= frame_delay)
 		{
 			last_drawn = 1;
@@ -32,6 +38,7 @@ void Player::Draw()
 	default:
 		break;
 	}
+	*/
 }
 
 Collider* Player::GetCollider()
@@ -63,7 +70,7 @@ void Player::Move(Direction direction)
 	default:
 		break;
 	}
-	collider->SetXY(xNew+8, yNew+4); // check the new location for collisions
+	collider->SetXY(xNew+collider_shift_x, yNew+collider_shift_y); // check the new location for collisions
 	for each (Collider* it in *Colliders)
 	{
 		if (it->flag != "Player")
@@ -71,7 +78,7 @@ void Player::Move(Direction direction)
 			// check for collision
 			if (collider->HasCollided(*it))
 			{
-				collider->SetXY(x+8, y+4);
+				collider->SetXY(x+collider_shift_x, y+collider_shift_y);
 				return;
 			}
 		}

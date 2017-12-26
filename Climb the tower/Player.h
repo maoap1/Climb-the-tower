@@ -11,6 +11,9 @@ private:
 	const int speed = 2; //2 worked fine
 	void Move(Direction direction);
 	list<Collider*>* Colliders;
+	ALLEGRO_BITMAP* image3;
+	int collider_shift_x;
+	int collider_shift_y;
 
 protected:
 	ALLEGRO_BITMAP* image2;
@@ -27,8 +30,10 @@ public:
 	/// <param name="x">The x coordinate</param>
 	/// <param name="y">The y coordinate</param>
 	/// <param name="collider">The collider of the player</param>
+	/// <param name="collider_shift_x">The x difference between origin of player and its collider</param>
+	/// <param name="collider_shift_y">The y difference between origin of player and its collider</param>
 	/// <param name="Colliders">The reference to the list of all colliders in the game</param>
-	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, list<Collider*>* Colliders);
+	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders);
 
 
 	/// <summary>

@@ -4,7 +4,7 @@
 #include "Objects.h"
 
 
-#define WALL_SIZE 50
+#define WALL_SIZE 75
 #define FPS 60
 
 using namespace Setup;
@@ -133,25 +133,30 @@ int main(int argc, char **argv)
 
 	for (int i = 0; i < al_get_display_width(display)/WALL_SIZE; i++)
 	{
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, 0));
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1)));
+		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, 0)); // Northern wall
+		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1))); // Southern wall
 	}
 	for (int i = 1; i < (al_get_display_height(display)-1)/WALL_SIZE-1; i++)
 	{
-		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i));
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE)-1), WALL_SIZE*i));
+		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i)); // Western wall
+		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE)-1), WALL_SIZE*i)); // Eastern wall
 	}
-
-	int player_starting_x = 100;
-	int player_starting_y = 100;
-	Player* player = new Player("Resources/Player_left_going1.png", "Resources/Player_left_going2.png", player_starting_x, player_starting_y,
-								new Collider(player_starting_x + 8, player_starting_y + 4, 42, 33,"Player"), &Colliders);
+	Player* player;
+	{
+		int player_starting_x = 100;
+		int player_starting_y = 100;
+		int collider_shift_x = 15;
+		int collider_shift_y = 9;
+		player = new Player("Resources/Player_left_going1.png", "Resources/Player_left_going2.png", player_starting_x, player_starting_y,
+									new Collider(player_starting_x + collider_shift_x, player_starting_y + collider_shift_y, 70, 55, "Player"), 
+									collider_shift_x, collider_shift_y, &Colliders);
+	}
 	Colliders.push_back(player->GetCollider());
 
 	//Walls:
 	Colliders.push_back(new Collider(0, 0, al_get_display_height(display), WALL_SIZE));				// Western wall
 	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE, al_get_display_width(display)));		// Northern wall
-	Colliders.push_back(new Collider(WALL_SIZE*(int)((al_get_display_width(display) - 1) / WALL_SIZE - 1),
+	Colliders.push_back(new Collider(WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE) - 1),
 									 WALL_SIZE, al_get_display_height(display), WALL_SIZE));		// Eastern wall
 	Colliders.push_back(new Collider(WALL_SIZE, WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1),
 									 WALL_SIZE, al_get_display_width(display)));					// Southern wall
@@ -246,6 +251,7 @@ int main(int argc, char **argv)
 			redraw = false;
 
 			al_clear_to_color(al_map_rgb(0, 0, 0));
+			al_draw_scaled_bitmap(snek, 0, 0, 50, 50, 100, 100, 300, 300, 0);
 
 			for each (GameObject* it in Drawables)
 			{
@@ -258,7 +264,6 @@ int main(int argc, char **argv)
 				it->Draw();
 			}
 			#endif // DEBUG
-
 
 			al_draw_bitmap(snek, snek_x, snek_y, 0);
 
