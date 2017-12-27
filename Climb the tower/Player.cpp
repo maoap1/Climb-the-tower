@@ -2,19 +2,46 @@
 
 
 
-Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
+//Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
+Player::Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders, 
+	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown) : GameObject(x, y)
+	//Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
 {
-	image2 = al_load_bitmap(fileName2);
 	this->collider = collider;
 	this->Colliders = Colliders;
 	this->collider_shift_x = collider_shift_x;
 	this->collider_shift_y = collider_shift_y;
-	image3 = al_load_bitmap("Resources/Player_front.png");
+	this->RunLeft = RunLeft;
+	this->RunRight = RunRight;
+	this->RunUp = RunUp;
+	this->RunDown = RunDown;
+	lastDirection = DOWN;
+	moreDirections = false;
 }
 
 void Player::Draw()
 {
-	al_draw_scaled_bitmap(image3, 0, 0, 50, 50, x, y, 90, 90, 0);
+	switch (lastDirection)
+	{
+	case UP:
+		al_draw_scaled_bitmap(RunUp->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
+		break;
+	case DOWN:
+		al_draw_scaled_bitmap(RunDown->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
+		break;
+	case LEFT:
+		al_draw_scaled_bitmap(RunLeft->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
+		break;
+	case RIGHT:
+		al_draw_scaled_bitmap(RunRight->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
+		break;
+	default:
+		break;
+	}
+	//al_draw_scaled_bitmap(RunLeft->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
+	//al_draw_scaled_bitmap(image3, 0, 0, 50, 50, x, y, 90, 90, 0);
+
+
 	/*
 	switch (last_drawn)
 	{
@@ -48,23 +75,22 @@ Collider* Player::GetCollider()
 
 void Player::Move(Direction direction)
 {
-	//!!!!!!!!!!!!!!!!!!!!!BUG BUG BUG BUG BUG!!!!!!!!!!!!!!!!!!!!!
-	// When moving diagonally, the player is walking faster
-	// Is it needed to be fixed?
+	moved = true;
+
 	int xNew = x;
 	int yNew = y;
 	switch (direction)
 	{
-	case Player::UP:
+	case UP:
 		yNew -= speed;
 		break;
-	case Player::DOWN:
+	case DOWN:
 		yNew += speed;
 		break;
-	case Player::LEFT:
+	case LEFT:
 		xNew -= speed;
 		break;
-	case Player::RIGHT:
+	case RIGHT:
 		xNew += speed;
 		break;
 	default:
@@ -91,20 +117,41 @@ void Player::Move(Direction direction)
 
 void Player::MoveUp()
 {
-	Move(Player::UP);
+	if (!moreDirections)
+	{
+		lastDirection = UP;
+	}
+	Move(UP);
 }
 
 void Player::MoveDown()
 {
-	Move(Player::DOWN);
+	if (!moreDirections)
+	{
+		lastDirection = DOWN;
+	}
+	Move(DOWN);
 }
 
 void Player::MoveLeft()
 {
-	Move(Player::LEFT);
+	if (!moreDirections)
+	{
+		lastDirection = LEFT;
+	}
+	Move(LEFT);
 }
 
 void Player::MoveRight()
 {
-	Move(Player::RIGHT);
+	if (!moreDirections)
+	{
+		lastDirection = RIGHT;
+	}
+	Move(RIGHT);
+}
+
+void Player::MoreDirections(bool moreDirections)
+{
+	this->moreDirections = moreDirections;
 }

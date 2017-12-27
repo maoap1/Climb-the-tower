@@ -131,15 +131,18 @@ int main(int argc, char **argv)
 
 	bool key[4]{ false, false, false, false };
 
+	int eastern_wall_x = WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE) - 1);
+	int southern_wall_y = WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1);
+
 	for (int i = 0; i < al_get_display_width(display)/WALL_SIZE; i++)
 	{
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, 0)); // Northern wall
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1))); // Southern wall
+		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, 0));					// Northern wall
+		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, southern_wall_y));		// Southern wall
 	}
 	for (int i = 1; i < (al_get_display_height(display)-1)/WALL_SIZE-1; i++)
 	{
-		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i)); // Western wall
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE)-1), WALL_SIZE*i)); // Eastern wall
+		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i));					// Western wall
+		Drawables.push_back(new Wall("Resources/image.png", eastern_wall_x, WALL_SIZE*i));		// Eastern wall
 	}
 	Player* player;
 	{
@@ -147,19 +150,47 @@ int main(int argc, char **argv)
 		int player_starting_y = 100;
 		int collider_shift_x = 15;
 		int collider_shift_y = 9;
-		player = new Player("Resources/Player_left_going1.png", "Resources/Player_left_going2.png", player_starting_x, player_starting_y,
-									new Collider(player_starting_x + collider_shift_x, player_starting_y + collider_shift_y, 70, 55, "Player"), 
-									collider_shift_x, collider_shift_y, &Colliders);
+
+		vector<const char*> fileNames;
+		vector<const char*> fileNamesAttacks;
+		vector<int> frameDelays;
+		int attackDelay = 10;
+
+		frameDelays = { 6, 4, 6 };
+
+		fileNames = {"Resources/Player_left_going1.png","Resources/Player_left.png", "Resources/Player_left_going2.png"};
+		fileNamesAttacks = { "Resources/Player_left_going1_attack","Resources/Player_left_attack.png","Resources/Player_left_going2_attack" };
+		Animation* RunLeft = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+		fileNames = { "Resources/Player_right_going1.png","Resources/Player_right.png", "Resources/Player_right_going2.png" };
+		fileNamesAttacks = { "Resources/Player_right_going1_attack","Resources/Player_right_attack.png","Resources/Player_right_going2_attack" };
+		Animation* RunRight = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+		frameDelays = { 8, 8 };
+
+		fileNames = { "Resources/Player_back_going1.png", "Resources/Player_back_going2.png" };
+		fileNamesAttacks = { "Resources/Player_back_going1_attack" ,"Resources/Player_back_going2_attack" };
+		Animation* RunUp = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+		fileNames = { "Resources/Player_front_going1.png", "Resources/Player_front_going2.png" };
+		fileNamesAttacks = { "Resources/Player_front_going1_attack", "Resources/Player_front_going2_attack" };
+		Animation* RunDown = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+
+		
+		player = new Player(player_starting_x, player_starting_y,														// starting coordinates
+			new Collider(player_starting_x + collider_shift_x, player_starting_y + collider_shift_y, 70, 55, "Player"), // Collider itself
+			collider_shift_x, collider_shift_y, &Colliders,																// Collider, collisions
+			RunLeft, RunRight, RunUp, RunDown		//IdleLeft, IdleRight, IdleUp, IdleDown);							// Animations
+			);
 	}
 	Colliders.push_back(player->GetCollider());
 
 	//Walls:
-	Colliders.push_back(new Collider(0, 0, al_get_display_height(display), WALL_SIZE));				// Western wall
-	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE, al_get_display_width(display)));		// Northern wall
-	Colliders.push_back(new Collider(WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE) - 1),
-									 WALL_SIZE, al_get_display_height(display), WALL_SIZE));		// Eastern wall
-	Colliders.push_back(new Collider(WALL_SIZE, WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1),
-									 WALL_SIZE, al_get_display_width(display)));					// Southern wall
+	Colliders.push_back(new Collider(0, 0, al_get_display_height(display), WALL_SIZE));								// Western wall
+	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE, al_get_display_width(display)));						// Northern wall
+	Colliders.push_back(new Collider(eastern_wall_x, WALL_SIZE, al_get_display_height(display), WALL_SIZE));		// Eastern wall
+	Colliders.push_back(new Collider(WALL_SIZE, southern_wall_y, WALL_SIZE, al_get_display_width(display)));		// Southern wall
 
 	Drawables.push_back(player);
 
@@ -169,16 +200,23 @@ int main(int argc, char **argv)
 		al_wait_for_event(event_queue, &ev);
 
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
-			
+			player->moved = false;
 			if (key[KEY_UP])
 			{
-				player->MoveUp(); // move should be done with respect to collisions: https://wiki.allegro.cc/index.php?title=Bounding_Box
+				if (key[KEY_LEFT] || key[KEY_RIGHT])
+				{
+					player->MoreDirections(true);
+				}
+				player->MoveUp();
 			}
 
 			if (key[KEY_DOWN])
 			{
+				if (key[KEY_LEFT] || key[KEY_RIGHT])
+				{
+					player->MoreDirections(true);
+				}
 				player->MoveDown();
-
 			}
 
 			if (key[KEY_LEFT])
@@ -192,7 +230,7 @@ int main(int argc, char **argv)
 			}
 			
 			redraw = true;
-
+			player->MoreDirections(false);
 		}
 		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
 			break;

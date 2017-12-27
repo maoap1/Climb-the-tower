@@ -1,8 +1,8 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const char* fileName, float x, float y)
+GameObject::GameObject(float x, float y)
 {
-	image = al_load_bitmap(fileName);
+	
 	this->x = x;
 	this->y = y;
 	//this->display = display;

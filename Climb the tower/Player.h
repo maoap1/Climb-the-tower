@@ -3,6 +3,7 @@
 #include "Collider.h"
 #include "GameObject.h"
 #include "Header.h"
+#include "Animation.h"
 
 class Player : public GameObject
 {
@@ -11,17 +12,22 @@ private:
 	const int speed = 2; //2 worked fine
 	void Move(Direction direction);
 	list<Collider*>* Colliders;
-	ALLEGRO_BITMAP* image3;
 	int collider_shift_x;
 	int collider_shift_y;
-
-protected:
-	ALLEGRO_BITMAP* image2;
-	int last_drawn = 2;
-	int frame = 0;
-	int frame_delay = 6; // Wouldn't it be a constant?
+	Animation* RunLeft;
+	Animation* RunRight;
+	Animation* RunUp;
+	Animation* RunDown;
 	Collider* collider;
+
+	Direction lastDirection; // it tells us which direction do we need to draw
+	bool moreDirections;
+	
 public:
+
+	bool moved;
+
+	/*
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Player"/> class.
 	/// </summary>
@@ -34,6 +40,12 @@ public:
 	/// <param name="collider_shift_y">The y difference between origin of player and its collider</param>
 	/// <param name="Colliders">The reference to the list of all colliders in the game</param>
 	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders);
+
+	*/
+
+	Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders,
+		Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown);
+		//Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
 
 
 	/// <summary>
@@ -66,6 +78,8 @@ public:
 	/// Moves to the right.
 	/// </summary>
 	void MoveRight();
+
+	void MoreDirections(bool moreDirections);
 
 	// is destructor needed?
 };
