@@ -18,10 +18,16 @@ private:
 	Animation* RunRight;
 	Animation* RunUp;
 	Animation* RunDown;
+	Animation* IdleLeft;
+	Animation* IdleRight;
+	Animation* IdleUp;
+	Animation* IdleDown;
 	Collider* collider;
 
 	Direction lastDirection; // it tells us which direction do we need to draw
 	bool moreDirections;
+
+	bool attacked;
 	
 public:
 
@@ -44,8 +50,8 @@ public:
 	*/
 
 	Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders,
-		Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown);
-		//Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
+		Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown,
+		Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
 
 
 	/// <summary>
@@ -80,6 +86,8 @@ public:
 	void MoveRight();
 
 	void MoreDirections(bool moreDirections);
+
+	void Attack();
 
 	// is destructor needed?
 };

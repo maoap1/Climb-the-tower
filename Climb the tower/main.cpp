@@ -20,7 +20,7 @@ namespace Setup2
 	float snek_x;
 	float snek_y;
 
-	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT };
+	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X };
 
 
 	int initialize()
@@ -129,7 +129,7 @@ int main(int argc, char **argv)
 	list<GameObject*> Drawables;
 	list<Collider*> Colliders;
 
-	bool key[4]{ false, false, false, false };
+	bool key[5]{ false, false, false, false, false };
 
 	int eastern_wall_x = WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE) - 1);
 	int southern_wall_y = WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1);
@@ -144,45 +144,75 @@ int main(int argc, char **argv)
 		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i));					// Western wall
 		Drawables.push_back(new Wall("Resources/image.png", eastern_wall_x, WALL_SIZE*i));		// Eastern wall
 	}
+	
 	Player* player;
 	{
+#pragma region Declarations of local variables
 		int player_starting_x = 100;
 		int player_starting_y = 100;
 		int collider_shift_x = 15;
 		int collider_shift_y = 9;
+#pragma endregion
+#pragma region Animations
 
 		vector<const char*> fileNames;
 		vector<const char*> fileNamesAttacks;
 		vector<int> frameDelays;
-		int attackDelay = 10;
+		int attackDelay = 30;
 
+#pragma region RunLeft, RunRight
 		frameDelays = { 6, 4, 6 };
 
-		fileNames = {"Resources/Player_left_going1.png","Resources/Player_left.png", "Resources/Player_left_going2.png"};
-		fileNamesAttacks = { "Resources/Player_left_going1_attack","Resources/Player_left_attack.png","Resources/Player_left_going2_attack" };
+		fileNames = { "Resources/Player_left_going1.png","Resources/Player_left.png", "Resources/Player_left_going2.png" };
+		fileNamesAttacks = { "Resources/Player_left_going1_attack.png","Resources/Player_left_attack.png","Resources/Player_left_going2_attack.png" };
 		Animation* RunLeft = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
 
 		fileNames = { "Resources/Player_right_going1.png","Resources/Player_right.png", "Resources/Player_right_going2.png" };
-		fileNamesAttacks = { "Resources/Player_right_going1_attack","Resources/Player_right_attack.png","Resources/Player_right_going2_attack" };
+		fileNamesAttacks = { "Resources/Player_right_going1_attack.png","Resources/Player_right_attack.png","Resources/Player_right_going2_attack.png" };
 		Animation* RunRight = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+#pragma endregion
 
+#pragma region RunUp, RunDown
 		frameDelays = { 8, 8 };
 
 		fileNames = { "Resources/Player_back_going1.png", "Resources/Player_back_going2.png" };
-		fileNamesAttacks = { "Resources/Player_back_going1_attack" ,"Resources/Player_back_going2_attack" };
+		fileNamesAttacks = { "Resources/Player_back_going1_attack.png" ,"Resources/Player_back_going2_attack.png" };
 		Animation* RunUp = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
 
 		fileNames = { "Resources/Player_front_going1.png", "Resources/Player_front_going2.png" };
-		fileNamesAttacks = { "Resources/Player_front_going1_attack", "Resources/Player_front_going2_attack" };
+		fileNamesAttacks = { "Resources/Player_front_going1_attack.png", "Resources/Player_front_going2_attack.png" };
 		Animation* RunDown = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+#pragma endregion
 
+#pragma region IdleLeft, IdleRight, IdleUp, IdleDown
+
+		frameDelays = { 2 };
+
+		fileNames = {"Resources/Player_left.png"};
+		fileNamesAttacks = { "Resources/Player_left_attack.png"};
+		Animation* IdleLeft = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+		fileNames = { "Resources/Player_right.png" };
+		fileNamesAttacks = { "Resources/Player_right_attack.png" };
+		Animation* IdleRight = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+		fileNames = { "Resources/Player_back.png" };
+		fileNamesAttacks = { "Resources/Player_back_attack.png" };
+		Animation* IdleUp = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+
+		fileNames = { "Resources/Player_front.png" };
+		fileNamesAttacks = { "Resources/Player_front_attack.png" };
+		Animation* IdleDown = new Animation(fileNames, fileNamesAttacks, frameDelays, attackDelay);
+#pragma endregion
+
+#pragma endregion 
 
 		
 		player = new Player(player_starting_x, player_starting_y,														// starting coordinates
 			new Collider(player_starting_x + collider_shift_x, player_starting_y + collider_shift_y, 70, 55, "Player"), // Collider itself
 			collider_shift_x, collider_shift_y, &Colliders,																// Collider, collisions
-			RunLeft, RunRight, RunUp, RunDown		//IdleLeft, IdleRight, IdleUp, IdleDown);							// Animations
-			);
+			RunLeft, RunRight, RunUp, RunDown, IdleLeft, IdleRight, IdleUp, IdleDown);									// Animations
+			
 	}
 	Colliders.push_back(player->GetCollider());
 
@@ -203,7 +233,7 @@ int main(int argc, char **argv)
 			player->moved = false;
 			if (key[KEY_UP])
 			{
-				if (key[KEY_LEFT] || key[KEY_RIGHT])
+				if (key[KEY_LEFT])
 				{
 					player->MoreDirections(true);
 				}
@@ -229,6 +259,10 @@ int main(int argc, char **argv)
 				player->MoveRight();
 			}
 			
+			if (key[KEY_X])
+			{
+				player->Attack();
+			}
 			redraw = true;
 			player->MoreDirections(false);
 		}
@@ -254,6 +288,10 @@ int main(int argc, char **argv)
 			case ALLEGRO_KEY_RIGHT:
 				key[KEY_RIGHT] = true;
 				break;
+
+			case ALLEGRO_KEY_X:
+				key[KEY_X] = true;
+				break;
 			}
 		}
 		else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
@@ -272,6 +310,10 @@ int main(int argc, char **argv)
 
 			case ALLEGRO_KEY_RIGHT:
 				key[KEY_RIGHT] = false;
+				break;
+
+			case ALLEGRO_KEY_X:
+				key[KEY_X] = false;
 				break;
 			}
 		}

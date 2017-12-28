@@ -14,11 +14,17 @@ Animation::Animation(vector<const char*> fileNames,vector<const char*> fileNames
 	currentFrame = 0;
 	currentSprite = 0;
 	this->attackDelay = attackDelay;
-	attackFrame = 0;
+	attackFrame = -1;
+
 }
 
 ALLEGRO_BITMAP* Animation::GetNext()
 {
+	if (currentFrame++ >= frameDelays[currentSprite])
+	{
+		currentFrame = 0;
+		currentSprite = (currentSprite + 1) % sprites.size();
+	}
 	if (attackFrame > 0)
 	{
 		if (attackFrame++ >= attackDelay)
@@ -27,12 +33,28 @@ ALLEGRO_BITMAP* Animation::GetNext()
 		}
 		return attackSprites[currentSprite];
 	}
-	if (currentFrame++ >= frameDelays[currentSprite])
-	{
-		currentFrame = 0;
-		currentSprite = (currentSprite + 1) % sprites.size();
-	}
 	return sprites[currentSprite];
+}
+
+ALLEGRO_BITMAP * Animation::GetNext(bool* attacked)
+{
+	if (*attacked)
+	{
+		if (attackFrame == -1)
+		{
+			return GetAttack();
+		}
+		else if (attackFrame == 0)
+		{
+			*attacked = false;
+			attackFrame = -1;
+		}
+		return GetNext();
+	}
+	else
+	{
+		return GetNext();
+	}
 }
 
 ALLEGRO_BITMAP* Animation::GetAttack()

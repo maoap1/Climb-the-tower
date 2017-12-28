@@ -4,8 +4,8 @@
 
 //Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
 Player::Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders, 
-	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown) : GameObject(x, y)
-	//Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
+	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown, 
+	Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown) : GameObject(x, y)
 {
 	this->collider = collider;
 	this->Colliders = Colliders;
@@ -15,57 +15,62 @@ Player::Player(float x, float y, Collider* collider, int collider_shift_x, int c
 	this->RunRight = RunRight;
 	this->RunUp = RunUp;
 	this->RunDown = RunDown;
+	this->IdleLeft = IdleLeft;
+	this->IdleRight = IdleRight;
+	this->IdleUp = IdleUp;
+	this->IdleDown = IdleDown;
 	lastDirection = DOWN;
 	moreDirections = false;
+	attacked = false;
 }
 
 void Player::Draw()
 {
-	switch (lastDirection)
-	{
-	case UP:
-		al_draw_scaled_bitmap(RunUp->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
-		break;
-	case DOWN:
-		al_draw_scaled_bitmap(RunDown->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
-		break;
-	case LEFT:
-		al_draw_scaled_bitmap(RunLeft->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
-		break;
-	case RIGHT:
-		al_draw_scaled_bitmap(RunRight->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
-		break;
-	default:
-		break;
-	}
-	//al_draw_scaled_bitmap(RunLeft->GetNext(), 0, 0, 50, 50, x, y, 90, 90, 0);
-	//al_draw_scaled_bitmap(image3, 0, 0, 50, 50, x, y, 90, 90, 0);
+	ALLEGRO_BITMAP* currentBitmap = 0;
 
-
-	/*
-	switch (last_drawn)
+	if (moved)
 	{
-	case 1:
-		al_draw_scaled_bitmap(image2, 0, 0, 50, 50, x, y, 100, 100, 0);
-		//al_draw_bitmap(image2, x, y, 0);
-		if (frame++ >= frame_delay)
+		switch (lastDirection)
 		{
-			last_drawn = 2;
-			frame = 0;
+		case UP:
+			currentBitmap = RunUp->GetNext(&attacked);
+			break;
+		case DOWN:
+			currentBitmap = RunDown->GetNext(&attacked);
+			break;
+		case LEFT:
+			currentBitmap = RunLeft->GetNext(&attacked);
+			break;
+		case RIGHT:
+			currentBitmap = RunRight->GetNext(&attacked);
+			break;
+		default:
+			break;
 		}
-		break;
-	case 2:
-		al_draw_scaled_bitmap(image, 0, 0, 50, 50, x, y, 100, 100, 0);
-		if (frame++ >= frame_delay)
-		{
-			last_drawn = 1;
-			frame = 0;
-		}
-		break;
-	default:
-		break;
 	}
-	*/
+	else
+	{
+		switch (lastDirection)
+		{
+		case UP:
+			currentBitmap = IdleUp->GetNext(&attacked);
+			break;
+		case DOWN:
+			currentBitmap = IdleDown->GetNext(&attacked);
+			break;
+		case LEFT:
+			currentBitmap = IdleLeft->GetNext(&attacked);
+			break;
+		case RIGHT:
+			currentBitmap = IdleRight->GetNext(&attacked);
+			break;
+		default:
+			break;
+		}
+	}
+
+	al_draw_scaled_bitmap(currentBitmap, 0, 0, 50, 50, x, y, 90, 90, 0);
+	
 }
 
 Collider* Player::GetCollider()
@@ -117,7 +122,7 @@ void Player::Move(Direction direction)
 
 void Player::MoveUp()
 {
-	if (!moreDirections)
+	if ((!moreDirections)||(lastDirection == DOWN)) // The second condition is bugfix
 	{
 		lastDirection = UP;
 	}
@@ -126,7 +131,7 @@ void Player::MoveUp()
 
 void Player::MoveDown()
 {
-	if (!moreDirections)
+	if ((!moreDirections) || (lastDirection == UP)) // The second condition is bugfix
 	{
 		lastDirection = DOWN;
 	}
@@ -135,7 +140,7 @@ void Player::MoveDown()
 
 void Player::MoveLeft()
 {
-	if (!moreDirections)
+	if ((!moreDirections) || (lastDirection == RIGHT)) // The second condition is bugfix
 	{
 		lastDirection = LEFT;
 	}
@@ -144,7 +149,7 @@ void Player::MoveLeft()
 
 void Player::MoveRight()
 {
-	if (!moreDirections)
+	if ((!moreDirections) || (lastDirection == LEFT)) // The second condition is bugfix
 	{
 		lastDirection = RIGHT;
 	}
@@ -154,4 +159,14 @@ void Player::MoveRight()
 void Player::MoreDirections(bool moreDirections)
 {
 	this->moreDirections = moreDirections;
+}
+
+void Player::Attack()
+{
+	if (!attacked)
+	{
+		attacked = true;
+		// vytvorit kouzlo
+	}
+	
 }
