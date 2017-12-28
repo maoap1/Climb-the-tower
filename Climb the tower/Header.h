@@ -12,15 +12,6 @@
 #include "allegro5/allegro_native_dialog.h"
 
 #define DEBUG
+#define FPS 60
 
 using namespace std;
-
-/* List of BUGS:
-
-Player.cpp
-	-Move() -> Player moves faster diagonally than straight // Is it needed to be fixed??
-
-
-
-
-*/

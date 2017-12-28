@@ -5,14 +5,12 @@
 
 
 #define WALL_SIZE 75
-#define FPS 60
+
 
 using namespace Setup;
 
 namespace Setup2
 {
-	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
-	ALLEGRO_TIMER *timer = NULL;
 
 	ALLEGRO_BITMAP* snek = NULL;
 	bool redraw = true;
@@ -25,45 +23,6 @@ namespace Setup2
 
 	int initialize()
 	{
-		if (!al_install_mouse()) {
-			fprintf(stderr, "failed to initialize the mouse!\n");
-			return 0;
-		}
-		if (!al_install_keyboard()) {
-			fprintf(stderr, "failed to initialize the keyboard!\n");
-			return -1;
-		}
-		timer = al_create_timer(1.0 / FPS);
-		if (!timer) {
-			fprintf(stderr, "failed to create timer!\n");
-			return 0;
-		}
-		event_queue = al_create_event_queue();
-		if (!event_queue) {
-			fprintf(stderr, "failed to create event_queue!\n");
-			al_destroy_display(display);
-			al_destroy_timer(timer);
-			return 0;
-		}
-		snek = al_load_bitmap("Resources/image.png");
-		snek_x = 0;
-		snek_y = 0;
-
-		if (!snek)
-		{
-			al_show_native_message_box(display, "Error", "Error", "Failed to load image!",
-				NULL, ALLEGRO_MESSAGEBOX_ERROR);
-			al_destroy_display(display);
-			return 0;
-		}
-		al_register_event_source(event_queue, al_get_display_event_source(display));
-
-		al_register_event_source(event_queue, al_get_timer_event_source(timer));
-
-		al_register_event_source(event_queue, al_get_mouse_event_source());
-
-		al_register_event_source(event_queue, al_get_keyboard_event_source());
-
 
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 
@@ -71,60 +30,32 @@ namespace Setup2
 
 		al_start_timer(timer);
 
-
-
-
 		return 1;
 	}
 }
-
-
-
-//class GameObject2 // tohleto bude pak samozrejme abstraktni, obsahovat bude pouze Draw(), konstruktor,
-//				 // destruktor, souradnice a bitmapu
-//{
-//
-//private:
-//	ALLEGRO_BITMAP* image;
-//	float x;
-//	float y;
-//
-//public:
-//	GameObject2(const char* fileName, float x, float y)
-//	{
-//		image = al_load_bitmap(fileName);
-//		this->x = x;
-//		this->y = y;
-//		//this->display = display;
-//		/*if (!image)     // budu tohle muset nejak vymyslet
-//		{
-//			al_show_native_message_box(GetDisplay(), "Error", "Error", "Failed to load image!",
-//				NULL, ALLEGRO_MESSAGEBOX_ERROR);
-//			al_destroy_display(GetDisplay());
-//		}*/
-//	}
-//	~GameObject2()
-//	{
-//
-//	}
-//	void Draw()
-//	{
-//		al_draw_bitmap(image,x,y,0);
-//	}
-//	void SetCoordinates(float x, float y)
-//	{
-//		this->x = x;
-//		this->y = y;
-//	}
-//};
 
 int main(int argc, char **argv)
 {
 	using namespace Setup2;
 	
-	if (Init()) return 0;
+	if (!Init()) return 0;
 
 	if (!initialize()) return 0;
+
+#pragma region Kraviny, casem smazat
+	snek = al_load_bitmap("Resources/image.png");
+	snek_x = 0;
+	snek_y = 0;
+
+	if (!snek)
+	{
+		al_show_native_message_box(display, "Error", "Error", "Failed to load image!",
+			NULL, ALLEGRO_MESSAGEBOX_ERROR);
+		al_destroy_display(display);
+		return 0;
+	}
+
+#pragma endregion
 
 	list<GameObject*> Drawables;
 	list<Collider*> Colliders;
