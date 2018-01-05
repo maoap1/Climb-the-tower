@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Soubory zdrojů\Player">
+      <UniqueIdentifier>{90a48856-5f38-47a8-9ed8-33d7c81866b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -70,11 +73,77 @@
     <Image Include="Resources\image.png">
       <Filter>Soubory zdrojů</Filter>
     </Image>
-    <Image Include="Resources\Player1.png">
-      <Filter>Soubory zdrojů</Filter>
+    <Image Include="Resources\Player_back.png">
+      <Filter>Soubory zdrojů\Player</Filter>
     </Image>
-    <Image Include="Resources\Player2.png">
-      <Filter>Soubory zdrojů</Filter>
+    <Image Include="Resources\Player_back_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going1.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going1_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going2.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going2_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_front.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going1.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going1_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going2.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going2_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_left.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_left_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_left_going1.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_left_going1_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_left_going2.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_left_going2_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_right.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_right_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_right_going1.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_right_going1_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_right_going2.png">
+      <Filter>Soubory zdrojů\Player</Filter>
+    </Image>
+    <Image Include="Resources\Player_right_going2_attack.png">
+      <Filter>Soubory zdrojů\Player</Filter>
     </Image>
   </ItemGroup>
 </Project>

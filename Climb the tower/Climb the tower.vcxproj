@@ -175,8 +175,30 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\image.png" />
-    <Image Include="Resources\Player1.png" />
-    <Image Include="Resources\Player2.png" />
+    <Image Include="Resources\Player_back.png" />
+    <Image Include="Resources\Player_back_attack.png" />
+    <Image Include="Resources\Player_back_going1.png" />
+    <Image Include="Resources\Player_back_going1_attack.png" />
+    <Image Include="Resources\Player_back_going2.png" />
+    <Image Include="Resources\Player_back_going2_attack.png" />
+    <Image Include="Resources\Player_front.png" />
+    <Image Include="Resources\Player_front_attack.png" />
+    <Image Include="Resources\Player_front_going1.png" />
+    <Image Include="Resources\Player_front_going1_attack.png" />
+    <Image Include="Resources\Player_front_going2.png" />
+    <Image Include="Resources\Player_front_going2_attack.png" />
+    <Image Include="Resources\Player_left.png" />
+    <Image Include="Resources\Player_left_attack.png" />
+    <Image Include="Resources\Player_left_going1.png" />
+    <Image Include="Resources\Player_left_going1_attack.png" />
+    <Image Include="Resources\Player_left_going2.png" />
+    <Image Include="Resources\Player_left_going2_attack.png" />
+    <Image Include="Resources\Player_right.png" />
+    <Image Include="Resources\Player_right_attack.png" />
+    <Image Include="Resources\Player_right_going1.png" />
+    <Image Include="Resources\Player_right_going1_attack.png" />
+    <Image Include="Resources\Player_right_going2.png" />
+    <Image Include="Resources\Player_right_going2_attack.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
