@@ -61,15 +61,18 @@ int main(int argc, char **argv)
 
 	bool key[5]{ false, false, false, false, false };
 
-	int eastern_wall_x = WALL_SIZE*((int)(al_get_display_width(display) / WALL_SIZE) - 1);
-	int southern_wall_y = WALL_SIZE*(int)((al_get_display_height(display) - 1) / WALL_SIZE - 1);
+	int map_width = al_get_display_width(display) / WALL_SIZE; // begins with 0
+	int map_height = al_get_display_height(display) / WALL_SIZE; // begins with 0
 
-	for (int i = 0; i < al_get_display_width(display)/WALL_SIZE; i++)
+	int eastern_wall_x = WALL_SIZE*(map_width - 1);
+	int southern_wall_y = WALL_SIZE*(map_height - 1);
+
+	for (int i = 0; i < map_width; i++)
 	{
 		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, 0));					// Northern wall
 		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, southern_wall_y));		// Southern wall
 	}
-	for (int i = 1; i < (al_get_display_height(display)-1)/WALL_SIZE-1; i++)
+	for (int i = 1; i < map_height - 1; i++)
 	{
 		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i));					// Western wall
 		Drawables.push_back(new Wall("Resources/image.png", eastern_wall_x, WALL_SIZE*i));		// Eastern wall
@@ -146,10 +149,10 @@ int main(int argc, char **argv)
 	Colliders.push_back(player->GetCollider());
 
 	//Walls:
-	Colliders.push_back(new Collider(0, 0, al_get_display_height(display), WALL_SIZE));								// Western wall
-	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE, al_get_display_width(display)));						// Northern wall
-	Colliders.push_back(new Collider(eastern_wall_x, WALL_SIZE, al_get_display_height(display), WALL_SIZE));		// Eastern wall
-	Colliders.push_back(new Collider(WALL_SIZE, southern_wall_y, WALL_SIZE, al_get_display_width(display)));		// Southern wall
+	Colliders.push_back(new Collider(0, 0, map_height*WALL_SIZE, WALL_SIZE));							// Western wall
+	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE,map_width*WALL_SIZE));						// Northern wall
+	Colliders.push_back(new Collider(eastern_wall_x, WALL_SIZE, map_height*WALL_SIZE, WALL_SIZE));		// Eastern wall
+	Colliders.push_back(new Collider(WALL_SIZE, southern_wall_y, WALL_SIZE, map_width*WALL_SIZE));		// Southern wall
 
 	Drawables.push_back(player);
 
