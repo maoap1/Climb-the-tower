@@ -1,66 +1,53 @@
 #include "Animation.h"
 
-Animation::Animation(vector<const char*> fileNames,vector<const char*> fileNamesAttacks, vector<int> frameDelays, int attackDelay)
+
+void Animation::Init(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height)
 {
 	for each (const char* filename in fileNames)
 	{
-		sprites.push_back(al_load_bitmap(filename));
+		sprites.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
 	}
-	for each (const char* attack_file_name in fileNamesAttacks)
-	{
-		attackSprites.push_back(al_load_bitmap(attack_file_name));
-	}
+
 	this->frameDelays = frameDelays;
 	currentFrame = 0;
 	currentSprite = 0;
-	this->attackDelay = attackDelay;
-	attackFrame = -1;
+}
+
+Animation::Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height)
+{
+	Init(fileNames, frameDelays, image_width, image_height);
+	this->containsAttacks = 0;
+}
+
+Animation::Animation(vector<const char*> fileNames,vector<const char*> fileNamesAttacks, vector<int> frameDelays, float image_width, float image_height)
+{
+
+	Init(fileNames, frameDelays, image_width, image_height);
+	this->containsAttacks = 1;
+
+	for each (const char* attack_file_name in fileNamesAttacks)
+	{
+		attackSprites.push_back(AllegroHandling::load_resized_bitmap(attack_file_name,image_width, image_height));
+	}
 
 }
 
-ALLEGRO_BITMAP* Animation::GetNext()
+ALLEGRO_BITMAP * Animation::GetNext(int attacked)
 {
 	if (currentFrame++ >= frameDelays[currentSprite])
 	{
 		currentFrame = 0;
 		currentSprite = (currentSprite + 1) % sprites.size();
 	}
-	if (attackFrame > 0)
-	{
-		if (attackFrame++ >= attackDelay)
-		{
-			attackFrame = 0;
-		}
-		return attackSprites[currentSprite];
-	}
-	return sprites[currentSprite];
-}
 
-ALLEGRO_BITMAP * Animation::GetNext(bool* attacked)
-{
-	if (*attacked)
+	if ((!containsAttacks)||(!attacked))
 	{
-		if (attackFrame == -1)
-		{
-			return GetAttack();
-		}
-		else if (attackFrame == 0)
-		{
-			*attacked = false;
-			attackFrame = -1;
-		}
-		return GetNext();
+		return sprites[currentSprite];
 	}
 	else
 	{
-		return GetNext();
+		return attackSprites[currentSprite];
 	}
-}
-
-ALLEGRO_BITMAP* Animation::GetAttack()
-{
-	attackFrame = 1;
-	return attackSprites[currentSprite];
 }
 
 

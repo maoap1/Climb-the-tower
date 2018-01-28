@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Header.h"
+#include "AllegroHandling.h"
 
 class Animation
 {
@@ -8,19 +9,18 @@ private:
 	vector<ALLEGRO_BITMAP*> sprites;
 	vector<ALLEGRO_BITMAP*> attackSprites;
 	vector<int> frameDelays;
-	int attackDelay;
 	int currentFrame;
 	int currentSprite;
-	int attackFrame;
+	int containsAttacks;
 
-	ALLEGRO_BITMAP* GetAttack();
+	void Init(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height);
 
 
 public:
-	Animation(vector<const char*> fileNames, vector<const char*> fileNamesAttacks, vector<int> frameDelays, int attackDelay);
+	Animation(vector<const char*> fileNames, vector<const char*> fileNamesAttacks, vector<int> frameDelays, float image_width, float image_height);
+	Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height);
 
-	ALLEGRO_BITMAP* GetNext(); // this is public in case that something doesnt attack
-	ALLEGRO_BITMAP* GetNext(bool* attacked);
+	ALLEGRO_BITMAP* GetNext(int attacked);
 
 
 	~Animation();

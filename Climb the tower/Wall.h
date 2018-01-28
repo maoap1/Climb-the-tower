@@ -2,6 +2,7 @@
 
 #include "GameObject.h"
 #include "Header.h"
+#include "AllegroHandling.h"
 
 class Wall : public GameObject
 {

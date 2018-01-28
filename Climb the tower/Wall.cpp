@@ -4,10 +4,10 @@
 
 Wall::Wall(const char * fileName, float x, float y) : GameObject(x, y)
 {
-	this->image = al_load_bitmap(fileName);
+	this->image = AllegroHandling::load_resized_bitmap(fileName, WALL_SIZE, WALL_SIZE);
 }
 
 void Wall::Draw()
 {
-	al_draw_scaled_bitmap(image, 0, 0, 50, 50, x, y, 75, 75, 0);
+	al_draw_bitmap(image, x, y, 0);
 }

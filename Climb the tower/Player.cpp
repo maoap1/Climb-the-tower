@@ -22,10 +22,28 @@ Player::Player(float x, float y, Collider* collider, int collider_shift_x, int c
 	lastDirection = DOWN;
 	moreDirections = false;
 	attacked = false;
+	animAttacked = false;
+	currentAttackFrame = 0;
 }
 
 void Player::Draw()
 {
+	if (attacked)
+	{
+		currentAttackFrame++;
+		if (currentAttackFrame > attackDelay)
+		{
+			attacked = false;
+		}
+		if (animAttacked)
+		{
+			if (currentAttackFrame > attackAnimDelay)
+			{
+				animAttacked = false;
+			}
+		}
+	}
+
 	ALLEGRO_BITMAP* currentBitmap = 0;
 
 	if (moved)
@@ -33,16 +51,16 @@ void Player::Draw()
 		switch (lastDirection)
 		{
 		case UP:
-			currentBitmap = RunUp->GetNext(&attacked);
+			currentBitmap = RunUp->GetNext(animAttacked);
 			break;
 		case DOWN:
-			currentBitmap = RunDown->GetNext(&attacked);
+			currentBitmap = RunDown->GetNext(animAttacked);
 			break;
 		case LEFT:
-			currentBitmap = RunLeft->GetNext(&attacked);
+			currentBitmap = RunLeft->GetNext(animAttacked);
 			break;
 		case RIGHT:
-			currentBitmap = RunRight->GetNext(&attacked);
+			currentBitmap = RunRight->GetNext(animAttacked);
 			break;
 		default:
 			break;
@@ -53,24 +71,23 @@ void Player::Draw()
 		switch (lastDirection)
 		{
 		case UP:
-			currentBitmap = IdleUp->GetNext(&attacked);
+			currentBitmap = IdleUp->GetNext(animAttacked);
 			break;
 		case DOWN:
-			currentBitmap = IdleDown->GetNext(&attacked);
+			currentBitmap = IdleDown->GetNext(animAttacked);
 			break;
 		case LEFT:
-			currentBitmap = IdleLeft->GetNext(&attacked);
+			currentBitmap = IdleLeft->GetNext(animAttacked);
 			break;
 		case RIGHT:
-			currentBitmap = IdleRight->GetNext(&attacked);
+			currentBitmap = IdleRight->GetNext(animAttacked);
 			break;
 		default:
 			break;
 		}
 	}
 
-	al_draw_scaled_bitmap(currentBitmap, 0, 0, 50, 50, x, y, 90, 90, 0);
-	
+	al_draw_bitmap(currentBitmap, x, y, 0);
 }
 
 Collider* Player::GetCollider()
@@ -166,7 +183,9 @@ void Player::Attack()
 	if (!attacked)
 	{
 		attacked = true;
+		animAttacked = true;
 		// vytvorit kouzlo
+		currentAttackFrame = 0;
 	}
 	
 }

@@ -14,4 +14,13 @@
 #define DEBUG
 #define FPS 60
 
+#define WALL_SIZE 75
+#define PLAYER_SIZE 90
+#define PLAYER_INIT_ATTACK_ANIM_DELAY 30
+
+
+#define PLAYER_SPEED 2
+#define PLAYER_INIT_ATTACK_DELAY 50
+
+
 using namespace std;

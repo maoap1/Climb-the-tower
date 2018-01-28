@@ -9,7 +9,9 @@ class Player : public GameObject
 {
 private:
 	enum Direction {UP,DOWN,LEFT,RIGHT};
-	const int speed = 2; //2 worked fine
+	const int speed = PLAYER_SPEED;
+	int attackAnimDelay = PLAYER_INIT_ATTACK_ANIM_DELAY; // the minimum of attackDelay ever
+	int attackDelay = PLAYER_INIT_ATTACK_DELAY; // podle me se bude zlepsovat s levelem
 	void Move(Direction direction);
 	list<Collider*>* Colliders;
 	int collider_shift_x;
@@ -28,6 +30,8 @@ private:
 	bool moreDirections;
 
 	bool attacked;
+	bool animAttacked;
+	int currentAttackFrame;
 	
 public:
 
