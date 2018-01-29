@@ -11,7 +11,6 @@ using namespace Setup;
 
 namespace Setup2
 {
-
 	ALLEGRO_BITMAP* snek = NULL;
 	bool redraw = true;
 

@@ -5,6 +5,7 @@
 #define FPS 60
 #define WALL_SIZE 75
 #define PLAYER_SIZE 90
+#define FIREBALL_SIZE 50
 #define PLAYER_INIT_ATTACK_ANIM_DELAY 30
 
 #pragma endregion
@@ -18,10 +19,10 @@
 
 #pragma region ID_DIRECTION
 
-#define ID_LEFT 1
-#define ID_UP 2
-#define ID_RIGHT 3
-#define ID_DOWN 4
+#define ID_LEFT 0
+#define ID_UP 1
+#define ID_RIGHT 2
+#define ID_DOWN 3
 
 #pragma endregion
 
