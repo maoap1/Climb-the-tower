@@ -2,7 +2,8 @@
 #include <iostream>
 #include "Setup.h"
 #include "Objects.h"
-
+#include "GameMap.h"
+#include "ObjectsCreation.h"
 
 
 
@@ -56,105 +57,16 @@ int main(int argc, char **argv)
 
 #pragma endregion
 
-	list<GameObject*> Drawables;
-	list<Collider*> Colliders;
+	using namespace GameMap;
+	using namespace ObjectsCreation;
 
 	bool key[5]{ false, false, false, false, false };
 
 	int map_width = al_get_display_width(display) / WALL_SIZE; // begins with 0
 	int map_height = al_get_display_height(display) / WALL_SIZE; // begins with 0
 
-	int eastern_wall_x = WALL_SIZE*(map_width - 1);
-	int southern_wall_y = WALL_SIZE*(map_height - 1);
-
-	for (int i = 0; i < map_width; i++)
-	{
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, 0));					// Northern wall
-		Drawables.push_back(new Wall("Resources/image.png", WALL_SIZE*i, southern_wall_y));		// Southern wall
-	}
-	for (int i = 1; i < map_height - 1; i++)
-	{
-		Drawables.push_back(new Wall("Resources/image.png", 0, WALL_SIZE*i));					// Western wall
-		Drawables.push_back(new Wall("Resources/image.png", eastern_wall_x, WALL_SIZE*i));		// Eastern wall
-	}
-	
-	Player* player;
-	{
-#pragma region Declarations of local variables
-		int player_starting_x = 100;
-		int player_starting_y = 100;
-		int collider_shift_x = 15;
-		int collider_shift_y = 9;
-#pragma endregion
-#pragma region Animations
-
-		vector<const char*> fileNames;
-		vector<const char*> fileNamesAttacks;
-		vector<int> frameDelays;
-
-#pragma region RunLeft, RunRight
-		frameDelays = { 6, 4, 6 };
-
-		fileNames = { "Resources/Player_left_going1.png","Resources/Player_left.png", "Resources/Player_left_going2.png" };
-		fileNamesAttacks = { "Resources/Player_left_going1_attack.png","Resources/Player_left_attack.png","Resources/Player_left_going2_attack.png" };
-		Animation* RunLeft = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-
-		fileNames = { "Resources/Player_right_going1.png","Resources/Player_right.png", "Resources/Player_right_going2.png" };
-		fileNamesAttacks = { "Resources/Player_right_going1_attack.png","Resources/Player_right_attack.png","Resources/Player_right_going2_attack.png" };
-		Animation* RunRight = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-#pragma endregion
-
-#pragma region RunUp, RunDown
-		frameDelays = { 8, 8 };
-
-		fileNames = { "Resources/Player_back_going1.png", "Resources/Player_back_going2.png" };
-		fileNamesAttacks = { "Resources/Player_back_going1_attack.png" ,"Resources/Player_back_going2_attack.png" };
-		Animation* RunUp = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-
-		fileNames = { "Resources/Player_front_going1.png", "Resources/Player_front_going2.png" };
-		fileNamesAttacks = { "Resources/Player_front_going1_attack.png", "Resources/Player_front_going2_attack.png" };
-		Animation* RunDown = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-#pragma endregion
-
-#pragma region IdleLeft, IdleRight, IdleUp, IdleDown
-
-		frameDelays = { 2 };
-
-		fileNames = {"Resources/Player_left.png"};
-		fileNamesAttacks = { "Resources/Player_left_attack.png"};
-		Animation* IdleLeft = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-
-		fileNames = { "Resources/Player_right.png" };
-		fileNamesAttacks = { "Resources/Player_right_attack.png" };
-		Animation* IdleRight = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-
-		fileNames = { "Resources/Player_back.png" };
-		fileNamesAttacks = { "Resources/Player_back_attack.png" };
-		Animation* IdleUp = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-
-		fileNames = { "Resources/Player_front.png" };
-		fileNamesAttacks = { "Resources/Player_front_attack.png" };
-		Animation* IdleDown = new Animation(fileNames, fileNamesAttacks, frameDelays, PLAYER_SIZE, PLAYER_SIZE);
-#pragma endregion
-
-#pragma endregion 
-
-		
-		player = new Player(player_starting_x, player_starting_y,														// starting coordinates
-			new Collider(player_starting_x + collider_shift_x, player_starting_y + collider_shift_y, 70, 55, "Player"), // Collider itself
-			collider_shift_x, collider_shift_y, &Colliders,																// Collider, collisions
-			RunLeft, RunRight, RunUp, RunDown, IdleLeft, IdleRight, IdleUp, IdleDown);									// Animations
-			
-	}
-	Colliders.push_back(player->GetCollider());
-
-	//Walls:
-	Colliders.push_back(new Collider(0, 0, map_height*WALL_SIZE, WALL_SIZE));							// Western wall
-	Colliders.push_back(new Collider(WALL_SIZE, 0, WALL_SIZE,map_width*WALL_SIZE));						// Northern wall
-	Colliders.push_back(new Collider(eastern_wall_x, WALL_SIZE, map_height*WALL_SIZE, WALL_SIZE));		// Eastern wall
-	Colliders.push_back(new Collider(WALL_SIZE, southern_wall_y, WALL_SIZE, map_width*WALL_SIZE));		// Southern wall
-
-	Drawables.push_back(player);
+	FirstGameMapInicialization(map_width, map_height);
+	CreatePlayer(); // this line should be after FirstGameMapInicialization
 
 	while (1)
 	{
@@ -163,6 +75,11 @@ int main(int argc, char **argv)
 
 		if (ev.type == ALLEGRO_EVENT_TIMER) {
 			player->moved = false;
+			for each (ActiveGameObject* it in Movables)
+			{
+				it->Move();
+			}
+
 			if (key[KEY_UP])
 			{
 				if (key[KEY_LEFT])

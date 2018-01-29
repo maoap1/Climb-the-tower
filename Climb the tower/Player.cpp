@@ -1,7 +1,6 @@
 #include "Player.h"
 
 
-
 //Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
 Player::Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders, 
 	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown, 
@@ -185,6 +184,10 @@ void Player::Attack()
 		attacked = true;
 		animAttacked = true;
 		// vytvorit kouzlo
+
+		GameMap::CreateSpell(x, y, ID_LEFT, ID_FIREBALL);
+
+		// prozatim
 		currentAttackFrame = 0;
 	}
 	

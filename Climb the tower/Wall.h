@@ -22,5 +22,5 @@ public:
 	/// Draws this instance.
 	/// </summary>
 	void Draw() override;
-	// is destructor needed?
+	// is destructor needed? I can just call his parents
 };

@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Collider.h"
-#include "GameObject.h"
 #include "Header.h"
 #include "Animation.h"
+#include "Collider.h"
+#include "Spell.h"
+#include "GameMap.h"
 
 class Player : public GameObject
 {

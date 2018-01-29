@@ -155,24 +155,33 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActiveGameObject.cpp" />
     <ClCompile Include="AllegroHandling.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ObjectsCreation.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Setup.cpp" />
+    <ClCompile Include="Spell.cpp" />
     <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActiveGameObject.h" />
     <ClInclude Include="AllegroHandling.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Objects.h" />
+    <ClInclude Include="ObjectsCreation.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Setup.h" />
+    <ClInclude Include="Spell.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>
