@@ -13,5 +13,5 @@ namespace GameMap
 
 	void FirstGameMapInicialization(int map_width, int map_height);
 	void CreateSpell(float x, float y, int orientation, int spellID);
-	void DeleteMe(GameObject* sender);
+	void DeleteMe(ActiveGameObject* sender);
 }

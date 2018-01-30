@@ -11,6 +11,7 @@ void Animation::Init(vector<const char*> fileNames, vector<int> frameDelays, flo
 	this->frameDelays = frameDelays;
 	currentFrame = 0;
 	currentSprite = 0;
+	started = false;
 }
 
 Animation::Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height)
@@ -32,6 +33,12 @@ Animation::Animation(vector<const char*> fileNames,vector<const char*> fileNames
 
 }
 
+ALLEGRO_BITMAP* Animation::GetNext()
+{
+	return GetNext(0);
+}
+
+
 ALLEGRO_BITMAP * Animation::GetNext(int attacked)
 {
 	if (currentFrame++ >= frameDelays[currentSprite])
@@ -48,6 +55,21 @@ ALLEGRO_BITMAP * Animation::GetNext(int attacked)
 	{
 		return attackSprites[currentSprite];
 	}
+}
+
+ALLEGRO_BITMAP* Animation::GetNext(bool* isEnd)
+{
+	if ((started) && (currentFrame == 0)&& (currentSprite == 0))
+	{
+		*isEnd = true;
+	}
+	else
+	{
+		started = true;
+		*isEnd = false;
+	}
+
+	return GetNext(0);
 }
 
 

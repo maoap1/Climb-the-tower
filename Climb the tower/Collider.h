@@ -1,7 +1,10 @@
 #pragma once
 #include "Header.h"
 
-class Collider // this is a box collider
+/// <summary>
+/// This is a box collider
+/// </summary>
+class Collider
 {
 private:
 	/// <summary>
@@ -25,6 +28,10 @@ private:
 	int width;
 
 public:
+	/// <summary>
+	/// string flag; you can store here the name of the owner of this collider -> for example "Player"
+	/// default is empty string
+	/// </summary>
 	string flag;
 
 	/// <summary>
@@ -41,7 +48,13 @@ public:
 	/// </summary>
 	~Collider();
 
-	//friend -> would it be friend or not?
+	/// <summary>
+	/// Determines whether the collider has collided with the other collider.
+	/// </summary>
+	/// <param name="other">The other collider.</param>
+	/// <returns>
+	///   <c>true</c> if the specified other collider has collided; otherwise, <c>false</c>.
+	/// </returns>
 	bool HasCollided(const Collider& other);
 
 	/// <summary>

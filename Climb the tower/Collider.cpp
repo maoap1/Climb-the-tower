@@ -17,7 +17,7 @@ Collider::~Collider()
 }
 
 bool Collider::HasCollided(const Collider& other)
-{
+{ // standard check for collisions of box colliders
 	if ((x > other.x + other.width - 1) || (y > other.y + other.height - 1) ||
 		(other.x > x + width - 1) || (other.y > y + height - 1))
 	{

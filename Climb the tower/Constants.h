@@ -10,10 +10,22 @@
 
 #pragma endregion
 
+#pragma region Colliders
+
+// Just an idea, if it wouldn't be better to put Collider_shifts here
+
+#pragma endregion
+
 #pragma region Player stats
 
 #define PLAYER_SPEED 2
 #define PLAYER_INIT_ATTACK_DELAY 50
+
+#pragma endregion
+
+#pragma region other
+
+#define SPELL_SPEED 5
 
 #pragma endregion
 

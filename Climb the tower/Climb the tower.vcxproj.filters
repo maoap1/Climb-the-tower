@@ -101,6 +101,9 @@
     <ClInclude Include="ObjectsCreation.h">
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
+    <ClInclude Include="SpellAnimationDatabase.h">
+      <Filter>Hlavičkové soubory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\image.png">

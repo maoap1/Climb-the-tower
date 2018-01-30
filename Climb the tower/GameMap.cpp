@@ -36,16 +36,16 @@ namespace GameMap
 
 	void CreateSpell(float x, float y, int orientation, int spellID)
 	{
-		Spell* spell = new Spell(x, y, orientation, spellID);
-		spell->SetMe(spell);
+		Spell* spell = new Spell(x, y, orientation, spellID, &Colliders);
+		spell->SetMe(spell); // cant I do that just by passing pointer: this?
 		Movables.push_back(spell);
 		Drawables.push_back(spell);
 	}
 
 	void DeleteMe(ActiveGameObject* sender)
 	{
-		Drawables.remove(sender); // this shouldnt be ok, there should be some BUG
-		Movables.remove(sender); // this should call destructor -> test it!!!
+		//Drawables.remove(sender); // this shouldnt be ok, there should be some BUG
+		//Movables.remove(sender); // this should call destructor -> test it!!!
 		//sender->~ActiveGameObject();
 	}
 }
