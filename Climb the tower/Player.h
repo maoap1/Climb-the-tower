@@ -9,14 +9,11 @@
 class Player : public GameObject
 {
 private:
-	enum Direction {UP,DOWN,LEFT,RIGHT};
 	const int speed = PLAYER_SPEED;
 	int attackAnimDelay = PLAYER_INIT_ATTACK_ANIM_DELAY; // the minimum of attackDelay ever
 	int attackDelay = PLAYER_INIT_ATTACK_DELAY; // podle me se bude zlepsovat s levelem
-	void Move(Direction direction);
+	void Move(int direction);
 	list<Collider*>* Colliders;
-	int collider_shift_x;
-	int collider_shift_y;
 	Animation* RunLeft;
 	Animation* RunRight;
 	Animation* RunUp;
@@ -27,7 +24,7 @@ private:
 	Animation* IdleDown;
 	Collider* collider;
 
-	Direction lastDirection; // it tells us which direction do we need to draw
+	int lastDirection; // it tells us which direction do we need to draw
 	bool moreDirections;
 
 	bool attacked;
@@ -54,7 +51,7 @@ public:
 
 	*/
 
-	Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders,
+	Player(float x, float y, list<Collider*>* Colliders,
 		Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown,
 		Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
 

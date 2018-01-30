@@ -2,14 +2,14 @@
 
 
 //Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
-Player::Player(float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders, 
+Player::Player(float x, float y, list<Collider*>* Colliders, 
 	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown, 
 	Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown) : GameObject(x, y)
 {
-	this->collider = collider;
+	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
+								  PLAYER_COLLIDER_WIDTH, PLAYER_COLLIDER_HEIGHT, "Player");
 	this->Colliders = Colliders;
-	this->collider_shift_x = collider_shift_x;
-	this->collider_shift_y = collider_shift_y;
+	this->Colliders->push_back(this->collider);
 	this->RunLeft = RunLeft;
 	this->RunRight = RunRight;
 	this->RunUp = RunUp;
@@ -18,7 +18,7 @@ Player::Player(float x, float y, Collider* collider, int collider_shift_x, int c
 	this->IdleRight = IdleRight;
 	this->IdleUp = IdleUp;
 	this->IdleDown = IdleDown;
-	lastDirection = DOWN;
+	lastDirection = ID_DOWN;
 	moreDirections = false;
 	attacked = false;
 	animAttacked = false;
@@ -49,17 +49,17 @@ void Player::Draw()
 	{
 		switch (lastDirection)
 		{
-		case UP:
-			currentBitmap = RunUp->GetNext(animAttacked);
-			break;
-		case DOWN:
-			currentBitmap = RunDown->GetNext(animAttacked);
-			break;
-		case LEFT:
+		case ID_LEFT:
 			currentBitmap = RunLeft->GetNext(animAttacked);
 			break;
-		case RIGHT:
+		case ID_UP:
+			currentBitmap = RunUp->GetNext(animAttacked);
+			break;
+		case ID_RIGHT:
 			currentBitmap = RunRight->GetNext(animAttacked);
+			break;
+		case ID_DOWN:
+			currentBitmap = RunDown->GetNext(animAttacked);
 			break;
 		default:
 			break;
@@ -69,17 +69,17 @@ void Player::Draw()
 	{
 		switch (lastDirection)
 		{
-		case UP:
-			currentBitmap = IdleUp->GetNext(animAttacked);
-			break;
-		case DOWN:
-			currentBitmap = IdleDown->GetNext(animAttacked);
-			break;
-		case LEFT:
+		case ID_LEFT:
 			currentBitmap = IdleLeft->GetNext(animAttacked);
 			break;
-		case RIGHT:
+		case ID_UP:
+			currentBitmap = IdleUp->GetNext(animAttacked);
+			break;
+		case ID_RIGHT:
 			currentBitmap = IdleRight->GetNext(animAttacked);
+			break;
+		case ID_DOWN:
+			currentBitmap = IdleDown->GetNext(animAttacked);
 			break;
 		default:
 			break;
@@ -94,7 +94,7 @@ Collider* Player::GetCollider()
 	return collider;
 }
 
-void Player::Move(Direction direction)
+void Player::Move(int direction)
 {
 	moved = true;
 
@@ -102,22 +102,22 @@ void Player::Move(Direction direction)
 	int yNew = y;
 	switch (direction)
 	{
-	case UP:
-		yNew -= speed;
-		break;
-	case DOWN:
-		yNew += speed;
-		break;
-	case LEFT:
+	case ID_LEFT:
 		xNew -= speed;
 		break;
-	case RIGHT:
+	case ID_UP:
+		yNew -= speed;
+		break;
+	case ID_RIGHT:
 		xNew += speed;
+		break;
+	case ID_DOWN:
+		yNew += speed;
 		break;
 	default:
 		break;
 	}
-	collider->SetXY(xNew+collider_shift_x, yNew+collider_shift_y); // check the new location for collisions
+	collider->SetXY(xNew+PLAYER_COLLIDER_SHIFT_X, yNew+PLAYER_COLLIDER_SHIFT_Y); // check the new location for collisions
 	for each (Collider* it in *Colliders)
 	{
 		if (it->flag != "Player")
@@ -125,7 +125,7 @@ void Player::Move(Direction direction)
 			// check for collision
 			if (collider->HasCollided(*it))
 			{
-				collider->SetXY(x+collider_shift_x, y+collider_shift_y);
+				collider->SetXY(x+PLAYER_COLLIDER_SHIFT_X, y+PLAYER_COLLIDER_SHIFT_Y);
 				return;
 			}
 		}
@@ -138,38 +138,38 @@ void Player::Move(Direction direction)
 
 void Player::MoveUp()
 {
-	if ((!moreDirections)||(lastDirection == DOWN)) // The second condition is bugfix
+	if ((!moreDirections)||(lastDirection == ID_DOWN)) // The second condition is bugfix
 	{
-		lastDirection = UP;
+		lastDirection = ID_UP;
 	}
-	Move(UP);
+	Move(ID_UP);
 }
 
 void Player::MoveDown()
 {
-	if ((!moreDirections) || (lastDirection == UP)) // The second condition is bugfix
+	if ((!moreDirections) || (lastDirection == ID_UP)) // The second condition is bugfix
 	{
-		lastDirection = DOWN;
+		lastDirection = ID_DOWN;
 	}
-	Move(DOWN);
+	Move(ID_DOWN);
 }
 
 void Player::MoveLeft()
 {
-	if ((!moreDirections) || (lastDirection == RIGHT)) // The second condition is bugfix
+	if ((!moreDirections) || (lastDirection == ID_RIGHT)) // The second condition is bugfix
 	{
-		lastDirection = LEFT;
+		lastDirection = ID_LEFT;
 	}
-	Move(LEFT);
+	Move(ID_LEFT);
 }
 
 void Player::MoveRight()
 {
-	if ((!moreDirections) || (lastDirection == LEFT)) // The second condition is bugfix
+	if ((!moreDirections) || (lastDirection == ID_LEFT)) // The second condition is bugfix
 	{
-		lastDirection = RIGHT;
+		lastDirection = ID_RIGHT;
 	}
-	Move(RIGHT);
+	Move(ID_RIGHT);
 }
 
 void Player::MoreDirections(bool moreDirections)

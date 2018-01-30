@@ -12,7 +12,19 @@
 
 #pragma region Colliders
 
-// Just an idea, if it wouldn't be better to put Collider_shifts here
+#pragma region Player collider
+
+#define PLAYER_COLLIDER_SHIFT_X 15
+#define PLAYER_COLLIDER_SHIFT_Y 9
+#define PLAYER_COLLIDER_WIDTH 70
+#define PLAYER_COLLIDER_HEIGHT 55
+
+#pragma endregion
+
+#pragma region Spell colliders
+
+
+#pragma endregion
 
 #pragma endregion
 
@@ -23,7 +35,7 @@
 
 #pragma endregion
 
-#pragma region other
+#pragma region Other stats
 
 #define SPELL_SPEED 5
 
@@ -40,7 +52,16 @@
 
 #pragma region ID_SPELL
 
-#define ID_MISSILE 1
-#define ID_FIREBALL 2
+//missiles
+#define ID_ARCANE_MISSILE 1
+#define ID_SLIME_BALL 2 
+#define ID_MUD_BALL 3
+#define ID_SNOW_BALL 4
+
+//spells
+#define ID_FIREBALL 5
+#define ID_FROSTBOLT 6
+#define ID_DEATH_BALL 7
+#define ID_ARCANE_SPELL 8
 
 #pragma endregion

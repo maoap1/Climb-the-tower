@@ -11,10 +11,6 @@ namespace ObjectsCreation
 #pragma region Declarations of local variables
 		int player_starting_x = 100;
 		int player_starting_y = 100;
-		int collider_shift_x = 15;
-		int collider_shift_y = 9;
-		int player_collider_width = 70;
-		int player_collider_height = 55;
 #pragma endregion
 #pragma region Animations
 
@@ -69,13 +65,9 @@ namespace ObjectsCreation
 
 #pragma endregion 
 
-		player = new Player(player_starting_x, player_starting_y,											// starting coordinates
-			new Collider(player_starting_x + collider_shift_x, player_starting_y + collider_shift_y,
-						 player_collider_width, player_collider_height, "Player"),							// Collider itself
-			collider_shift_x, collider_shift_y, &GameMap::Colliders,										// Collider, collisions
-			RunLeft, RunRight, RunUp, RunDown, IdleLeft, IdleRight, IdleUp, IdleDown);						// Animations
+		player = new Player(player_starting_x, player_starting_y, &GameMap::Colliders,	// starting coordinates, Colliders
+			RunLeft, RunRight, RunUp, RunDown, IdleLeft, IdleRight, IdleUp, IdleDown);	// Animations
 
-		GameMap::Colliders.push_back(player->GetCollider());
 		GameMap::Drawables.push_back(player);
 
 	}

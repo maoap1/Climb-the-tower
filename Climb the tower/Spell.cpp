@@ -9,6 +9,21 @@ Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Co
 	this->crashed = false;
 	this->orientation = orientation;
 	this->spellID = spellID;
+
+	bool isMissile;
+	switch (spellID)
+	{
+	case ID_ARCANE_MISSILE:
+	case ID_SLIME_BALL:
+	case ID_MUD_BALL:
+	case ID_SNOW_BALL:
+		isMissile = true;
+		break;
+	default:
+		isMissile = false;
+		break;
+	}
+
 	int collider_width;
 	int collider_height;
 
@@ -42,11 +57,24 @@ Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Co
 	deathFileNames* specificDeathFileNames = NULL;
 	switch (spellID)
 	{
-	case ID_MISSILE:
+
+	case ID_ARCANE_MISSILE:
 		break;
+	case ID_SLIME_BALL:
+		break;
+	case ID_MUD_BALL:
+		break;
+	case ID_SNOW_BALL:
+	break;
 	case ID_FIREBALL:
 		specificMoveFileNames = &fireballFileNames;
 		specificDeathFileNames = &fireballDeathFileNames;
+		break;
+	case ID_FROSTBOLT:
+		break;
+	case ID_DEATH_BALL:
+		break;
+	case ID_ARCANE_SPELL:
 		break;
 	}
 #pragma region Moving animation
