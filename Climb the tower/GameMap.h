@@ -6,7 +6,7 @@
 
 namespace GameMap
 {
-
+	extern list<GameObject*> ToDeletion;
 	extern list<GameObject*> Drawables;
 	extern list<ActiveGameObject*> Movables;
 	extern list<Collider*> Colliders;

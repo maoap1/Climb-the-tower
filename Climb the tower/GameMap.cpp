@@ -4,7 +4,7 @@
 
 namespace GameMap
 {
-
+	list<GameObject*> ToDeletion;
 	list<GameObject*> Drawables;
 	list<ActiveGameObject*> Movables;
 	list<Collider*> Colliders;
@@ -44,8 +44,8 @@ namespace GameMap
 
 	void DeleteMe(ActiveGameObject* sender)
 	{
-		//Drawables.remove(sender); // this shouldnt be ok, there should be some BUG
-		//Movables.remove(sender); // this should call destructor -> test it!!!
+		Drawables.remove(sender); // this shouldnt be ok, there should be some BUG
+		Movables.remove(sender); // this should call destructor -> test it!!!
 		//sender->~ActiveGameObject();
 	}
 }

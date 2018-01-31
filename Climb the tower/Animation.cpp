@@ -6,12 +6,21 @@ void Animation::Init(vector<const char*> fileNames, vector<int> frameDelays, flo
 	for each (const char* filename in fileNames)
 	{
 		sprites.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		/* DESTROYMENT DEBUGGING
+		sprites2.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites3.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites4.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites5.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites6.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites7.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites8.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		sprites9.push_back(AllegroHandling::load_resized_bitmap(filename, image_width, image_height));
+		*/
 	}
 
 	this->frameDelays = frameDelays;
 	currentFrame = 0;
 	currentSprite = 0;
-	started = false;
 }
 
 Animation::Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height)
@@ -59,20 +68,21 @@ ALLEGRO_BITMAP * Animation::GetNext(int attacked)
 
 ALLEGRO_BITMAP* Animation::GetNext(bool* isEnd)
 {
-	if ((started) && (currentFrame == 0)&& (currentSprite == 0))
+	ALLEGRO_BITMAP* bitmap = GetNext(0);
+	if ((currentFrame == 0) && (currentSprite == 0))
 	{
 		*isEnd = true;
 	}
 	else
 	{
-		started = true;
 		*isEnd = false;
 	}
 
-	return GetNext(0);
+	return bitmap;
 }
 
 
 Animation::~Animation()
 {
+	// DESTROY!!! ALLEGRO_BITMAPs from this animation!!!
 }

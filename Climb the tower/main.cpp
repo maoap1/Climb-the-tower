@@ -35,6 +35,32 @@ namespace Setup2
 
 int main(int argc, char **argv)
 {
+	/*
+	list<Collider*> Colliders;
+	list<Collider*> Colliders2;
+
+	Collider* collider = new Collider(10, 20, 5, 6, "first");
+	Collider* collider2 = new Collider(30, 10, 3, 7, "second");
+	Collider* collider3 = new Collider(50, 5, 3, 1, "third");
+
+	Colliders.push_back(collider);
+	Colliders.push_back(collider2);
+	Colliders.push_back(collider3);
+	Colliders2.push_back(collider);
+	Colliders2.push_back(collider2);
+	Colliders2.push_back(collider3);
+
+	Colliders.remove(collider);
+
+
+
+	getchar();
+	getchar();
+	getchar();
+	getchar();
+	getchar();
+	getchar();
+	*/
 	using namespace Setup2;
 	
 	if (!Init()) return 0;
@@ -185,6 +211,12 @@ int main(int argc, char **argv)
 			{
 				it->Draw();
 			}
+			for each (GameObject* it in ToDeletion)
+			{
+				Drawables.remove(it);
+				it->~GameObject();
+			}
+			ToDeletion.clear();
 
 			#ifdef DEBUG
 			for each (Collider* it in Colliders)

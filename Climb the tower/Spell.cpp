@@ -6,7 +6,7 @@
 
 Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Colliders) : ActiveGameObject(x, y)
 {
-	this->crashed = false;
+	this->crashed = 0;
 	this->orientation = orientation;
 	this->spellID = spellID;
 
@@ -105,13 +105,26 @@ Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Co
 
 void Spell::Draw()
 {
-	if (crashed)
+	if (crashed == 1)
+	{
+		GameMap::Movables.remove(this);
+		GameMap::Colliders.remove(this->collider);
+		collider->~Collider();
+		crashed = 2;
+	}
+
+	if (crashed == 2)
 	{
 		bool end = false;
-		al_draw_bitmap(Death->GetNext(&end), x, y, 0);
+		ALLEGRO_BITMAP* bitmap = Death->GetNext(&end);
 		if (end)
 		{
-			GameMap::DeleteMe(this);
+			GameMap::ToDeletion.push_back(this);
+			//GameMap::DeleteMe(this);
+		}
+		else
+		{
+			al_draw_bitmap(bitmap, x, y, 0);
 		}
 	}
 	else
@@ -153,7 +166,7 @@ void Spell::Move()
 			// check for collision
 			if (collider->HasCollided(*it))
 			{
-				crashed = true;
+				crashed = 1;
 				collider->SetXY(x + collider_shift_x, y + collider_shift_y);
 				return;
 			}

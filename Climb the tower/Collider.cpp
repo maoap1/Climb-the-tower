@@ -14,6 +14,7 @@ Collider::Collider(int x, int y, int height, int width, string flag) // there sh
 
 Collider::~Collider()
 {
+
 }
 
 bool Collider::HasCollided(const Collider& other)
