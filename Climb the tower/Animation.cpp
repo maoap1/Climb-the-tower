@@ -13,6 +13,19 @@ void Animation::Init(vector<const char*> fileNames, vector<int> frameDelays, flo
 	currentSprite = 0;
 }
 
+Animation::Animation(vector<ALLEGRO_BITMAP*>* sprites, vector<int> frameDelays)
+{
+	this->ptrSprites = sprites;
+	// INIT
+	this->frameDelays = frameDelays;
+	currentFrame = 0;
+	currentSprite = 0;
+	// END INIT
+	this->containsAttacks = 0;
+	// TESTING
+	this->testing = 1;
+}
+
 Animation::Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height)
 {
 	Init(fileNames, frameDelays, image_width, image_height);
@@ -44,13 +57,27 @@ ALLEGRO_BITMAP * Animation::GetNext(int attacked)
 	if (currentFrame++ >= frameDelays[currentSprite])
 	{
 		currentFrame = 0;
-		currentSprite = (currentSprite + 1) % sprites.size();
+		if (this->testing)
+		{
+			currentSprite = (currentSprite + 1) % (*ptrSprites).size(); // !!!
+		}
+		else
+		{
+			currentSprite = (currentSprite + 1) % sprites.size();
+		}
 	}
 
 	if ((!containsAttacks)||(!attacked))
 	{
 		//return &(*(sprites[currentSprite]));
-		return sprites[currentSprite];
+		if (this->testing)
+		{
+			return (*ptrSprites)[currentSprite];
+		}
+		else
+		{
+			return sprites[currentSprite];
+		}
 	}
 	else
 	{
@@ -78,8 +105,9 @@ ALLEGRO_BITMAP* Animation::GetNext(bool* isEnd)
 
 Animation::~Animation()
 {
+	//TESTING
 	
-	for (auto it : sprites)
+	/*for (auto it : sprites)
 	{
 		al_destroy_bitmap(it);
 		delete it;
@@ -89,7 +117,9 @@ Animation::~Animation()
 		al_destroy_bitmap(it);
 		delete it;
 	}
-	frameDelays.clear();
+	frameDelays.clear();*/
+
+	// END OF TESTING
 	
 	/*sprites.~vector();
 	attackSprites.~vector();

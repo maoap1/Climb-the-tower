@@ -23,6 +23,7 @@ class Animation
 private:
 	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> sprites;
 	vector<ALLEGRO_BITMAP*> sprites;
+	vector<ALLEGRO_BITMAP*>* ptrSprites;
 
 	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> attackSprites;
 	vector<ALLEGRO_BITMAP*> attackSprites;
@@ -31,10 +32,14 @@ private:
 	int currentSprite;
 	int containsAttacks;
 
+	int testing = 0;
+
 	void Init(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height);
 
 
 public:
+	Animation(vector<ALLEGRO_BITMAP*>* sprites, vector<int> frameDelays);
+
 	Animation(vector<const char*> fileNames, vector<const char*> fileNamesAttacks, vector<int> frameDelays, float image_width, float image_height);
 	Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height);
 

@@ -4,7 +4,7 @@
 #include "Objects.h"
 #include "GameMap.h"
 #include "ObjectsCreation.h"
-
+#include "AnimationInitialization.h"
 
 
 using namespace Setup;
@@ -59,6 +59,10 @@ int main(int argc, char **argv)
 
 	using namespace GameMap;
 	using namespace ObjectsCreation;
+
+
+	AnimationInitialization::AnimInit();
+
 
 	bool key[5]{ false, false, false, false, false };
 

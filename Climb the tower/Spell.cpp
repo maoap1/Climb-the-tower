@@ -1,7 +1,7 @@
 #include "Spell.h"
 #include "SpellAnimationDatabase.h"
 #include "GameMap.h"
-
+#include "AnimationInitialization.h"
 
 
 Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Colliders) : ActiveGameObject(x, y)
@@ -86,7 +86,8 @@ Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Co
 		fileNames.push_back((*specificMoveFileNames)[orientation][i]);
 	}
 
-	this->Moving = new Animation(fileNames, frameDelays, FIREBALL_SIZE, FIREBALL_SIZE);
+	//this->Moving = new Animation(fileNames, frameDelays, FIREBALL_SIZE, FIREBALL_SIZE);
+	this->Moving = new Animation(&AnimationInitialization::FireballLeft, frameDelays);
 #pragma endregion
 
 #pragma region Death animation
@@ -115,6 +116,7 @@ void Spell::Draw()
 
 	if (crashed == 2)
 	{
+
 		bool end = false;
 		ALLEGRO_BITMAP* bitmap = Death->GetNext(&end);
 		if (end)
@@ -136,7 +138,7 @@ void Spell::Move()
 {
 	if (crashed)
 	{
-		return; // !!! this should be removed from Movables before this happens
+		return; // this should have been removed from Movables before this happens
 	}
 	int xNew = x;
 	int yNew = y;
@@ -178,8 +180,8 @@ void Spell::Move()
 
 Spell::~Spell()
 {
-	/*delete Moving;
-	delete Death;*/
+	delete Moving;
+	delete Death;
 	//Moving->~Animation();
 	//Death->~Animation();
 }
