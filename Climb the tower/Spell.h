@@ -23,7 +23,6 @@ private:
 
 public:
 	Spell(float x, float y, int orientation, int spellID, list<Collider*>* Colliders);
-	void SetMe(Spell* me);
 	void Draw() override;
 	void Move() override;
 	~Spell();

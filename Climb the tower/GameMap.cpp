@@ -37,7 +37,6 @@ namespace GameMap
 	void CreateSpell(float x, float y, int orientation, int spellID)
 	{
 		Spell* spell = new Spell(x, y, orientation, spellID, &Colliders);
-		spell->SetMe(spell); // cant I do that just by passing pointer: this?
 		Movables.push_back(spell);
 		Drawables.push_back(spell);
 	}

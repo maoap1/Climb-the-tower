@@ -120,7 +120,6 @@ void Spell::Draw()
 		if (end)
 		{
 			GameMap::ToDeletion.push_back(this);
-			//GameMap::DeleteMe(this);
 		}
 		else
 		{
@@ -177,13 +176,10 @@ void Spell::Move()
 	y = yNew;
 }
 
-void Spell::SetMe(Spell* me)
-{
-	this->me = me;
-}
-
 Spell::~Spell()
 {
-	Moving->~Animation();
-	Death->~Animation();
+	/*delete Moving;
+	delete Death;*/
+	//Moving->~Animation();
+	//Death->~Animation();
 }

@@ -3,22 +3,26 @@
 #include "Header.h"
 #include "AllegroHandling.h"
 
+
+//#include <memory>
+//
+//class Deleter
+//{
+//public:
+//
+//	void operator()(ALLEGRO_BITMAP* ptrToBitmap)
+//	{
+//		al_destroy_bitmap(ptrToBitmap);
+//	}
+//};
+
+
 class Animation
 {
 private:
+	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> sprites;
 	vector<ALLEGRO_BITMAP*> sprites;
-
-	/* Destroyment DEBUGGING
-	vector<ALLEGRO_BITMAP*> sprites2;
-	vector<ALLEGRO_BITMAP*> sprites3;
-	vector<ALLEGRO_BITMAP*> sprites4;
-	vector<ALLEGRO_BITMAP*> sprites5;
-	vector<ALLEGRO_BITMAP*> sprites6;
-	vector<ALLEGRO_BITMAP*> sprites7;
-	vector<ALLEGRO_BITMAP*> sprites8;
-	vector<ALLEGRO_BITMAP*> sprites9;
-	*/
-
+	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> attackSprites;
 	vector<ALLEGRO_BITMAP*> attackSprites;
 	vector<int> frameDelays;
 	int currentFrame;

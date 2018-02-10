@@ -6,7 +6,7 @@
 #define WALL_SIZE 75
 #define PLAYER_SIZE 90
 #define FIREBALL_SIZE 50
-#define PLAYER_INIT_ATTACK_ANIM_DELAY 30
+#define PLAYER_INIT_ATTACK_ANIM_DELAY 30 //5 for testing
 
 #pragma endregion
 
@@ -31,7 +31,7 @@
 #pragma region Player stats
 
 #define PLAYER_SPEED 2
-#define PLAYER_INIT_ATTACK_DELAY 50
+#define PLAYER_INIT_ATTACK_DELAY 50 //5 for testing
 
 #pragma endregion
 
