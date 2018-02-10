@@ -17,11 +17,13 @@
 //};
 
 
+
 class Animation
 {
 private:
 	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> sprites;
 	vector<ALLEGRO_BITMAP*> sprites;
+
 	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> attackSprites;
 	vector<ALLEGRO_BITMAP*> attackSprites;
 	vector<int> frameDelays;

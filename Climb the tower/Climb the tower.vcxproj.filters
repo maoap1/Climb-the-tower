@@ -57,6 +57,9 @@
     <ClCompile Include="ObjectsCreation.cpp">
       <Filter>Hlavičkové soubory</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationInitialization.cpp">
+      <Filter>Zdrojové soubory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setup.h">
@@ -102,6 +105,9 @@
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
     <ClInclude Include="SpellAnimationDatabase.h">
+      <Filter>Hlavičkové soubory</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationInitialization.h">
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
   </ItemGroup>

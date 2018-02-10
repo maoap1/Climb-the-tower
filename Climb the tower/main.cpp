@@ -35,6 +35,7 @@ namespace Setup2
 
 int main(int argc, char **argv)
 {
+	
 	using namespace Setup2;
 	
 	if (!Init()) return 0;

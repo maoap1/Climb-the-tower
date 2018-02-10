@@ -14,7 +14,6 @@ private:
 	int speed = SPELL_SPEED;
 	Animation* Moving;
 	Animation* Death;
-	Spell* me;
 	int collider_shift_x;
 	int collider_shift_y;
 	Collider* collider;

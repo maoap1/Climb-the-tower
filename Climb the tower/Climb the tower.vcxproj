@@ -161,6 +161,7 @@
     <ClCompile Include="ActiveGameObject.cpp" />
     <ClCompile Include="AllegroHandling.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="AnimationInitialization.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="ActiveGameObject.h" />
     <ClInclude Include="AllegroHandling.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="AnimationInitialization.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="GameMap.h" />
