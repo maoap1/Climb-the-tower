@@ -2,14 +2,13 @@
 
 
 //Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
-Player::Player(float x, float y, list<Collider*>* Colliders, 
+Player::Player(float x, float y, 
 	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown, 
 	Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown) : GameObject(x, y)
 {
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
 								  PLAYER_COLLIDER_WIDTH, PLAYER_COLLIDER_HEIGHT, "Player");
-	this->Colliders = Colliders;
-	this->Colliders->push_back(this->collider);
+	GameMap::Colliders.push_back(this->collider);
 	this->RunLeft = RunLeft;
 	this->RunRight = RunRight;
 	this->RunUp = RunUp;
@@ -118,7 +117,7 @@ void Player::Move(int direction)
 		break;
 	}
 	collider->SetXY(xNew+PLAYER_COLLIDER_SHIFT_X, yNew+PLAYER_COLLIDER_SHIFT_Y); // check the new location for collisions
-	for each (Collider* it in *Colliders)
+	for each (Collider* it in GameMap::Colliders)
 	{
 		if (it->flag != "Player")
 		{

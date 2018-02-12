@@ -13,7 +13,6 @@ private:
 	int attackAnimDelay = PLAYER_INIT_ATTACK_ANIM_DELAY; // the minimum of attackDelay ever
 	int attackDelay = PLAYER_INIT_ATTACK_DELAY; // podle me se bude zlepsovat s levelem
 	void Move(int direction);
-	list<Collider*>* Colliders;
 	Animation* RunLeft;
 	Animation* RunRight;
 	Animation* RunUp;
@@ -51,7 +50,7 @@ public:
 
 	*/
 
-	Player(float x, float y, list<Collider*>* Colliders,
+	Player(float x, float y,
 		Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown,
 		Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
 

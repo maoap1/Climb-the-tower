@@ -65,7 +65,7 @@ namespace ObjectsCreation
 
 #pragma endregion 
 
-		player = new Player(player_starting_x, player_starting_y, &GameMap::Colliders,	// starting coordinates, Colliders
+		player = new Player(player_starting_x, player_starting_y,						// starting coordinates
 			RunLeft, RunRight, RunUp, RunDown, IdleLeft, IdleRight, IdleUp, IdleDown);	// Animations
 
 		GameMap::Drawables.push_back(player);

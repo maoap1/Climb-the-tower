@@ -4,7 +4,7 @@
 #include "AnimationInitialization.h"
 
 
-Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Colliders) : ActiveGameObject(x, y)
+Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(x, y)
 {
 	this->crashed = 0;
 	this->orientation = orientation;
@@ -50,9 +50,7 @@ Spell::Spell(float x, float y, int orientation, int spellID, list<Collider*>* Co
 	}
 
 	collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_height, "Spell");
-	this->Colliders = Colliders;
-	this->Colliders->push_back(collider); // DONT FORGET TO REMOVE HIM AFTER DEATH!
-
+	GameMap::Colliders.push_back(collider);
 	moveFileNames* specificMoveFileNames = NULL;
 	deathFileNames* specificDeathFileNames = NULL;
 	switch (spellID)
@@ -110,7 +108,7 @@ void Spell::Draw()
 	{
 		GameMap::Movables.remove(this);
 		GameMap::Colliders.remove(this->collider);
-		collider->~Collider();
+		delete collider;
 		crashed = 2;
 	}
 
@@ -160,7 +158,7 @@ void Spell::Move()
 		break;
 	}
 	collider->SetXY(xNew + collider_shift_x, yNew + collider_shift_y); // check the new location for collisions
-	for each (Collider* it in *Colliders)
+	for each (Collider* it in GameMap::Colliders)
 	{
 		if (it->flag != "Spell")
 		{

@@ -36,7 +36,7 @@ namespace GameMap
 
 	void CreateSpell(float x, float y, int orientation, int spellID)
 	{
-		Spell* spell = new Spell(x, y, orientation, spellID, &Colliders);
+		Spell* spell = new Spell(x, y, orientation, spellID);
 		Movables.push_back(spell);
 		Drawables.push_back(spell);
 	}

@@ -16,99 +16,126 @@
     <Filter Include="Soubory zdrojů\Player">
       <UniqueIdentifier>{90a48856-5f38-47a8-9ed8-33d7c81866b0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hlavičkové soubory\Initialization of the Game">
+      <UniqueIdentifier>{48863c79-a027-4c6c-bb12-f1c0783385c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zdrojové soubory\Initialization of the Game">
+      <UniqueIdentifier>{4cc5ee34-9ce6-42b1-99e6-3c17825fcd23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zdrojové soubory\Objects">
+      <UniqueIdentifier>{657e300d-deb2-4ee7-bcbd-6b5305b6bc18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zdrojové soubory\Engine">
+      <UniqueIdentifier>{b8eafa01-754a-44ec-b843-62b743acee43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hlavičkové soubory\Engine">
+      <UniqueIdentifier>{84c32c32-211a-448b-9634-eb52a9792a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hlavičkové soubory\Objects">
+      <UniqueIdentifier>{915249cb-49d9-4a9a-a45f-fb0a5ba65dfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hlavičkové soubory\Others_empty in final version">
+      <UniqueIdentifier>{44bc140a-a196-4e13-84f9-b23d4c952405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hlavičkové soubory\Basic Headers">
+      <UniqueIdentifier>{7159bd88-29ad-465c-96fc-2169b3c3f125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zdrojové soubory\Others_empty in final version">
+      <UniqueIdentifier>{c4a5a5f7-4afc-462e-9c35-ddab7612892c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
     <ClCompile Include="Setup.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="Wall.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="AllegroHandling.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="Spell.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMap.cpp">
-      <Filter>Zdrojové soubory</Filter>
+      <Filter>Zdrojové soubory\Initialization of the Game</Filter>
     </ClCompile>
     <ClCompile Include="ActiveGameObject.cpp">
-      <Filter>Zdrojové soubory</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectsCreation.cpp">
-      <Filter>Hlavičkové soubory</Filter>
+      <Filter>Zdrojové soubory\Objects</Filter>
     </ClCompile>
     <ClCompile Include="AnimationInitialization.cpp">
-      <Filter>Zdrojové soubory</Filter>
+      <Filter>Zdrojové soubory\Initialization of the Game</Filter>
+    </ClCompile>
+    <ClCompile Include="AllegroHandling.cpp">
+      <Filter>Zdrojové soubory\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Zdrojové soubory\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Zdrojové soubory\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMap.cpp">
+      <Filter>Zdrojové soubory\Others_empty in final version</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Zdrojové soubory\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Zdrojové soubory\Initialization of the Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsCreation.cpp">
+      <Filter>Zdrojové soubory\Initialization of the Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Zdrojové soubory\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Spell.cpp">
+      <Filter>Zdrojové soubory\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Zdrojové soubory\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setup.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="AllegroHandling.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Spell.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Hlavičkové soubory</Filter>
-    </ClInclude>
-    <ClInclude Include="GameMap.h">
-      <Filter>Hlavičkové soubory</Filter>
+      <Filter>Hlavičkové soubory\Initialization of the Game</Filter>
     </ClInclude>
     <ClInclude Include="ActiveGameObject.h">
-      <Filter>Hlavičkové soubory</Filter>
+      <Filter>Hlavičkové soubory\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectsCreation.h">
-      <Filter>Hlavičkové soubory</Filter>
+    <ClInclude Include="AllegroHandling.h">
+      <Filter>Hlavičkové soubory\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="SpellAnimationDatabase.h">
-      <Filter>Hlavičkové soubory</Filter>
+    <ClInclude Include="Animation.h">
+      <Filter>Hlavičkové soubory\Engine</Filter>
     </ClInclude>
     <ClInclude Include="AnimationInitialization.h">
-      <Filter>Hlavičkové soubory</Filter>
+      <Filter>Hlavičkové soubory\Initialization of the Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Hlavičkové soubory\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Hlavičkové soubory\Basic Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Hlavičkové soubory\Basic Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects.h">
+      <Filter>Hlavičkové soubory\Basic Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Hlavičkové soubory\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMap.h">
+      <Filter>Hlavičkové soubory\Others_empty in final version</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectsCreation.h">
+      <Filter>Hlavičkové soubory\Initialization of the Game</Filter>
+    </ClInclude>
+    <ClInclude Include="SpellAnimationDatabase.h">
+      <Filter>Hlavičkové soubory\Others_empty in final version</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Hlavičkové soubory\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Spell.h">
+      <Filter>Hlavičkové soubory\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Hlavičkové soubory\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
