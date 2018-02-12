@@ -18,7 +18,7 @@ public:
 	/// <summary>
 	/// Finalizes an instance of the <see cref="GameObject"/> class.
 	/// </summary>
-	~GameObject() {}
+	virtual ~GameObject();
 
 	/// <summary>
 	/// Draws this instance.

@@ -17,7 +17,7 @@ namespace Setup2
 	float snek_x;
 	float snek_y;
 
-	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X };
+	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X, KEY_C, KEY_V };
 
 
 	int initialize()
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
 	AnimationInitialization::AnimInit();
 
 
-	bool key[5]{ false, false, false, false, false };
+	bool key[7]{ false, false, false, false, false, false, false };
 
 	int map_width = al_get_display_width(display) / WALL_SIZE; // begins with 0
 	int map_height = al_get_display_height(display) / WALL_SIZE; // begins with 0
@@ -114,7 +114,15 @@ int main(int argc, char **argv)
 			
 			if (key[KEY_X])
 			{
-				player->Attack();
+				player->Attack(ID_FIREBALL);
+			}
+			if (key[KEY_C])
+			{
+				player->Attack(ID_WATERBLAST);
+			}
+			if (key[KEY_V])
+			{
+				player->Attack(ID_ARCANEBALL);
 			}
 			redraw = true;
 			player->MoreDirections(false);
@@ -145,6 +153,14 @@ int main(int argc, char **argv)
 			case ALLEGRO_KEY_X:
 				key[KEY_X] = true;
 				break;
+
+			case ALLEGRO_KEY_C:
+				key[KEY_C] = true;
+				break;
+
+			case ALLEGRO_KEY_V:
+				key[KEY_V] = true;
+				break;
 			}
 		}
 		else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
@@ -167,6 +183,14 @@ int main(int argc, char **argv)
 
 			case ALLEGRO_KEY_X:
 				key[KEY_X] = false;
+				break;
+
+			case ALLEGRO_KEY_C:
+				key[KEY_C] = false;
+				break;
+
+			case ALLEGRO_KEY_V:
+				key[KEY_V] = false;
 				break;
 			}
 		}

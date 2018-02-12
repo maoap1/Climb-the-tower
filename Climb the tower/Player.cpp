@@ -176,7 +176,7 @@ void Player::MoreDirections(bool moreDirections)
 	this->moreDirections = moreDirections;
 }
 
-void Player::Attack()
+void Player::Attack(int spellID)
 {
 	if (!attacked)
 	{
@@ -184,10 +184,15 @@ void Player::Attack()
 		animAttacked = true;
 		// vytvorit kouzlo
 
-		GameMap::CreateSpell(x, y, lastDirection, ID_FIREBALL);
+		GameMap::CreateSpell(x, y, lastDirection, spellID);
 
 		// prozatim
 		currentAttackFrame = 0;
 	}
 	
+}
+
+Player::~Player()
+{
+
 }

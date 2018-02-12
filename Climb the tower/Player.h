@@ -88,8 +88,8 @@ public:
 
 	void MoreDirections(bool moreDirections);
 
-	void Attack();
+	void Attack(int spellID);
 
-	// is destructor needed?
+	~Player() override;
 };
 

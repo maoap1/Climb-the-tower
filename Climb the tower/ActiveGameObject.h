@@ -10,6 +10,6 @@ public:
 	virtual void Move() = 0;
 	virtual void Draw() = 0;
 
-	~ActiveGameObject();
+	virtual ~ActiveGameObject();
 };
 

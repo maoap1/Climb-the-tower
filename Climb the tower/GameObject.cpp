@@ -13,3 +13,8 @@ GameObject::GameObject(float x, float y)
 	al_destroy_display(GetDisplay());
 	}*/
 }
+
+GameObject::~GameObject()
+{
+}
+

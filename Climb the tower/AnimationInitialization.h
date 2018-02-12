@@ -10,10 +10,10 @@ namespace AnimationInitialization
 	extern vector<ALLEGRO_BITMAP*> FireballRight;
 	extern vector<ALLEGRO_BITMAP*> FireballDown;
 
-	extern vector<ALLEGRO_BITMAP*> FrostballLeft;
-	extern vector<ALLEGRO_BITMAP*> FrostballUp;
-	extern vector<ALLEGRO_BITMAP*> FrostballRight;
-	extern vector<ALLEGRO_BITMAP*> FrostballDown;
+	extern vector<ALLEGRO_BITMAP*> WaterblastLeft;
+	extern vector<ALLEGRO_BITMAP*> WaterblastUp;
+	extern vector<ALLEGRO_BITMAP*> WaterblastRight;
+	extern vector<ALLEGRO_BITMAP*> WaterblastDown;
 
 	extern vector<ALLEGRO_BITMAP*> ArcaneballLeft;
 	extern vector<ALLEGRO_BITMAP*> ArcaneballUp;
@@ -27,10 +27,10 @@ namespace AnimationInitialization
 	extern vector<ALLEGRO_BITMAP*> FireballDeathRight;
 	extern vector<ALLEGRO_BITMAP*> FireballDeathDown;
 
-	extern vector<ALLEGRO_BITMAP*> FrostballDeathLeft;
-	extern vector<ALLEGRO_BITMAP*> FrostballDeathUp;
-	extern vector<ALLEGRO_BITMAP*> FrostballDeathRight;
-	extern vector<ALLEGRO_BITMAP*> FrostballDeathDown;
+	extern vector<ALLEGRO_BITMAP*> WaterblastDeathLeft;
+	extern vector<ALLEGRO_BITMAP*> WaterblastDeathUp;
+	extern vector<ALLEGRO_BITMAP*> WaterblastDeathRight;
+	extern vector<ALLEGRO_BITMAP*> WaterblastDeathDown;
 
 	extern vector<ALLEGRO_BITMAP*> ArcaneballDeathLeft;
 	extern vector<ALLEGRO_BITMAP*> ArcaneballDeathUp;

@@ -95,24 +95,24 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 			break;
 		}
 		break;
-	case ID_FROSTBALL:
+	case ID_WATERBLAST:
 		switch (orientation)
 		{
 		case ID_LEFT:
-			this->Moving = new Animation(&FrostballLeft, MoveFrameDelays);
-			this->Death = new Animation(&FrostballDeathLeft, DeathFrameDelays);
+			this->Moving = new Animation(&WaterblastLeft, MoveFrameDelays);
+			this->Death = new Animation(&WaterblastDeathLeft, DeathFrameDelays);
 			break;
 		case ID_UP:
-			this->Moving = new Animation(&FrostballUp, MoveFrameDelays);
-			this->Death = new Animation(&FrostballDeathUp, DeathFrameDelays);
+			this->Moving = new Animation(&WaterblastUp, MoveFrameDelays);
+			this->Death = new Animation(&WaterblastDeathUp, DeathFrameDelays);
 			break;
 		case ID_RIGHT:
-			this->Moving = new Animation(&FrostballRight, MoveFrameDelays);
-			this->Death = new Animation(&FrostballDeathRight, DeathFrameDelays);
+			this->Moving = new Animation(&WaterblastRight, MoveFrameDelays);
+			this->Death = new Animation(&WaterblastDeathRight, DeathFrameDelays);
 			break;
 		case ID_DOWN:
-			this->Moving = new Animation(&FrostballDown, MoveFrameDelays);
-			this->Death = new Animation(&FrostballDeathDown, DeathFrameDelays);
+			this->Moving = new Animation(&WaterblastDown, MoveFrameDelays);
+			this->Death = new Animation(&WaterblastDeathDown, DeathFrameDelays);
 			break;
 		}
 		break;
@@ -157,6 +157,8 @@ void Spell::Draw()
 		ALLEGRO_BITMAP* bitmap = Death->GetNext(&end);
 		if (end)
 		{
+			/*delete Moving;
+			delete Death;*/
 			GameMap::ToDeletion.push_back(this);
 		}
 		else
@@ -218,6 +220,4 @@ Spell::~Spell()
 {
 	delete Moving;
 	delete Death;
-	//Moving->~Animation();
-	//Death->~Animation();
 }

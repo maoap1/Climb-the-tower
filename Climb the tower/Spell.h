@@ -23,6 +23,6 @@ public:
 	Spell(float x, float y, int orientation, int spellID);
 	void Draw() override;
 	void Move() override;
-	~Spell();
+	~Spell() override;
 };
 

@@ -43,6 +43,63 @@
     <Filter Include="Zdrojové soubory\Others_empty in final version">
       <UniqueIdentifier>{c4a5a5f7-4afc-462e-9c35-ddab7612892c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Soubory zdrojů\Player\Left">
+      <UniqueIdentifier>{e8b6e9ea-0a01-4c05-87ca-932c9b3597c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Player\Front">
+      <UniqueIdentifier>{addb45ea-7b44-47c8-bce1-7b68fd9e06cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Player\Back">
+      <UniqueIdentifier>{bc5bb6a7-1f96-479a-a035-63a618c48444}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Player\Right">
+      <UniqueIdentifier>{69258007-5476-4c44-ad52-d289ef06d379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Fireball">
+      <UniqueIdentifier>{ef8448bc-58da-4112-9222-dd64a785f28b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Waterblast">
+      <UniqueIdentifier>{3c8786a3-9bd8-4722-b1dd-55d7414248d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Arcaneball">
+      <UniqueIdentifier>{39024369-e66c-4b24-b336-88e4e1b925fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Fireball\Left">
+      <UniqueIdentifier>{3e738c6b-80c7-45cf-997c-b3770a16eff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Fireball\Up">
+      <UniqueIdentifier>{251e8ec5-0b94-4578-9ec6-71960edfb27e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Fireball\Down">
+      <UniqueIdentifier>{aa02087f-40f9-42a9-b1db-6171aaab72d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Fireball\Right">
+      <UniqueIdentifier>{6d181c0d-c77a-4aec-8579-ad3c6f9da3ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Arcaneball\Left">
+      <UniqueIdentifier>{a46cba28-60cf-46f1-983c-0fa81d108c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Arcaneball\Up">
+      <UniqueIdentifier>{52a17136-1a2b-420e-8c9e-f8e561f5a1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Arcaneball\Right">
+      <UniqueIdentifier>{aaa24c63-4e1e-4cc2-9347-170265f73851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Arcaneball\Down">
+      <UniqueIdentifier>{a91cb627-a1ee-4a13-a093-94daa36baa30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Waterblast\Left">
+      <UniqueIdentifier>{c8ccab39-c665-40c2-8e0a-444d2f7e5823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Waterblast\Up">
+      <UniqueIdentifier>{2b200c11-72da-435a-9f9f-5938d4fb6612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Waterblast\Right">
+      <UniqueIdentifier>{61542f49-7b67-4d65-8d6d-92c8f2ce79ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Waterblast\Down">
+      <UniqueIdentifier>{830d6572-7507-441d-b135-f2a4dda08468}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -139,77 +196,365 @@
     <Image Include="Resources\image.png">
       <Filter>Soubory zdrojů</Filter>
     </Image>
-    <Image Include="Resources\Player_back.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_back_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_back_going1.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_back_going1_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_back_going2.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_back_going2_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_front.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_front_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_front_going1.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_front_going1_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_front_going2.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
-    <Image Include="Resources\Player_front_going2_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
-    </Image>
     <Image Include="Resources\Player_left.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Left</Filter>
     </Image>
     <Image Include="Resources\Player_left_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Left</Filter>
     </Image>
     <Image Include="Resources\Player_left_going1.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Left</Filter>
     </Image>
     <Image Include="Resources\Player_left_going1_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Left</Filter>
     </Image>
     <Image Include="Resources\Player_left_going2.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Left</Filter>
     </Image>
     <Image Include="Resources\Player_left_going2_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Left</Filter>
+    </Image>
+    <Image Include="Resources\Player_front.png">
+      <Filter>Soubory zdrojů\Player\Front</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_attack.png">
+      <Filter>Soubory zdrojů\Player\Front</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going1.png">
+      <Filter>Soubory zdrojů\Player\Front</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going1_attack.png">
+      <Filter>Soubory zdrojů\Player\Front</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going2.png">
+      <Filter>Soubory zdrojů\Player\Front</Filter>
+    </Image>
+    <Image Include="Resources\Player_front_going2_attack.png">
+      <Filter>Soubory zdrojů\Player\Front</Filter>
+    </Image>
+    <Image Include="Resources\Player_back.png">
+      <Filter>Soubory zdrojů\Player\Back</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_attack.png">
+      <Filter>Soubory zdrojů\Player\Back</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going1.png">
+      <Filter>Soubory zdrojů\Player\Back</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going1_attack.png">
+      <Filter>Soubory zdrojů\Player\Back</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going2.png">
+      <Filter>Soubory zdrojů\Player\Back</Filter>
+    </Image>
+    <Image Include="Resources\Player_back_going2_attack.png">
+      <Filter>Soubory zdrojů\Player\Back</Filter>
     </Image>
     <Image Include="Resources\Player_right.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Right</Filter>
     </Image>
     <Image Include="Resources\Player_right_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Right</Filter>
     </Image>
     <Image Include="Resources\Player_right_going1.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Right</Filter>
     </Image>
     <Image Include="Resources\Player_right_going1_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Right</Filter>
     </Image>
     <Image Include="Resources\Player_right_going2.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Right</Filter>
     </Image>
     <Image Include="Resources\Player_right_going2_attack.png">
-      <Filter>Soubory zdrojů\Player</Filter>
+      <Filter>Soubory zdrojů\Player\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_1.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_2.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_3.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_death1.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_death2.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_death3.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_death4.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_down_death5.png">
+      <Filter>Soubory zdrojů\Fireball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_1.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_2.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_3.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_death1.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_death2.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_death3.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_death4.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_left_death5.png">
+      <Filter>Soubory zdrojů\Fireball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_1.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_2.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_3.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_death1.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_death2.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_death3.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_death4.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_right_death5.png">
+      <Filter>Soubory zdrojů\Fireball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_1.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_2.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_3.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_death1.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_death2.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_death3.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_death4.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Fireball_up_death5.png">
+      <Filter>Soubory zdrojů\Fireball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_death1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_death2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_death3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_death4.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_down_death5.png">
+      <Filter>Soubory zdrojů\Arcaneball\Down</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_death1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_death2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_death3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_death4.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_left_death5.png">
+      <Filter>Soubory zdrojů\Arcaneball\Left</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_death1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_death2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_death3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_death4.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_right_death5.png">
+      <Filter>Soubory zdrojů\Arcaneball\Right</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_death1.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_death2.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_death3.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_death4.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Arcaneball_up_death5.png">
+      <Filter>Soubory zdrojů\Arcaneball\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_1.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_2.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_3.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_death1.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_death2.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_death3.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_death4.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_down_death5.png">
+      <Filter>Soubory zdrojů\Waterblast\Down</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_1.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_2.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_3.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_death1.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_death2.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_death3.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_death4.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_left_death5.png">
+      <Filter>Soubory zdrojů\Waterblast\Left</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_1.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_2.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_3.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_death1.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_death2.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_death3.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_death4.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_right_death5.png">
+      <Filter>Soubory zdrojů\Waterblast\Right</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_1.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_2.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_3.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_death1.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_death2.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_death3.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_death4.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Waterblast_up_death5.png">
+      <Filter>Soubory zdrojů\Waterblast\Up</Filter>
     </Image>
   </ItemGroup>
 </Project>
