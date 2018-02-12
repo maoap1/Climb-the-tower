@@ -125,9 +125,6 @@
     <ClInclude Include="ObjectsCreation.h">
       <Filter>Hlavičkové soubory\Initialization of the Game</Filter>
     </ClInclude>
-    <ClInclude Include="SpellAnimationDatabase.h">
-      <Filter>Hlavičkové soubory\Others_empty in final version</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Hlavičkové soubory\Objects</Filter>
     </ClInclude>

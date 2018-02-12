@@ -1,5 +1,4 @@
 #include "Spell.h"
-#include "SpellAnimationDatabase.h"
 #include "GameMap.h"
 #include "AnimationInitialization.h"
 
@@ -36,26 +35,37 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 		collider_height = 10;
 		break;
 	case ID_UP:
+		collider_shift_x = 0;
+		collider_shift_y = 0;
+		collider_width = 10;
+		collider_height = 5;
 		break;
 	case ID_RIGHT:
-		break;
-	case ID_DOWN:
-		break;
-	default:
-		collider_shift_x = 0;
+		collider_shift_x = 70;
 		collider_shift_y = 0;
 		collider_width = 5;
 		collider_height = 10;
+		break;
+	case ID_DOWN:
+		collider_shift_x = 0;
+		collider_shift_y = 0;
+		collider_width = 10;
+		collider_height = 5;
 		break;
 	}
 
 	collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_height, "Spell");
 	GameMap::Colliders.push_back(collider);
-	moveFileNames* specificMoveFileNames = NULL;
-	deathFileNames* specificDeathFileNames = NULL;
+
+	// THIS only for spells!
+	vector<int> MoveFrameDelays = { 6, 6, 6 };
+	vector<int> DeathFrameDelays = { 8, 8, 8, 8, 8 };
+	// end of THIS
+
+	using namespace AnimationInitialization;
+
 	switch (spellID)
 	{
-
 	case ID_ARCANE_MISSILE:
 		break;
 	case ID_SLIME_BALL:
@@ -63,43 +73,71 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 	case ID_MUD_BALL:
 		break;
 	case ID_SNOW_BALL:
-	break;
+		break;
 	case ID_FIREBALL:
-		specificMoveFileNames = &fireballFileNames;
-		specificDeathFileNames = &fireballDeathFileNames;
+		switch (orientation)
+		{
+		case ID_LEFT:
+			this->Moving = new Animation(&FireballLeft, MoveFrameDelays);
+			this->Death = new Animation(&FireballDeathLeft, DeathFrameDelays);
+			break;
+		case ID_UP:
+			this->Moving = new Animation(&FireballUp, MoveFrameDelays);
+			this->Death = new Animation(&FireballDeathUp, DeathFrameDelays);
+			break;
+		case ID_RIGHT:
+			this->Moving = new Animation(&FireballRight, MoveFrameDelays);
+			this->Death = new Animation(&FireballDeathRight, DeathFrameDelays);
+			break;
+		case ID_DOWN:
+			this->Moving = new Animation(&FireballDown, MoveFrameDelays);
+			this->Death = new Animation(&FireballDeathDown, DeathFrameDelays);
+			break;
+		}
 		break;
-	case ID_FROSTBOLT:
+	case ID_FROSTBALL:
+		switch (orientation)
+		{
+		case ID_LEFT:
+			this->Moving = new Animation(&FrostballLeft, MoveFrameDelays);
+			this->Death = new Animation(&FrostballDeathLeft, DeathFrameDelays);
+			break;
+		case ID_UP:
+			this->Moving = new Animation(&FrostballUp, MoveFrameDelays);
+			this->Death = new Animation(&FrostballDeathUp, DeathFrameDelays);
+			break;
+		case ID_RIGHT:
+			this->Moving = new Animation(&FrostballRight, MoveFrameDelays);
+			this->Death = new Animation(&FrostballDeathRight, DeathFrameDelays);
+			break;
+		case ID_DOWN:
+			this->Moving = new Animation(&FrostballDown, MoveFrameDelays);
+			this->Death = new Animation(&FrostballDeathDown, DeathFrameDelays);
+			break;
+		}
 		break;
-	case ID_DEATH_BALL:
-		break;
-	case ID_ARCANE_SPELL:
+	case ID_ARCANEBALL:
+		switch (orientation)
+		{
+		case ID_LEFT:
+			this->Moving = new Animation(&ArcaneballLeft, MoveFrameDelays);
+			this->Death = new Animation(&ArcaneballDeathLeft, DeathFrameDelays);
+			break;
+		case ID_UP:
+			this->Moving = new Animation(&ArcaneballUp, MoveFrameDelays);
+			this->Death = new Animation(&ArcaneballDeathUp, DeathFrameDelays);
+			break;
+		case ID_RIGHT:
+			this->Moving = new Animation(&ArcaneballRight, MoveFrameDelays);
+			this->Death = new Animation(&ArcaneballDeathRight, DeathFrameDelays);
+			break;
+		case ID_DOWN:
+			this->Moving = new Animation(&ArcaneballDown, MoveFrameDelays);
+			this->Death = new Animation(&ArcaneballDeathDown, DeathFrameDelays);
+			break;
+		}
 		break;
 	}
-#pragma region Moving animation
-	vector<int> frameDelays = {6, 6, 6};
-	vector<const char*> fileNames;
-
-	for (int i = 0; i < MOVE_ANIMATION_LENGTH; i++)
-	{
-		fileNames.push_back((*specificMoveFileNames)[orientation][i]);
-	}
-
-	//this->Moving = new Animation(fileNames, frameDelays, FIREBALL_SIZE, FIREBALL_SIZE);
-	this->Moving = new Animation(&AnimationInitialization::FireballLeft, frameDelays);
-#pragma endregion
-
-#pragma region Death animation
-	frameDelays = { 8, 8, 8, 8, 8 };
-	fileNames.clear();
-	for (int i = 0; i < DEATH_ANIMATION_LENGTH; i++)
-	{
-		fileNames.push_back((*specificDeathFileNames)[orientation][i]);
-	}
-	this->Death = new Animation(fileNames, frameDelays, FIREBALL_SIZE, FIREBALL_SIZE);
-#pragma endregion
-
-	frameDelays.~vector();
-	fileNames.~vector();
 }
 
 void Spell::Draw()

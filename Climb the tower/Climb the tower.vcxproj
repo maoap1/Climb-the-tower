@@ -187,7 +187,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Setup.h" />
     <ClInclude Include="Spell.h" />
-    <ClInclude Include="SpellAnimationDatabase.h" />
     <ClInclude Include="Wall.h" />
   </ItemGroup>
   <ItemGroup>

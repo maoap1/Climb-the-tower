@@ -184,7 +184,7 @@ void Player::Attack()
 		animAttacked = true;
 		// vytvorit kouzlo
 
-		GameMap::CreateSpell(x, y, ID_LEFT, ID_FIREBALL);
+		GameMap::CreateSpell(x, y, lastDirection, ID_FIREBALL);
 
 		// prozatim
 		currentAttackFrame = 0;

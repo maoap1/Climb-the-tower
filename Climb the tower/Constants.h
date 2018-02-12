@@ -5,8 +5,15 @@
 #define FPS 60
 #define WALL_SIZE 75
 #define PLAYER_SIZE 90
-#define FIREBALL_SIZE 50
+#define SPELL_SIZE 50
 #define PLAYER_INIT_ATTACK_ANIM_DELAY 30 //5 for testing // 30 originally
+
+#pragma endregion
+
+#pragma region Animations
+
+#define SPELL_MOVE_LENGTH 3
+#define SPELL_DEATH_LENGTH 5
 
 #pragma endregion
 
@@ -50,7 +57,7 @@
 
 #pragma endregion
 
-#pragma region ID_SPELL
+#pragma region ID_MISSILES AND SPELLS
 
 //missiles
 #define ID_ARCANE_MISSILE 1
@@ -60,8 +67,13 @@
 
 //spells
 #define ID_FIREBALL 5
-#define ID_FROSTBOLT 6
-#define ID_DEATH_BALL 7
-#define ID_ARCANE_SPELL 8
+#define ID_FROSTBALL 6
+#define ID_ARCANEBALL 7
 
+#pragma endregion
+
+#pragma region Other
+#define MISSILES_COUNT 3
+#define SPELLS_COUNT 3
+#define NUMBER_OF_ORIENTATIONS 4
 #pragma endregion
