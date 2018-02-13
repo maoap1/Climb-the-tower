@@ -4,6 +4,22 @@
 
 namespace AnimationInitialization
 {
+#pragma region Player
+	extern vector<ALLEGRO_BITMAP*> PlayerLeft;
+	extern vector<ALLEGRO_BITMAP*> PlayerLeftAttack;
+	extern vector<ALLEGRO_BITMAP*> PlayerRight;
+	extern vector<ALLEGRO_BITMAP*> PlayerRightAttack;
+	extern vector<ALLEGRO_BITMAP*> PlayerUp;
+	extern vector<ALLEGRO_BITMAP*> PlayerUpAttack;
+	extern vector<ALLEGRO_BITMAP*> PlayerDown;
+	extern vector<ALLEGRO_BITMAP*> PlayerDownAttack;
+
+	extern ALLEGRO_BITMAP* PlayerUpIdle;
+	extern ALLEGRO_BITMAP* PlayerUpIdleAttack;
+	extern ALLEGRO_BITMAP* PlayerDownIdle;
+	extern ALLEGRO_BITMAP* PlayerDownIdleAttack;
+#pragma endregion
+
 #pragma region Spell movements
 	extern vector<ALLEGRO_BITMAP*> FireballLeft;
 	extern vector<ALLEGRO_BITMAP*> FireballUp;

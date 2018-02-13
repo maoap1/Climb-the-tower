@@ -1,22 +1,29 @@
 #include "Player.h"
+#include "AnimationInitialization.h"
 
 
 //Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
-Player::Player(float x, float y, 
-	Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown, 
-	Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown) : GameObject(x, y)
+Player::Player(float x, float y) : GameObject(x, y)
 {
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
 								  PLAYER_COLLIDER_WIDTH, PLAYER_COLLIDER_HEIGHT, "Player");
 	GameMap::Colliders.push_back(this->collider);
-	this->RunLeft = RunLeft;
-	this->RunRight = RunRight;
-	this->RunUp = RunUp;
-	this->RunDown = RunDown;
-	this->IdleLeft = IdleLeft;
-	this->IdleRight = IdleRight;
-	this->IdleUp = IdleUp;
-	this->IdleDown = IdleDown;
+
+	using namespace AnimationInitialization;
+
+	vector<int> HorizontalFrameDelays = { 6, 4, 6 };
+	vector<int> VerticalFrameDelays = { 8, 8 };
+
+	this->RunLeft = new Animation(&PlayerLeft, &PlayerLeftAttack, HorizontalFrameDelays);
+	this->RunRight = new Animation(&PlayerRight, &PlayerRightAttack, HorizontalFrameDelays);
+	this->RunUp = new Animation(&PlayerUp, &PlayerUpAttack, VerticalFrameDelays);
+	this->RunDown = new Animation(&PlayerDown, &PlayerDownAttack, VerticalFrameDelays);
+
+	this->IdleLeft = new Animation(PlayerLeft[2], PlayerLeftAttack[2]);
+	this->IdleRight = new Animation(PlayerRight[2], PlayerRightAttack[2]);
+	this->IdleUp = new Animation(PlayerUpIdle, PlayerUpIdleAttack);
+	this->IdleDown = new Animation(PlayerDownIdle, PlayerDownIdleAttack);
+
 	lastDirection = ID_DOWN;
 	moreDirections = false;
 	attacked = false;
@@ -194,5 +201,12 @@ void Player::Attack(int spellID)
 
 Player::~Player()
 {
-
+	delete RunLeft;
+	delete RunRight;
+	delete RunUp;
+	delete RunDown;
+	delete IdleLeft;
+	delete IdleRight;
+	delete IdleUp;
+	delete IdleDown;
 }

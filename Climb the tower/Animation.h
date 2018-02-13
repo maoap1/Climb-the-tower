@@ -3,45 +3,27 @@
 #include "Header.h"
 #include "AllegroHandling.h"
 
-
-//#include <memory>
-//
-//class Deleter
-//{
-//public:
-//
-//	void operator()(ALLEGRO_BITMAP* ptrToBitmap)
-//	{
-//		al_destroy_bitmap(ptrToBitmap);
-//	}
-//};
-
-
-
 class Animation
 {
 private:
-	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> sprites;
-	vector<ALLEGRO_BITMAP*> sprites;
-	vector<ALLEGRO_BITMAP*>* ptrSprites;
+	vector<ALLEGRO_BITMAP*>* sprites;
+	vector<ALLEGRO_BITMAP*>* attackSprites;
+	ALLEGRO_BITMAP* sprite;
+	ALLEGRO_BITMAP* attackSprite;
 
-	//vector<unique_ptr<ALLEGRO_BITMAP, Deleter>> attackSprites;
-	vector<ALLEGRO_BITMAP*> attackSprites;
 	vector<int> frameDelays;
 	int currentFrame;
 	int currentSprite;
 	int containsAttacks;
+	int trivial;
 
-	int testing = 0;
-
-	void Init(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height);
-
+	void Init(vector<int> frameDelays);
 
 public:
 	Animation(vector<ALLEGRO_BITMAP*>* sprites, vector<int> frameDelays);
-
-	Animation(vector<const char*> fileNames, vector<const char*> fileNamesAttacks, vector<int> frameDelays, float image_width, float image_height);
-	Animation(vector<const char*> fileNames, vector<int> frameDelays, float image_width, float image_height);
+	Animation(vector<ALLEGRO_BITMAP*>* sprites, vector<ALLEGRO_BITMAP*>* attackSprites, vector<int> frameDelays);
+	Animation(ALLEGRO_BITMAP* sprite);
+	Animation(ALLEGRO_BITMAP* sprite, ALLEGRO_BITMAP* AttackSprite);
 
 	ALLEGRO_BITMAP* GetNext();
 	ALLEGRO_BITMAP* GetNext(int attacked);

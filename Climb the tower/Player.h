@@ -50,9 +50,7 @@ public:
 
 	*/
 
-	Player(float x, float y,
-		Animation* RunLeft, Animation* RunRight, Animation* RunUp, Animation* RunDown,
-		Animation* IdleLeft, Animation* IdleRight, Animation* IdleUp, Animation* IdleDown);
+	Player(float x, float y);
 
 
 	/// <summary>

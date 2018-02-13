@@ -5,6 +5,22 @@
 namespace AnimationInitialization
 {
 
+#pragma region Player
+	vector<ALLEGRO_BITMAP*> PlayerLeft;
+	vector<ALLEGRO_BITMAP*> PlayerLeftAttack;
+	vector<ALLEGRO_BITMAP*> PlayerRight;
+	vector<ALLEGRO_BITMAP*> PlayerRightAttack;
+	vector<ALLEGRO_BITMAP*> PlayerUp;
+	vector<ALLEGRO_BITMAP*> PlayerUpAttack;
+	vector<ALLEGRO_BITMAP*> PlayerDown;
+	vector<ALLEGRO_BITMAP*> PlayerDownAttack;
+
+	ALLEGRO_BITMAP* PlayerUpIdle;
+	ALLEGRO_BITMAP* PlayerUpIdleAttack;
+	ALLEGRO_BITMAP* PlayerDownIdle;
+	ALLEGRO_BITMAP* PlayerDownIdleAttack;
+#pragma endregion
+
 #pragma region Spell movements
 	vector<ALLEGRO_BITMAP*> FireballLeft;
 	vector<ALLEGRO_BITMAP*> FireballUp;
@@ -38,6 +54,76 @@ namespace AnimationInitialization
 	vector<ALLEGRO_BITMAP*> ArcaneballDeathRight;
 	vector<ALLEGRO_BITMAP*> ArcaneballDeathDown;
 #pragma endregion
+
+	/// <summary>
+	/// Initialize vectors of bitmaps for horizontal animations of Player
+	/// </summary>
+	void PlayerHorizontalInit()
+	{
+
+		const char* PlayerHorizontalFileNames[PLAYER_TYPES_OF_ANIMATIONS*NUMBER_OF_ORIENTATIONS/2 ][PLAYER_MOVE_HORIZONTALLY_LENGTH] =
+
+		{
+			{ "Resources/Player_left_going1.png","Resources/Player_left.png", "Resources/Player_left_going2.png" },		// Player Left
+			{ "Resources/Player_right_going1.png","Resources/Player_right.png", "Resources/Player_right_going2.png" },	// Player Right
+			{ "Resources/Player_left_going1_attack.png","Resources/Player_left_attack.png",
+			  "Resources/Player_left_going2_attack.png" },																// Player Left Attack
+			{ "Resources/Player_right_going1_attack.png","Resources/Player_right_attack.png",
+			  "Resources/Player_right_going2_attack.png" },																// Player Right Attack
+		};
+
+		vector<vector<ALLEGRO_BITMAP*>*> vectors;
+
+		vectors.push_back(&PlayerLeft);
+		vectors.push_back(&PlayerRight);
+		vectors.push_back(&PlayerLeftAttack);
+		vectors.push_back(&PlayerRightAttack);
+
+		for (int i = 0; i < vectors.size(); i++)
+		{
+			for (int j = 0; j < PLAYER_MOVE_HORIZONTALLY_LENGTH; j++)
+			{
+				vectors[i]->push_back(AllegroHandling::load_resized_bitmap((PlayerHorizontalFileNames)[i][j], PLAYER_SIZE, PLAYER_SIZE));
+			}
+		}
+
+	}
+
+	/// <summary>
+	/// Initialize vectors of bitmaps for vertical animations of Player
+	/// </summary>
+	void PlayerVerticalInit()
+	{
+		const char* PlayerVerticalFileNames[PLAYER_TYPES_OF_ANIMATIONS*NUMBER_OF_ORIENTATIONS / 2][PLAYER_MOVE_VERTICALLY_LENGTH] =
+
+		{
+			{ "Resources/Player_back_going1.png", "Resources/Player_back_going2.png" },					// Player Up ... back is really Up
+			{ "Resources/Player_front_going1.png", "Resources/Player_front_going2.png" },				// Player Down
+			{ "Resources/Player_back_going1_attack.png" ,"Resources/Player_back_going2_attack.png" },	// Player Up Attack
+			{ "Resources/Player_front_going1_attack.png", "Resources/Player_front_going2_attack.png" },	// Player Down Attack
+		};
+
+		vector<vector<ALLEGRO_BITMAP*>*> vectors;
+
+		vectors.push_back(&PlayerUp);
+		vectors.push_back(&PlayerDown);
+		vectors.push_back(&PlayerUpAttack);
+		vectors.push_back(&PlayerDownAttack);
+
+		for (int i = 0; i < vectors.size(); i++)
+		{
+			for (int j = 0; j < PLAYER_MOVE_VERTICALLY_LENGTH; j++)
+			{
+				vectors[i]->push_back(AllegroHandling::load_resized_bitmap((PlayerVerticalFileNames)[i][j], PLAYER_SIZE, PLAYER_SIZE));
+			}
+		}
+
+		PlayerUpIdle = AllegroHandling::load_resized_bitmap("Resources/Player_back.png", PLAYER_SIZE, PLAYER_SIZE);
+		PlayerUpIdleAttack = AllegroHandling::load_resized_bitmap("Resources/Player_back_attack.png", PLAYER_SIZE, PLAYER_SIZE);
+		PlayerDownIdle = AllegroHandling::load_resized_bitmap("Resources/Player_front.png", PLAYER_SIZE, PLAYER_SIZE);
+		PlayerDownIdleAttack = AllegroHandling::load_resized_bitmap("Resources/Player_front_attack.png", PLAYER_SIZE, PLAYER_SIZE);
+	}
+
 
 	/// <summary>
 	/// Initialize vectors of bitmaps for move animations of spells
@@ -151,6 +237,8 @@ namespace AnimationInitialization
 
 	void AnimInit()
 	{
+		PlayerHorizontalInit();
+		PlayerVerticalInit();
 		SpellsMoveInit();
 		SpellsDeathInit();
 	}
