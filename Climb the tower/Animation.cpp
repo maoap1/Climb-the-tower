@@ -2,7 +2,6 @@
 
 void Animation::Init(vector<int> frameDelays)
 {
-
 	this->frameDelays = frameDelays;
 	this->currentFrame = 0;
 	this->currentSprite = 0;
