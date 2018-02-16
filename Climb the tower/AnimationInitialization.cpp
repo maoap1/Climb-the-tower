@@ -4,6 +4,10 @@
 
 namespace AnimationInitialization
 {
+#pragma region Slime
+	vector<ALLEGRO_BITMAP*> Slime;
+	vector<ALLEGRO_BITMAP*> SlimeAttack;
+#pragma endregion
 
 #pragma region Player
 	vector<ALLEGRO_BITMAP*> PlayerLeft;
@@ -241,5 +245,27 @@ namespace AnimationInitialization
 		PlayerVerticalInit();
 		SpellsMoveInit();
 		SpellsDeathInit();
+		
+		// THIS IS SLIME ANIMATION FOR TESTING
+		for (int i = 0; i < SLIME_ANIM_LENGTH; i++)
+		{
+			Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime1.png", SLIME_SIZE, SLIME_SIZE));
+			Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime2.png", SLIME_SIZE, SLIME_SIZE));
+		}
+		Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime3.png", SLIME_SIZE, SLIME_SIZE));
+		Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime4.png", SLIME_SIZE, SLIME_SIZE));
+		Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime5.png", SLIME_SIZE, SLIME_SIZE));
+		Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime2.png", SLIME_SIZE, SLIME_SIZE));
+		//END
+
+		//THIS IS SLIME ATTACK ANIMATION FOR TESTING
+		for (int i = 0; i < 2*SLIME_ANIM_LENGTH + 4; i++) // +4 for TESTING!!!
+		{
+			SlimeAttack.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime_attack.png", SLIME_SIZE, SLIME_SIZE));
+		}
+		//END
+
+
+
 	}
 }

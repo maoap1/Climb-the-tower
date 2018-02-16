@@ -144,6 +144,9 @@
     <ClCompile Include="Wall.cpp">
       <Filter>Zdrojové soubory\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Zdrojové soubory\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Setup.h">
@@ -189,6 +192,9 @@
       <Filter>Hlavičkové soubory\Objects</Filter>
     </ClInclude>
     <ClInclude Include="Wall.h">
+      <Filter>Hlavičkové soubory\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
       <Filter>Hlavičkové soubory\Objects</Filter>
     </ClInclude>
   </ItemGroup>

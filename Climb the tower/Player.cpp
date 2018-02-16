@@ -11,7 +11,7 @@ Player::Player(float x, float y) : GameObject(x, y)
 
 	using namespace AnimationInitialization;
 
-	vector<int> HorizontalFrameDelays = { 6, 4, 6 };
+	/*vector<int> HorizontalFrameDelays = { 6, 4, 6 };
 	vector<int> VerticalFrameDelays = { 8, 8 };
 
 	this->RunLeft = new Animation(&PlayerLeft, &PlayerLeftAttack, HorizontalFrameDelays);
@@ -22,7 +22,24 @@ Player::Player(float x, float y) : GameObject(x, y)
 	this->IdleLeft = new Animation(PlayerLeft[2], PlayerLeftAttack[2]);
 	this->IdleRight = new Animation(PlayerRight[2], PlayerRightAttack[2]);
 	this->IdleUp = new Animation(PlayerUpIdle, PlayerUpIdleAttack);
-	this->IdleDown = new Animation(PlayerDownIdle, PlayerDownIdleAttack);
+	this->IdleDown = new Animation(PlayerDownIdle, PlayerDownIdleAttack);*/
+
+	vector<int> FrameDelays;
+	for (int i = 0; i < 2*SLIME_ANIM_LENGTH+4; i++) // +4 is TESTING!!!
+	{
+		FrameDelays.push_back(8);
+	}
+
+	this->RunLeft = new Animation(&Slime, &SlimeAttack, FrameDelays);
+	this->RunRight = new Animation(&Slime, &SlimeAttack, FrameDelays);
+	this->RunUp = new Animation(&Slime, &SlimeAttack, FrameDelays);
+	this->RunDown = new Animation(&Slime, &SlimeAttack, FrameDelays);
+
+	this->IdleLeft = new Animation(&Slime, &SlimeAttack, FrameDelays);
+	this->IdleRight = new Animation(&Slime, &SlimeAttack, FrameDelays);
+	this->IdleUp = new Animation(&Slime, &SlimeAttack, FrameDelays);
+	this->IdleDown = new Animation(&Slime, &SlimeAttack, FrameDelays);
+
 
 	lastDirection = ID_DOWN;
 	moreDirections = false;

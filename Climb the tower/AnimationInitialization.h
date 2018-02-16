@@ -20,6 +20,11 @@ namespace AnimationInitialization
 	extern ALLEGRO_BITMAP* PlayerDownIdleAttack;
 #pragma endregion
 
+#pragma region Slime
+	extern vector<ALLEGRO_BITMAP*> Slime;
+	extern vector<ALLEGRO_BITMAP*> SlimeAttack;
+#pragma endregion
+
 #pragma region Spell movements
 	extern vector<ALLEGRO_BITMAP*> FireballLeft;
 	extern vector<ALLEGRO_BITMAP*> FireballUp;

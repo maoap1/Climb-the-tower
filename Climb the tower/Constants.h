@@ -6,7 +6,8 @@
 #define WALL_SIZE 75
 #define PLAYER_SIZE 90
 #define SPELL_SIZE 50
-#define PLAYER_INIT_ATTACK_ANIM_DELAY 5 //5 for testing // 30 originally
+#define SLIME_SIZE 60
+#define PLAYER_INIT_ATTACK_ANIM_DELAY 30 //5 for testing // 30 originally
 
 #pragma endregion
 
@@ -17,6 +18,7 @@
 #define PLAYER_MOVE_VERTICALLY_LENGTH 2
 #define SPELL_MOVE_LENGTH 3
 #define SPELL_DEATH_LENGTH 5
+#define SLIME_ANIM_LENGTH 10
 
 #pragma endregion
 
@@ -41,7 +43,7 @@
 #pragma region Player stats
 
 #define PLAYER_SPEED 2
-#define PLAYER_INIT_ATTACK_DELAY 5 //5 for testing // 50 originally
+#define PLAYER_INIT_ATTACK_DELAY 50 //5 for testing // 50 originally
 
 #pragma endregion
 
