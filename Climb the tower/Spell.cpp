@@ -9,20 +9,6 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 	this->orientation = orientation;
 	this->spellID = spellID;
 
-	bool isMissile;
-	switch (spellID)
-	{
-	case ID_ARCANE_MISSILE:
-	case ID_SLIME_BALL:
-	case ID_MUD_BALL:
-	case ID_SNOW_BALL:
-		isMissile = true;
-		break;
-	default:
-		isMissile = false;
-		break;
-	}
-
 	int collider_width;
 	int collider_height;
 
@@ -57,23 +43,13 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 	collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_height, "Spell");
 	GameMap::Colliders.push_back(collider);
 
-	// THIS only for spells!
 	vector<int> MoveFrameDelays = { 6, 6, 6 };
 	vector<int> DeathFrameDelays = { 8, 8, 8, 8, 8 };
-	// end of THIS
 
 	using namespace AnimationInitialization;
 
 	switch (spellID)
 	{
-	case ID_ARCANE_MISSILE:
-		break;
-	case ID_SLIME_BALL:
-		break;
-	case ID_MUD_BALL:
-		break;
-	case ID_SNOW_BALL:
-		break;
 	case ID_FIREBALL:
 		switch (orientation)
 		{
@@ -134,6 +110,28 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 		case ID_DOWN:
 			this->Moving = new Animation(&ArcaneballDown, MoveFrameDelays);
 			this->Death = new Animation(&ArcaneballDeathDown, DeathFrameDelays);
+			break;
+		}
+		break;
+
+	case ID_SLIMEBALL:
+		switch (orientation)
+		{
+		case ID_LEFT:
+			this->Moving = new Animation(&SlimeballLeft, MoveFrameDelays);
+			this->Death = new Animation(&SlimeballDeathLeft, DeathFrameDelays);
+			break;
+		case ID_UP:
+			this->Moving = new Animation(&SlimeballUp, MoveFrameDelays);
+			this->Death = new Animation(&SlimeballDeathUp, DeathFrameDelays);
+			break;
+		case ID_RIGHT:
+			this->Moving = new Animation(&SlimeballRight, MoveFrameDelays);
+			this->Death = new Animation(&SlimeballDeathRight, DeathFrameDelays);
+			break;
+		case ID_DOWN:
+			this->Moving = new Animation(&SlimeballDown, MoveFrameDelays);
+			this->Death = new Animation(&SlimeballDeathDown, DeathFrameDelays);
 			break;
 		}
 		break;

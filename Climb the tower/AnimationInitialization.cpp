@@ -40,6 +40,11 @@ namespace AnimationInitialization
 	vector<ALLEGRO_BITMAP*> ArcaneballUp;
 	vector<ALLEGRO_BITMAP*> ArcaneballRight;
 	vector<ALLEGRO_BITMAP*> ArcaneballDown;
+
+	vector<ALLEGRO_BITMAP*> SlimeballLeft;
+	vector<ALLEGRO_BITMAP*> SlimeballUp;
+	vector<ALLEGRO_BITMAP*> SlimeballRight;
+	vector<ALLEGRO_BITMAP*> SlimeballDown;
 #pragma endregion
 
 #pragma region Spell deaths
@@ -57,6 +62,11 @@ namespace AnimationInitialization
 	vector<ALLEGRO_BITMAP*> ArcaneballDeathUp;
 	vector<ALLEGRO_BITMAP*> ArcaneballDeathRight;
 	vector<ALLEGRO_BITMAP*> ArcaneballDeathDown;
+
+	vector<ALLEGRO_BITMAP*> SlimeballDeathLeft;
+	vector<ALLEGRO_BITMAP*> SlimeballDeathUp;
+	vector<ALLEGRO_BITMAP*> SlimeballDeathRight;
+	vector<ALLEGRO_BITMAP*> SlimeballDeathDown;
 #pragma endregion
 
 	/// <summary>
@@ -151,6 +161,11 @@ namespace AnimationInitialization
 			{ "Resources/Arcaneball_up_1.png","Resources/Arcaneball_up_2.png","Resources/Arcaneball_up_3.png" },			// Arcaneball Up
 			{ "Resources/Arcaneball_right_1.png","Resources/Arcaneball_right_2.png","Resources/Arcaneball_right_3.png" },	// Arcaneball Right
 			{ "Resources/Arcaneball_down_1.png","Resources/Arcaneball_down_2.png","Resources/Arcaneball_down_3.png" },		// Arcaneball Down
+
+			{ "Resources/Slimeball_left_1.png","Resources/Slimeball_left_2.png","Resources/Slimeball_left_3.png" },			// Slimeball Left
+			{ "Resources/Slimeball_up_1.png","Resources/Slimeball_up_2.png","Resources/Slimeball_up_3.png" },				// Slimeball Up
+			{ "Resources/Slimeball_right_1.png","Resources/Slimeball_right_2.png","Resources/Slimeball_right_3.png" },		// Slimeball Right
+			{ "Resources/Slimeball_down_1.png","Resources/Slimeball_down_2.png","Resources/Slimeball_down_3.png" },			// Slimeball Down
 		};
 
 
@@ -168,6 +183,10 @@ namespace AnimationInitialization
 		vectors.push_back(&ArcaneballUp);
 		vectors.push_back(&ArcaneballRight);
 		vectors.push_back(&ArcaneballDown);
+		vectors.push_back(&SlimeballLeft);
+		vectors.push_back(&SlimeballUp);
+		vectors.push_back(&SlimeballRight);
+		vectors.push_back(&SlimeballDown);
 
 		for (int i = 0; i < vectors.size(); i++)
 		{
@@ -212,6 +231,14 @@ namespace AnimationInitialization
 			{ "Resources/Arcaneball_down_death1.png","Resources/Arcaneball_down_death2.png","Resources/Arcaneball_down_death3.png",
 			"Resources/Arcaneball_down_death4.png","Resources/Arcaneball_down_death5.png" },	// Arcaneball Death Down
 
+			{ "Resources/Slimeball_left_death1.png","Resources/Slimeball_left_death2.png","Resources/Slimeball_left_death3.png",
+			"Resources/Slimeball_left_death4.png","Resources/Slimeball_left_death5.png" },		// Slimeball Death Left
+			{ "Resources/Slimeball_up_death1.png","Resources/Slimeball_up_death2.png","Resources/Slimeball_up_death3.png",
+			"Resources/Slimeball_up_death4.png","Resources/Slimeball_up_death5.png" },			// Slimeball Death Up
+			{ "Resources/Slimeball_right_death1.png","Resources/Slimeball_right_death2.png","Resources/Slimeball_right_death3.png",
+			"Resources/Slimeball_right_death4.png","Resources/Slimeball_right_death5.png" },	// Slimeball Death Right
+			{ "Resources/Slimeball_down_death1.png","Resources/Slimeball_down_death2.png","Resources/Slimeball_down_death3.png",
+			"Resources/Slimeball_down_death4.png","Resources/Slimeball_down_death5.png" },		// Slimeball Death Down
 		};
 
 
@@ -229,6 +256,10 @@ namespace AnimationInitialization
 		vectors.push_back(&ArcaneballDeathUp);
 		vectors.push_back(&ArcaneballDeathRight);
 		vectors.push_back(&ArcaneballDeathDown);
+		vectors.push_back(&SlimeballDeathLeft);
+		vectors.push_back(&SlimeballDeathUp);
+		vectors.push_back(&SlimeballDeathRight);
+		vectors.push_back(&SlimeballDeathDown);
 
 		for (int i = 0; i < vectors.size(); i++)
 		{

@@ -100,6 +100,12 @@
     <Filter Include="Soubory zdrojů\Waterblast\Down">
       <UniqueIdentifier>{830d6572-7507-441d-b135-f2a4dda08468}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Soubory zdrojů\Slimeball">
+      <UniqueIdentifier>{5dd275a4-abef-40fa-a78d-0aee63cc84e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soubory zdrojů\Slime">
+      <UniqueIdentifier>{7a973e3d-7960-48c2-98fe-f326f48c08fd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -561,6 +567,120 @@
     </Image>
     <Image Include="Resources\Waterblast_up_death5.png">
       <Filter>Soubory zdrojů\Waterblast\Up</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_death1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_death2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_death3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_death4.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_down_death5.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_death1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_death2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_death3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_death4.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_left_death5.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_death1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_death2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_death3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_death4.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_right_death5.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_death1.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_death2.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_death3.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_death4.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slimeball_up_death5.png">
+      <Filter>Soubory zdrojů\Slimeball</Filter>
+    </Image>
+    <Image Include="Resources\Slime_attack.png">
+      <Filter>Soubory zdrojů\Slime</Filter>
+    </Image>
+    <Image Include="Resources\Slime1.png">
+      <Filter>Soubory zdrojů\Slime</Filter>
+    </Image>
+    <Image Include="Resources\Slime2.png">
+      <Filter>Soubory zdrojů\Slime</Filter>
+    </Image>
+    <Image Include="Resources\Slime3.png">
+      <Filter>Soubory zdrojů\Slime</Filter>
+    </Image>
+    <Image Include="Resources\Slime4.png">
+      <Filter>Soubory zdrojů\Slime</Filter>
+    </Image>
+    <Image Include="Resources\Slime5.png">
+      <Filter>Soubory zdrojů\Slime</Filter>
     </Image>
   </ItemGroup>
 </Project>

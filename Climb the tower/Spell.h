@@ -4,7 +4,6 @@
 #include "ActiveGameObject.h"
 #include "Animation.h"
 #include "Collider.h"
-#include "AllegroHandling.h"
 
 class Spell : public ActiveGameObject
 {

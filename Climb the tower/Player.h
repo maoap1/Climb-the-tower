@@ -4,7 +4,6 @@
 #include "Animation.h"
 #include "Collider.h"
 #include "Spell.h"
-#include "GameMap.h"
 
 class Player : public GameObject
 {

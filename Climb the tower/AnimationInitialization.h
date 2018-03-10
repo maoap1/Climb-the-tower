@@ -40,6 +40,11 @@ namespace AnimationInitialization
 	extern vector<ALLEGRO_BITMAP*> ArcaneballUp;
 	extern vector<ALLEGRO_BITMAP*> ArcaneballRight;
 	extern vector<ALLEGRO_BITMAP*> ArcaneballDown;
+
+	extern vector<ALLEGRO_BITMAP*> SlimeballLeft;
+	extern vector<ALLEGRO_BITMAP*> SlimeballUp;
+	extern vector<ALLEGRO_BITMAP*> SlimeballRight;
+	extern vector<ALLEGRO_BITMAP*> SlimeballDown;
 #pragma endregion
 
 #pragma region Spell deaths
@@ -57,6 +62,11 @@ namespace AnimationInitialization
 	extern vector<ALLEGRO_BITMAP*> ArcaneballDeathUp;
 	extern vector<ALLEGRO_BITMAP*> ArcaneballDeathRight;
 	extern vector<ALLEGRO_BITMAP*> ArcaneballDeathDown;
+
+	extern vector<ALLEGRO_BITMAP*> SlimeballDeathLeft;
+	extern vector<ALLEGRO_BITMAP*> SlimeballDeathUp;
+	extern vector<ALLEGRO_BITMAP*> SlimeballDeathRight;
+	extern vector<ALLEGRO_BITMAP*> SlimeballDeathDown;
 #pragma endregion
 
 	void AnimInit();

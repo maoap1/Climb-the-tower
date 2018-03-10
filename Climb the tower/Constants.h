@@ -62,23 +62,16 @@
 
 #pragma endregion
 
-#pragma region ID_MISSILES AND SPELLS
+#pragma region ID_SPELLS
 
-//missiles
-#define ID_ARCANE_MISSILE 1
-#define ID_SLIME_BALL 2 
-#define ID_MUD_BALL 3
-#define ID_SNOW_BALL 4
-
-//spells
-#define ID_FIREBALL 5
-#define ID_WATERBLAST 6
-#define ID_ARCANEBALL 7
+#define ID_FIREBALL 1
+#define ID_WATERBLAST 2
+#define ID_ARCANEBALL 3
+#define ID_SLIMEBALL 4
 
 #pragma endregion
 
 #pragma region Other
-#define MISSILES_COUNT 3
-#define SPELLS_COUNT 3
+#define SPELLS_COUNT 4
 #define NUMBER_OF_ORIENTATIONS 4
 #pragma endregion

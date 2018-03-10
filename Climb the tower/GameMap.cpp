@@ -1,6 +1,8 @@
 #include "GameMap.h"
 #include "Header.h"
 #include "Objects.h"
+#include "Player.h"
+#include "Enemy.h"
 
 namespace GameMap
 {
@@ -40,4 +42,12 @@ namespace GameMap
 		Movables.push_back(spell);
 		Drawables.push_back(spell);
 	}
+
+	void CreateEnemy(float x, float y, int orientation)
+	{
+		Enemy* enemy = new Enemy(x, y, orientation);
+		Movables.push_back(enemy);
+		Drawables.push_back(enemy);
+	}
+	
 }
