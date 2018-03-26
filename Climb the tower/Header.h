@@ -6,6 +6,8 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <random>
+#include <functional>
 
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"

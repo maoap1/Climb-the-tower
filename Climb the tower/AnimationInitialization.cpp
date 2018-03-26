@@ -270,13 +270,11 @@ namespace AnimationInitialization
 		}
 	}
 
-	void AnimInit()
+	/// <summary>
+	/// Initialize vectors of bitmaps for move animation of slime
+	/// </summary>
+	void SlimeInit()
 	{
-		PlayerHorizontalInit();
-		PlayerVerticalInit();
-		SpellsMoveInit();
-		SpellsDeathInit();
-		
 		// THIS IS SLIME ANIMATION FOR TESTING
 		for (int i = 0; i < SLIME_ANIM_LENGTH; i++)
 		{
@@ -288,15 +286,25 @@ namespace AnimationInitialization
 		Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime5.png", SLIME_SIZE, SLIME_SIZE));
 		Slime.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime2.png", SLIME_SIZE, SLIME_SIZE));
 		//END
+	}
 
+	void SlimeAttackInit()
+	{
 		//THIS IS SLIME ATTACK ANIMATION FOR TESTING
-		for (int i = 0; i < 2*SLIME_ANIM_LENGTH + 4; i++) // +4 for TESTING!!!
+		for (int i = 0; i < 2 * SLIME_ANIM_LENGTH + 4; i++) // +4 for TESTING!!!
 		{
 			SlimeAttack.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime_attack.png", SLIME_SIZE, SLIME_SIZE));
 		}
 		//END
+	}
 
-
-
+	void AnimInit()
+	{
+		PlayerHorizontalInit();
+		PlayerVerticalInit();
+		SpellsMoveInit();
+		SpellsDeathInit();
+		SlimeInit();
+		SlimeAttackInit();
 	}
 }

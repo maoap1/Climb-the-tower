@@ -18,7 +18,7 @@ private:
 	//int crashed; // 0 false, 1 true AND it is drawn for the first time, 2 true
 
 public:
-	Enemy(float x, float y, int orientation);
+	Enemy(float x, float y);
 	void Draw() override;
 	void Move() override;
 	~Enemy() override;
