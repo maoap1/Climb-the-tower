@@ -16,31 +16,37 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 	{
 	case ID_LEFT:
 		collider_shift_x = 0;
-		collider_shift_y = 0;
-		collider_width = 5;
-		collider_height = 10;
+		collider_shift_y = 11;
+		collider_width = 50;
+		collider_height = 27;
 		break;
 	case ID_UP:
-		collider_shift_x = 0;
+		collider_shift_x = 14;
 		collider_shift_y = 0;
-		collider_width = 10;
-		collider_height = 5;
+		collider_width = 25;
+		collider_height = 45;
 		break;
 	case ID_RIGHT:
-		collider_shift_x = 70;
-		collider_shift_y = 0;
-		collider_width = 5;
-		collider_height = 10;
+		collider_shift_x = 6;
+		collider_shift_y = 12;
+		collider_width = 44;
+		collider_height = 25;
 		break;
 	case ID_DOWN:
-		collider_shift_x = 0;
-		collider_shift_y = 0;
-		collider_width = 10;
-		collider_height = 5;
+		collider_shift_x = 14;
+		collider_shift_y = 5;
+		collider_width = 25;
+		collider_height = 44;
 		break;
 	}
-
-	collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_height, "Spell");
+	if (spellID != ID_SLIMEBALL)
+	{
+		collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_width, "Spell");
+	}
+	else
+	{
+		collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_width, "EnemySpell");
+	}
 	GameMap::Colliders.push_back(collider);
 
 	vector<int> MoveFrameDelays = { 6, 6, 6 };
@@ -170,6 +176,7 @@ void Spell::Draw()
 	}
 }
 
+
 void Spell::Move()
 {
 	if (crashed)
@@ -198,14 +205,17 @@ void Spell::Move()
 	collider->SetXY(xNew + collider_shift_x, yNew + collider_shift_y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
-		if (it->flag != "Spell")
+		if (it != collider)
 		{
-			// check for collision
-			if (collider->HasCollided(*it))
+			if (((collider->flag == "Spell") && (it->flag != "Player"))||((collider->flag == "EnemySpell") && (it->flag != "Enemy")))
 			{
-				crashed = 1;
-				collider->SetXY(x + collider_shift_x, y + collider_shift_y);
-				return;
+				// check for collision
+				if (collider->HasCollided(*it))
+				{
+					crashed = 1;
+					collider->SetXY(x + collider_shift_x, y + collider_shift_y);
+					return;
+				}
 			}
 		}
 	}

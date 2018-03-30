@@ -37,7 +37,7 @@ void Enemy::MoveTo(float next_x, float next_y)
 	collider->SetXY(xNew + SLIME_COLLIDER_SHIFT_X, yNew + SLIME_COLLIDER_SHIFT_Y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
-		if (it != collider)
+		if ((it != collider)&&(it->flag != "EnemySpell"))
 		{
 			// check for collision
 			if (collider->HasCollided(*it))

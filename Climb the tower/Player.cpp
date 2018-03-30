@@ -24,24 +24,6 @@ Player::Player(float x, float y) : GameObject(x, y)
 	this->IdleUp = new Animation(PlayerUpIdle, PlayerUpIdleAttack);
 	this->IdleDown = new Animation(PlayerDownIdle, PlayerDownIdleAttack);
 
-	/*		ENEMY animation
-	vector<int> FrameDelays;
-	for (int i = 0; i < 2*SLIME_ANIM_LENGTH+4; i++) // +4 is TESTING!!!
-	{
-		FrameDelays.push_back(8);
-	}
-
-	this->RunLeft = new Animation(&Slime, &SlimeAttack, FrameDelays);
-	this->RunRight = new Animation(&Slime, &SlimeAttack, FrameDelays);
-	this->RunUp = new Animation(&Slime, &SlimeAttack, FrameDelays);
-	this->RunDown = new Animation(&Slime, &SlimeAttack, FrameDelays);
-
-	this->IdleLeft = new Animation(&Slime, &SlimeAttack, FrameDelays);
-	this->IdleRight = new Animation(&Slime, &SlimeAttack, FrameDelays);
-	this->IdleUp = new Animation(&Slime, &SlimeAttack, FrameDelays);
-	this->IdleDown = new Animation(&Slime, &SlimeAttack, FrameDelays);*/
-
-
 	lastDirection = ID_DOWN;
 	moreDirections = false;
 	attacked = false;
@@ -144,7 +126,7 @@ void Player::Move(int direction)
 	collider->SetXY(xNew+PLAYER_COLLIDER_SHIFT_X, yNew+PLAYER_COLLIDER_SHIFT_Y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
-		if (it->flag != "Player")
+		if ((it != collider)&&(it->flag != "Spell"))
 		{
 			// check for collision
 			if (collider->HasCollided(*it))
@@ -209,7 +191,21 @@ void Player::Attack(int spellID)
 		animAttacked = true;
 		// vytvorit kouzlo
 
-		GameMap::CreateSpell(x, y, lastDirection, spellID);
+		switch (lastDirection)
+		{
+		case ID_LEFT:
+			GameMap::CreateSpell(x, y, lastDirection, spellID);
+			break;
+		case ID_UP:
+			GameMap::CreateSpell(x + 35, y, lastDirection, spellID);
+			break;
+		case ID_RIGHT:
+			GameMap::CreateSpell(x + 35, y, lastDirection, spellID);
+			break;
+		case ID_DOWN:
+			GameMap::CreateSpell(x + 1, y + 5, lastDirection, spellID);
+			break;
+		}
 
 		// prozatim
 		currentAttackFrame = 0;
