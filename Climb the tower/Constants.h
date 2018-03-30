@@ -26,10 +26,10 @@
 
 #pragma region Player collider
 
-#define PLAYER_COLLIDER_SHIFT_X 15
-#define PLAYER_COLLIDER_SHIFT_Y 9
-#define PLAYER_COLLIDER_WIDTH 55
-#define PLAYER_COLLIDER_HEIGHT 70
+#define PLAYER_COLLIDER_SHIFT_X 25 //15
+#define PLAYER_COLLIDER_SHIFT_Y 9 //9
+#define PLAYER_COLLIDER_WIDTH 40 //55
+#define PLAYER_COLLIDER_HEIGHT 70 //70
 
 #pragma endregion
 
@@ -60,6 +60,10 @@
 
 #define SPELL_SPEED 5
 #define SLIME_SPEED 1
+#define SLIME_HITTED_ANIM_DELAY 20
+#define SLIME_ATTACK_DELAY 60
+#define AGGRO_INIT_DISTANCE 350
+#define AGGRO_MAX_DISTANCE 500
 
 #pragma endregion
 

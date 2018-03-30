@@ -9,6 +9,7 @@ Collider::Collider(int x, int y, int height, int width, string flag) // there sh
 	this->height = height;
 	this->width = width;
 	this->flag = flag;
+	this->collided = false;
 }
 
 

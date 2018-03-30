@@ -189,7 +189,6 @@ void Player::Attack(int spellID)
 	{
 		attacked = true;
 		animAttacked = true;
-		// vytvorit kouzlo
 
 		switch (lastDirection)
 		{
@@ -207,10 +206,18 @@ void Player::Attack(int spellID)
 			break;
 		}
 
-		// prozatim
 		currentAttackFrame = 0;
 	}
 	
+}
+
+float Player::Get_x()
+{
+	return x;
+}
+float Player::Get_y()
+{
+	return y;
 }
 
 Player::~Player()

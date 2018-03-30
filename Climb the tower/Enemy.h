@@ -23,8 +23,15 @@ private:
 	float final_y;
 
 	int crashed; // 0 false, 1 true
+	bool triggered;
+	bool hitted;
+	bool attacked;
+	int currentHittedFrame;
+	int currentAttackFrame;
+	int recoveryFrames;
 
 	void MoveTo(float x, float y);
+	void Attack();
 
 public:
 	Enemy(float x, float y);

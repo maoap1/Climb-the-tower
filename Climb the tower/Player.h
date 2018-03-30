@@ -87,6 +87,9 @@ public:
 
 	void Attack(int spellID);
 
+	float Get_x();
+	float Get_y();
+
 	~Player() override;
 };
 

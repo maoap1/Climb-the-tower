@@ -28,6 +28,8 @@ private:
 	int width;
 
 public:
+	bool collided;
+
 	/// <summary>
 	/// string flag; you can store here the name of the owner of this collider -> for example "Player"
 	/// default is empty string

@@ -50,7 +50,7 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 	GameMap::Colliders.push_back(collider);
 
 	vector<int> MoveFrameDelays = { 6, 6, 6 };
-	vector<int> DeathFrameDelays = { 8, 8, 8, 8, 8 };
+	vector<int> DeathFrameDelays = { 6, 6, 6, 6, 6 }; //5 times 8
 
 	using namespace AnimationInitialization;
 
@@ -205,13 +205,17 @@ void Spell::Move()
 	collider->SetXY(xNew + collider_shift_x, yNew + collider_shift_y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
-		if (it != collider)
+		if ((it != collider)&&(it->flag != "Spell")&&(it->flag != "EnemySpell"))
 		{
 			if (((collider->flag == "Spell") && (it->flag != "Player"))||((collider->flag == "EnemySpell") && (it->flag != "Enemy")))
 			{
 				// check for collision
 				if (collider->HasCollided(*it))
 				{
+					if ((it->flag == "Player")||(it->flag == "Enemy"))
+					{
+						it->collided = true;
+					}
 					crashed = 1;
 					collider->SetXY(x + collider_shift_x, y + collider_shift_y);
 					return;

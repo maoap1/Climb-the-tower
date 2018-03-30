@@ -1,5 +1,5 @@
 #include "Header.h"
-#include <iostream>
+#include <iostream> // DELETE in the final version
 #include "Setup.h"
 #include "Objects.h"
 #include "GameMap.h"
