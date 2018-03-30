@@ -8,6 +8,13 @@ void Animation::Init(vector<int> frameDelays)
 	this->trivial = 0;
 }
 
+void Animation::Randomize()
+{
+	auto generator = mt19937(random_device{}());
+	uniform_int_distribution<int> distribution(0, (*sprites).size());
+	currentSprite = (currentSprite + distribution(generator)) % (*sprites).size();
+}
+
 Animation::Animation(vector<ALLEGRO_BITMAP*>* sprites, vector<int> frameDelays)
 {
 	this->sprites = sprites;

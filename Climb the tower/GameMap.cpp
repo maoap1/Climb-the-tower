@@ -105,6 +105,30 @@ namespace GameMap
 		}
 	}
 
+	void RandomEmptyPosition(float& x, float& y)
+	{
+		auto generator = mt19937(random_device{}());
+
+		uniform_int_distribution<int> widthDistribution(0, Map_width - 1);
+		uniform_int_distribution<int> heightDistribution(0, Map_height - 1);
+		auto rndWidth = bind(widthDistribution, generator);
+		auto rndHeight = bind(heightDistribution, generator);
+
+		int done = 0;
+		while (done != 1)
+		{
+			int yy = rndHeight();
+			int xx = rndWidth();
+			if (Map[yy][xx] != -1) // it isnt wall
+			{
+				x = (xx + 1)*WALL_SIZE;
+				y = (yy + 1)*WALL_SIZE;
+				done = 1;
+			}
+		}
+	}
+
+
 	void CreateSpell(float x, float y, int orientation, int spellID)
 	{
 		Spell* spell = new Spell(x, y, orientation, spellID);

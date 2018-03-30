@@ -28,13 +28,22 @@
 
 #define PLAYER_COLLIDER_SHIFT_X 15
 #define PLAYER_COLLIDER_SHIFT_Y 9
-#define PLAYER_COLLIDER_WIDTH 70
-#define PLAYER_COLLIDER_HEIGHT 55
+#define PLAYER_COLLIDER_WIDTH 55
+#define PLAYER_COLLIDER_HEIGHT 70
 
 #pragma endregion
 
 #pragma region Spell colliders
 
+
+#pragma endregion
+
+#pragma region Slime collider
+
+#define SLIME_COLLIDER_SHIFT_X 2
+#define SLIME_COLLIDER_SHIFT_Y 4
+#define SLIME_COLLIDER_WIDTH 58
+#define SLIME_COLLIDER_HEIGHT 54
 
 #pragma endregion
 
@@ -50,6 +59,7 @@
 #pragma region Other stats
 
 #define SPELL_SPEED 5
+#define SLIME_SPEED 1
 
 #pragma endregion
 

@@ -7,9 +7,8 @@
 Player::Player(float x, float y) : GameObject(x, y)
 {
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
-								  PLAYER_COLLIDER_WIDTH, PLAYER_COLLIDER_HEIGHT, "Player");
+								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Player");
 	GameMap::Colliders.push_back(this->collider);
-
 	using namespace AnimationInitialization;
 
 	vector<int> HorizontalFrameDelays = { 6, 4, 6 };

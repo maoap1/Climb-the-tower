@@ -117,6 +117,13 @@ public:
 	/// <returns></returns>
 	ALLEGRO_BITMAP* GetNext(bool* isEnd);
 
+
+	/// <summary>
+	/// Randomizes actual sprite
+	/// </summary>
+	void Randomize();
+
+
 	/// <summary>
 	/// Finalizes an instance of the <see cref="Animation"/> class.
 	/// </summary>

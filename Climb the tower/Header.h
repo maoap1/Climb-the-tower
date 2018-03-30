@@ -3,6 +3,7 @@
 #include "allegro5\allegro.h"
 
 #include <stdio.h>
+#include <math.h>
 #include <string>
 #include <list>
 #include <vector>
