@@ -20,7 +20,14 @@ private:
 	Animation* IdleRight;
 	Animation* IdleUp;
 	Animation* IdleDown;
+	/// <summary>
+	/// The outer collider, immune to spells
+	/// </summary>
 	Collider* collider;
+	/// <summary>
+	/// The collider for colliding with spells
+	/// </summary>
+	Collider* spellCollider;
 
 	int lastDirection; // it tells us which direction do we need to draw
 	bool moreDirections;

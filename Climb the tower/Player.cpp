@@ -7,8 +7,12 @@
 Player::Player(float x, float y) : GameObject(x, y)
 {
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
-								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Player");
+								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Spell");
+	this->spellCollider = new Collider(x + PLAYER_SPELL_COLLIDER_SHIFT_X, y + PLAYER_SPELL_COLLIDER_SHIFT_Y,
+								       PLAYER_SPELL_COLLIDER_HEIGHT, PLAYER_SPELL_COLLIDER_WIDTH, "Player");
 	GameMap::Colliders.push_back(this->collider);
+	GameMap::Colliders.push_back(this->spellCollider);
+
 	using namespace AnimationInitialization;
 
 	vector<int> HorizontalFrameDelays = { 6, 4, 6 };
@@ -126,7 +130,7 @@ void Player::Move(int direction)
 	collider->SetXY(xNew+PLAYER_COLLIDER_SHIFT_X, yNew+PLAYER_COLLIDER_SHIFT_Y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
-		if ((it != collider)&&(it->flag != "Spell"))
+		if ((it != collider)&&(it->flag != "Spell")&&(it->flag != "Player"))
 		{
 			// check for collision
 			if (collider->HasCollided(*it))
@@ -139,7 +143,7 @@ void Player::Move(int direction)
 	// if collision didnt occur
 	x = xNew;
 	y = yNew;
-	
+	spellCollider->SetXY(x + PLAYER_SPELL_COLLIDER_SHIFT_X, y + PLAYER_SPELL_COLLIDER_SHIFT_Y);
 }
 
 void Player::MoveUp()
