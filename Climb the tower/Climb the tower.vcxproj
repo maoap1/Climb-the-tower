@@ -78,6 +78,8 @@
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
     <Allegro_AddonDialog>true</Allegro_AddonDialog>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -87,6 +89,8 @@
     <Allegro_AddonImage>true</Allegro_AddonImage>
     <Allegro_AddonPrimitives>true</Allegro_AddonPrimitives>
     <Allegro_AddonDialog>true</Allegro_AddonDialog>
+    <Allegro_AddonFont>true</Allegro_AddonFont>
+    <Allegro_AddonTTF>true</Allegro_AddonTTF>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -166,12 +170,28 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectsCreation.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Setup.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="widgetz\box.c" />
+    <ClCompile Include="widgetz\button.c" />
+    <ClCompile Include="widgetz\editbox.c" />
+    <ClCompile Include="widgetz\filllayout.c" />
+    <ClCompile Include="widgetz\imagebutton.c" />
+    <ClCompile Include="widgetz\internal_utils.c" />
+    <ClCompile Include="widgetz\layoutstop.c" />
+    <ClCompile Include="widgetz\nine_patch.c" />
+    <ClCompile Include="widgetz\scroll.c" />
+    <ClCompile Include="widgetz\skin_theme.c" />
+    <ClCompile Include="widgetz\textbox.c" />
+    <ClCompile Include="widgetz\theme.c" />
+    <ClCompile Include="widgetz\toggle.c" />
+    <ClCompile Include="widgetz\utils.c" />
+    <ClCompile Include="widgetz\widget.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveGameObject.h" />
@@ -183,6 +203,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Objects.h" />
     <ClInclude Include="ObjectsCreation.h" />
@@ -190,6 +211,9 @@
     <ClInclude Include="Setup.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="widgetz\widgetz.h" />
+    <ClInclude Include="widgetz\widgetz_internal.h" />
+    <ClInclude Include="widgetz\widgetz_nine_patch.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Arcaneball_down_1.png" />

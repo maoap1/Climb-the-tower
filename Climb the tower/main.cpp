@@ -5,6 +5,14 @@
 #include "GameMap.h"
 #include "ObjectsCreation.h"
 #include "AnimationInitialization.h"
+#include "Gui.h"
+
+
+
+// tyto prijdou do Gui.h
+#include "widgetz\widgetz.h"
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 
 
 using namespace Setup;
@@ -67,6 +75,14 @@ int main(int argc, char **argv)
 
 	int map_width = al_get_display_width(display) / WALL_SIZE; // begins with 0
 	int map_height = al_get_display_height(display) / WALL_SIZE; // begins with 0
+	
+	if (Gui::MainMenu() == ID_QUIT)
+	{
+		al_flip_display();
+		al_rest(1);
+		al_destroy_display(display);
+		return 0;
+	}
 
 	FirstGameMapInicialization(map_width, map_height);
 	CreatePlayer(); // this line should be after FirstGameMapInicialization
@@ -76,7 +92,8 @@ int main(int argc, char **argv)
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
-		if (ev.type == ALLEGRO_EVENT_TIMER) {
+		if (ev.type == ALLEGRO_EVENT_TIMER)
+		{
 			player->moved = false;
 			for each (ActiveGameObject* it in Movables)
 			{
@@ -130,7 +147,8 @@ int main(int argc, char **argv)
 			redraw = true;
 			player->MoreDirections(false);
 		}
-		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+		else if (ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) 
+		{
 			break;
 		}
 		else if (ev.type == ALLEGRO_EVENT_KEY_DOWN)
@@ -170,7 +188,8 @@ int main(int argc, char **argv)
 				break;
 			}
 		}
-		else if (ev.type == ALLEGRO_EVENT_KEY_UP) {
+		else if (ev.type == ALLEGRO_EVENT_KEY_UP) 
+		{
 			switch (ev.keyboard.keycode) {
 			case ALLEGRO_KEY_UP:
 				key[KEY_UP] = false;
@@ -206,16 +225,19 @@ int main(int argc, char **argv)
 			}
 		}
 		else if (ev.type == ALLEGRO_EVENT_MOUSE_AXES ||
-			ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) {
+			ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) 
+		{
 
 			snek_x = ev.mouse.x;
 			snek_y = ev.mouse.y;
 		}
-		else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
+		else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) 
+		{
 			break;
 		}
 
-		if (redraw && al_is_event_queue_empty(event_queue)) {
+		if (redraw && al_is_event_queue_empty(event_queue)) 
+		{
 			redraw = false;
 
 			al_clear_to_color(al_map_rgb(0, 0, 0));

@@ -3,7 +3,10 @@
 
 namespace Setup
 {
-	bool Init(); // We call this function in order to initialize the allegro, return 0 if everything is fine, -1 otherwise
+	/// <summary>
+	/// This function initializes allegro. Returns 0 if everything is fine, -1 otherwise
+	/// </summary>
+	bool Init();
 	
 	extern ALLEGRO_DISPLAY* display;
 	extern ALLEGRO_EVENT_QUEUE* event_queue;

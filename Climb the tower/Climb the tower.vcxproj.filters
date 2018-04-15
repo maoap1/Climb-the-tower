@@ -34,14 +34,8 @@
     <Filter Include="Hlavičkové soubory\Objects">
       <UniqueIdentifier>{915249cb-49d9-4a9a-a45f-fb0a5ba65dfe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Hlavičkové soubory\Others_empty in final version">
-      <UniqueIdentifier>{44bc140a-a196-4e13-84f9-b23d4c952405}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Hlavičkové soubory\Basic Headers">
       <UniqueIdentifier>{7159bd88-29ad-465c-96fc-2169b3c3f125}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Zdrojové soubory\Others_empty in final version">
-      <UniqueIdentifier>{c4a5a5f7-4afc-462e-9c35-ddab7612892c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Soubory zdrojů\Player\Left">
       <UniqueIdentifier>{e8b6e9ea-0a01-4c05-87ca-932c9b3597c4}</UniqueIdentifier>
@@ -106,6 +100,18 @@
     <Filter Include="Soubory zdrojů\Slime">
       <UniqueIdentifier>{7a973e3d-7960-48c2-98fe-f326f48c08fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Hlavičkové soubory\Other game elements">
+      <UniqueIdentifier>{44bc140a-a196-4e13-84f9-b23d4c952405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hlavičkové soubory\GUI library">
+      <UniqueIdentifier>{ed1e889d-a3c0-415c-bc21-5318ab27cfba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zdrojové soubory\GUI library">
+      <UniqueIdentifier>{206c1d94-9fe9-4169-894e-f967480baeb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Zdrojové soubory\Other game elements">
+      <UniqueIdentifier>{c4a5a5f7-4afc-462e-9c35-ddab7612892c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -130,7 +136,7 @@
       <Filter>Zdrojové soubory\Engine</Filter>
     </ClCompile>
     <ClCompile Include="GameMap.cpp">
-      <Filter>Zdrojové soubory\Others_empty in final version</Filter>
+      <Filter>Zdrojové soubory\Other game elements</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Zdrojové soubory\Objects</Filter>
@@ -152,6 +158,54 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>Zdrojové soubory\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\box.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\button.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\editbox.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\filllayout.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>Zdrojové soubory\Other game elements</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\imagebutton.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\internal_utils.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\layoutstop.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\nine_patch.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\scroll.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\skin_theme.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\textbox.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\theme.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\toggle.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\utils.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
+    </ClCompile>
+    <ClCompile Include="widgetz\widget.c">
+      <Filter>Zdrojové soubory\GUI library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +240,7 @@
       <Filter>Hlavičkové soubory\Objects</Filter>
     </ClInclude>
     <ClInclude Include="GameMap.h">
-      <Filter>Hlavičkové soubory\Others_empty in final version</Filter>
+      <Filter>Hlavičkové soubory\Other game elements</Filter>
     </ClInclude>
     <ClInclude Include="ObjectsCreation.h">
       <Filter>Hlavičkové soubory\Initialization of the Game</Filter>
@@ -202,6 +256,18 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Hlavičkové soubory\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>Hlavičkové soubory\Other game elements</Filter>
+    </ClInclude>
+    <ClInclude Include="widgetz\widgetz_nine_patch.h">
+      <Filter>Hlavičkové soubory\GUI library</Filter>
+    </ClInclude>
+    <ClInclude Include="widgetz\widgetz.h">
+      <Filter>Hlavičkové soubory\GUI library</Filter>
+    </ClInclude>
+    <ClInclude Include="widgetz\widgetz_internal.h">
+      <Filter>Hlavičkové soubory\GUI library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

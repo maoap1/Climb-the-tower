@@ -95,6 +95,7 @@ namespace Setup
 
 #pragma endregion
 
+	
 	bool Init()
 	{
 		if (!Setup_allegro())

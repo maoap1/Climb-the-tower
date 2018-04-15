@@ -1,5 +1,15 @@
 #pragma once
 
+#pragma region GUI
+
+#pragma region MainMenu
+#define ID_START 1
+#define ID_QUIT 2
+#pragma endregion
+
+
+#pragma endregion
+
 #pragma region Graphics
 
 #define FPS 60
