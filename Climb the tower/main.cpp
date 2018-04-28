@@ -8,13 +8,6 @@
 #include "Gui.h"
 
 
-
-// tyto prijdou do Gui.h
-#include "widgetz\widgetz.h"
-#include <allegro5/allegro_font.h>
-#include <allegro5/allegro_ttf.h>
-
-
 using namespace Setup;
 
 namespace Setup2
@@ -25,7 +18,7 @@ namespace Setup2
 	float snek_x;
 	float snek_y;
 
-	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X, KEY_C, KEY_V, KEY_B };
+	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X, KEY_C, KEY_V};
 
 
 	int initialize()
@@ -71,11 +64,12 @@ int main(int argc, char **argv)
 	AnimationInitialization::AnimInit();
 
 
-	bool key[8]{ false, false, false, false, false, false, false, false };
+	bool key[NUMBER_OF_KEYS]{ false, false, false, false, false, false, false };
 
 	int map_width = al_get_display_width(display) / WALL_SIZE; // begins with 0
 	int map_height = al_get_display_height(display) / WALL_SIZE; // begins with 0
 	
+	Gui::InicializeGUI();
 	if (Gui::MainMenu() == ID_QUIT)
 	{
 		al_flip_display();
@@ -140,10 +134,6 @@ int main(int argc, char **argv)
 			{
 				player->Attack(ID_ARCANEBALL);
 			}
-			if (key[KEY_B])
-			{
-				player->Attack(ID_SLIMEBALL);
-			}
 			redraw = true;
 			player->MoreDirections(false);
 		}
@@ -183,8 +173,36 @@ int main(int argc, char **argv)
 				key[KEY_V] = true;
 				break;
 
-			case ALLEGRO_KEY_B:
-				key[KEY_B] = true;
+			case ALLEGRO_KEY_P:
+				if (Gui::PauseMenu() == ID_QUIT)
+				{
+					al_flip_display();
+					al_rest(1);
+					al_destroy_display(display);
+					return 0;
+				}
+				for (int i = 0; i < NUMBER_OF_KEYS; i++)
+				{
+					key[i] = false;
+				}
+				break;
+			case ALLEGRO_KEY_O:
+				/*if (Gui::StatsMenu() == ID_QUIT)
+				{
+					al_flip_display();
+					al_rest(1);
+					al_destroy_display(display);
+					return 0;
+				}
+				for (int i = 0; i < NUMBER_OF_KEYS; i++)
+				{
+					key[i] = false;
+				}
+				break;*/
+			case ALLEGRO_KEY_M:
+				/*
+				Mute or play music
+				*/
 				break;
 			}
 		}
@@ -217,10 +235,6 @@ int main(int argc, char **argv)
 
 			case ALLEGRO_KEY_V:
 				key[KEY_V] = false;
-				break;
-
-			case ALLEGRO_KEY_B:
-				key[KEY_B] = false;
 				break;
 			}
 		}

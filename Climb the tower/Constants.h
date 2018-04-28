@@ -5,6 +5,13 @@
 #pragma region MainMenu
 #define ID_START 1
 #define ID_QUIT 2
+#define ID_CONTROLS 3
+#define ID_BACK 4
+#define ID_CONTINUE 5
+#define BUTTON_WIDTH_MULTIPLIER 0.3
+#define BUTTON_HEIGHT_MULTIPLIER 0.15
+#define TEXT_WIDTH_MULTIPLIER 0.5
+#define TEXT_HEIGHT_MULTIPLIER 0.05
 #pragma endregion
 
 
@@ -103,4 +110,5 @@
 #pragma region Other
 #define SPELLS_COUNT 4
 #define NUMBER_OF_ORIENTATIONS 4
+#define NUMBER_OF_KEYS 7
 #pragma endregion
