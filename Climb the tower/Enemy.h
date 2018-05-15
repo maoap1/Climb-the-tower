@@ -4,8 +4,9 @@
 #include "ActiveGameObject.h"
 #include "Animation.h"
 #include "Collider.h"
+#include "Damagable.h"
 
-class Enemy : public ActiveGameObject
+class Enemy : public ActiveGameObject, public Damagable
 {
 private:
 	int orientation;
@@ -37,5 +38,6 @@ public:
 	Enemy(float x, float y);
 	void Draw() override;
 	void Move() override;
+	void Damage(int damageType, int value) override;
 	~Enemy() override;
 };

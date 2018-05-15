@@ -4,8 +4,12 @@
 #include "Animation.h"
 #include "Collider.h"
 #include "Spell.h"
+#include "Damagable.h"
 
-class Player : public GameObject
+
+
+
+class Player : public GameObject, public Damagable
 {
 private:
 	const int speed = PLAYER_SPEED;
@@ -93,6 +97,8 @@ public:
 	void MoreDirections(bool moreDirections);
 
 	void Attack(int spellID);
+
+	void Damage(int damageType, int value) override;
 
 	float Get_x();
 	float Get_y();

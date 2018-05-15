@@ -215,6 +215,7 @@ void Spell::Move()
 					if ((it->flag == "Player")||(it->flag == "Enemy"))
 					{
 						it->collided = true;
+						it->DamageParent(spellID, spellDamage);
 					}
 					crashed = 1;
 					collider->SetXY(x + collider_shift_x, y + collider_shift_y);

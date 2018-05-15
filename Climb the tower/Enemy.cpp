@@ -6,7 +6,7 @@
 Enemy::Enemy(float x, float y) : ActiveGameObject(x, y)
 {
 	this->collider = new Collider(x + SLIME_COLLIDER_SHIFT_X, y + SLIME_COLLIDER_SHIFT_Y,
-		SLIME_COLLIDER_HEIGHT, SLIME_COLLIDER_WIDTH, "Enemy");
+		SLIME_COLLIDER_HEIGHT, SLIME_COLLIDER_WIDTH, "Enemy", this);
 	GameMap::Colliders.push_back(this->collider);
 
 	using namespace AnimationInitialization;
@@ -96,6 +96,12 @@ void Enemy::MoveTo(float next_x, float next_y)
 		currentHittedFrame = 0;
 	}
 }
+
+void Enemy::Damage(int damageType, int value)
+{
+
+}
+
 
 void Enemy::Move()
 {

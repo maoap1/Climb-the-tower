@@ -9,7 +9,7 @@ Player::Player(float x, float y) : GameObject(x, y)
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
 								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Spell");
 	this->spellCollider = new Collider(x + PLAYER_SPELL_COLLIDER_SHIFT_X, y + PLAYER_SPELL_COLLIDER_SHIFT_Y,
-								       PLAYER_SPELL_COLLIDER_HEIGHT, PLAYER_SPELL_COLLIDER_WIDTH, "Player");
+								       PLAYER_SPELL_COLLIDER_HEIGHT, PLAYER_SPELL_COLLIDER_WIDTH, "Player",this);
 	GameMap::Colliders.push_back(this->collider);
 	GameMap::Colliders.push_back(this->spellCollider);
 
@@ -222,6 +222,11 @@ float Player::Get_x()
 float Player::Get_y()
 {
 	return y;
+}
+
+void Player::Damage(int damageType, int value)
+{
+
 }
 
 Player::~Player()

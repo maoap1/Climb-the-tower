@@ -2,8 +2,9 @@
 
 
 
-Collider::Collider(int x, int y, int height, int width, string flag) // there shouldn't be: string flag = ""
+Collider::Collider(int x, int y, int height, int width, string flag, Damagable* parent) // there shouldn't be: string flag = ""
 {
+	this->parent = parent;
 	this->x = x;
 	this->y = y;
 	this->height = height;
@@ -12,6 +13,10 @@ Collider::Collider(int x, int y, int height, int width, string flag) // there sh
 	this->collided = false;
 }
 
+void Collider::DamageParent(int damageType, int value)
+{
+	parent->Damage(damageType, value);
+}
 
 Collider::~Collider()
 {

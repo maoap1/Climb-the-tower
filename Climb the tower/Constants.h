@@ -80,6 +80,7 @@
 
 #pragma region Other stats
 
+#define SPELL_DAMAGE 10
 #define SPELL_SPEED 5
 #define SLIME_SPEED 1
 #define SLIME_HITTED_ANIM_DELAY 25

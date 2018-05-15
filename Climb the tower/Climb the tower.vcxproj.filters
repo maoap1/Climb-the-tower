@@ -269,6 +269,9 @@
     <ClInclude Include="widgetz\widgetz_internal.h">
       <Filter>Hlavičkové soubory\GUI library</Filter>
     </ClInclude>
+    <ClInclude Include="Damagable.h">
+      <Filter>Hlavičkové soubory\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\image.png">

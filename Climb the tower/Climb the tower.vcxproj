@@ -200,6 +200,7 @@
     <ClInclude Include="AnimationInitialization.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Damagable.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameObject.h" />

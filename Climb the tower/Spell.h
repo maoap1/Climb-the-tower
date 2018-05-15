@@ -10,6 +10,7 @@ class Spell : public ActiveGameObject
 private:
 	int orientation;
 	int spellID;
+	int spellDamage = SPELL_DAMAGE;
 	int speed = SPELL_SPEED;
 	Animation* Moving;
 	Animation* Death;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Header.h"
+#include "Damagable.h"
 
 /// <summary>
 /// This is a box collider
@@ -7,6 +8,12 @@
 class Collider
 {
 private:
+
+	/// <summary>
+	/// The parent of this collider
+	/// </summary>
+	Damagable* parent;
+
 	/// <summary>
 	/// The x coordinate of the top-left corner
 	/// </summary>
@@ -43,7 +50,7 @@ public:
 	/// <param name="y">The y coordinate of the top-left corner.</param>
 	/// <param name="height">The height of the collider</param>
 	/// <param name="width">The width of the collider</param>
-	Collider(int x, int y, int height, int width, string flag = "");
+	Collider(int x, int y, int height, int width, string flag = "", Damagable* parent = NULL);
 
 	/// <summary>
 	/// Finalizes an instance of the <see cref="Collider"/> class.
@@ -58,6 +65,8 @@ public:
 	///   <c>true</c> if the specified other collider has collided; otherwise, <c>false</c>.
 	/// </returns>
 	bool HasCollided(const Collider& other);
+
+	void DamageParent(int damageType, int value);
 
 	/// <summary>
 	/// Sets the top-left corner
