@@ -88,6 +88,16 @@ int main(int argc, char **argv)
 
 		if (ev.type == ALLEGRO_EVENT_TIMER)
 		{
+			if (!player->living)
+			{
+				if (Gui::QuitMenu() == ID_QUIT)
+				{
+					al_flip_display();
+					al_rest(1);
+					al_destroy_display(display);
+					return 0;
+				}
+			}
 			player->moved = false;
 			for each (ActiveGameObject* it in Movables)
 			{

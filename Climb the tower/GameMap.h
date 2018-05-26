@@ -16,7 +16,7 @@ namespace GameMap
 
 	void FirstGameMapInicialization(int map_width, int map_height);
 	void CreateSpell(float x, float y, int orientation, int spellID);
-	void CreateEnemy(float x, float y);
+	void CreateEnemy(float x, float y, float lives);
 	void RandomEmptyPosition(float& x, float& y);
 
 

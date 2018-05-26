@@ -4,7 +4,7 @@
 
 
 //Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
-Player::Player(float x, float y) : GameObject(x, y)
+Player::Player(float x, float y, float lives) : GameObject(x, y)
 {
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
 								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Spell");
@@ -33,10 +33,17 @@ Player::Player(float x, float y) : GameObject(x, y)
 	attacked = false;
 	animAttacked = false;
 	currentAttackFrame = 0;
+
+	this->lives = lives;
+	living = true;
 }
 
 void Player::Draw()
 {
+	if (lives <= 0)
+	{
+		living = false;
+	}
 	if (attacked)
 	{
 		currentAttackFrame++;
@@ -226,7 +233,7 @@ float Player::Get_y()
 
 void Player::Damage(int damageType, int value)
 {
-
+	lives -= value;
 }
 
 Player::~Player()

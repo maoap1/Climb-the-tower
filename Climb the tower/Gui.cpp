@@ -390,5 +390,94 @@ namespace Gui
 		return result;
 	}
 
+	int QuitMenu()
+	{
+		int result = ID_QUIT;
+
+		WZ_WIDGET* gui;
+		WZ_WIDGET* wgt;
+
+		double old_time;
+		double game_time;
+		double start_time;
+		bool done = false;
+
+		old_time = al_current_time();
+		game_time = al_current_time();
+
+		// size = 3
+
+		gui = wz_create_widget(0, 0, 0, -1);
+		wz_set_theme(gui, (WZ_THEME*)&skin_theme);
+
+		wz_create_fill_layout(gui, width*0.2, height*0.1, width*0.6, height*0.8, width*0.05, height*0.05, WZ_ALIGN_CENTRE, WZ_ALIGN_TOP, -1);
+		wz_create_textbox(gui, 0, 0, bWidth, bHeight, WZ_ALIGN_CENTRE, WZ_ALIGN_CENTRE, al_ustr_new("GAME OVER"), 1, -1);
+		wgt = (WZ_WIDGET*)wz_create_button(gui, 0, 0, bWidth, bHeight, al_ustr_new("Quit"), 1, ID_QUIT);
+		wz_set_shortcut(wgt, ALLEGRO_KEY_Q, ALLEGRO_KEYMOD_CTRL);
+
+		wz_register_sources(gui, Setup::event_queue);
+
+		while (!done)
+		{
+			double dt = al_current_time() - old_time;
+			al_rest(fixed_dt - dt); //rest at least fixed_dt
+			dt = al_current_time() - old_time;
+			old_time = al_current_time();
+
+			if (old_time - game_time > dt)    //eliminate excess overflow
+			{
+				game_time += fixed_dt * floor((old_time - game_time) / fixed_dt);
+			}
+
+			start_time = al_current_time();
+
+			while (old_time - game_time >= 0)
+			{
+				ALLEGRO_EVENT event;
+				game_time += fixed_dt;
+				/*
+				Update gui
+				*/
+				wz_update(gui, fixed_dt);
+
+				while (al_get_next_event(Setup::event_queue, &event))
+				{
+					/*
+					Give the gui the event, in case it wants it
+					*/
+					wz_send_event(gui, &event);
+
+					switch (event.type)
+					{
+					case WZ_BUTTON_PRESSED:
+					{
+						switch ((int)event.user.data1)
+						{
+						case ID_QUIT:
+						{
+							result = ID_QUIT;
+							done = true;
+							break;
+						}
+						}
+
+						break;
+					}
+					}
+				}
+			}
+
+			al_clear_to_color(al_map_rgb(0, 0, 0));
+			/*
+			Draw the gui
+			*/
+			wz_draw(gui);
+			al_wait_for_vsync();
+			al_flip_display();
+		}
+		al_clear_to_color(al_map_rgb(0, 0, 0));
+		return result;
+	}
+
 }
 

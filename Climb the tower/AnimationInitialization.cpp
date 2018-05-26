@@ -291,7 +291,7 @@ namespace AnimationInitialization
 	void SlimeAttackInit()
 	{
 		//THIS IS SLIME ATTACK ANIMATION FOR TESTING
-		for (int i = 0; i < 2 * SLIME_ANIM_LENGTH + 4; i++) // +4 for TESTING!!!
+		for (int i = 0; i < 2 * SLIME_ANIM_LENGTH + SLIME_ANIM_ADDITIONAL; i++)
 		{
 			SlimeAttack.push_back(AllegroHandling::load_resized_bitmap("Resources/Slime_attack.png", SLIME_SIZE, SLIME_SIZE));
 		}

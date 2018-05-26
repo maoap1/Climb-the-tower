@@ -98,7 +98,7 @@ namespace GameMap
 			int y = rndWidth();
 			if (Map[x][y] == 0)
 			{
-				CreateEnemy((y + 1)*WALL_SIZE, (x + 1)*WALL_SIZE);
+				CreateEnemy((y + 1)*WALL_SIZE, (x + 1)*WALL_SIZE, SLIME_HEALTH);
 				Map[x][y] = 1;
 				createdEnemies++;
 			}
@@ -136,9 +136,9 @@ namespace GameMap
 		Drawables.push_back(spell);
 	}
 
-	void CreateEnemy(float x, float y)
+	void CreateEnemy(float x, float y, float lives)
 	{
-		Enemy* enemy = new Enemy(x, y);
+		Enemy* enemy = new Enemy(x, y, lives);
 		Movables.push_back(enemy);
 		Drawables.push_back(enemy);
 	}

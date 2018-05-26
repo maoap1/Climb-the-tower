@@ -3,7 +3,7 @@
 #include "AnimationInitialization.h"
 #include "ObjectsCreation.h"
 
-Enemy::Enemy(float x, float y) : ActiveGameObject(x, y)
+Enemy::Enemy(float x, float y, float lives) : ActiveGameObject(x, y)
 {
 	this->collider = new Collider(x + SLIME_COLLIDER_SHIFT_X, y + SLIME_COLLIDER_SHIFT_Y,
 		SLIME_COLLIDER_HEIGHT, SLIME_COLLIDER_WIDTH, "Enemy", this);
@@ -11,7 +11,7 @@ Enemy::Enemy(float x, float y) : ActiveGameObject(x, y)
 
 	using namespace AnimationInitialization;
 	vector<int> FrameDelays;
-	for (int i = 0; i < 2 * SLIME_ANIM_LENGTH + 4; i++) // +4 is TESTING!!!
+	for (int i = 0; i < 2 * SLIME_ANIM_LENGTH + SLIME_ANIM_ADDITIONAL; i++)
 	{
 		FrameDelays.push_back(8);
 	}
@@ -19,14 +19,16 @@ Enemy::Enemy(float x, float y) : ActiveGameObject(x, y)
 	this->Moving = new Animation(&Slime, &SlimeAttack, FrameDelays);
 	Moving->Randomize();
 
-	last_x = 0;
-	last_y = 0;
+	this->lives = lives;
+	speed_multiplier = 1; // this goes down when hitted by waterblast
+
 	recoveryFrames = 0;
 	GameMap::RandomEmptyPosition(final_x, final_y);
 
 	hitted = false;
 	triggered = false;
 	attacked = false;
+	burning = false;
 
 	currentHittedFrame = 0;
 	currentAttackFrame = 0;
@@ -34,6 +36,13 @@ Enemy::Enemy(float x, float y) : ActiveGameObject(x, y)
 
 void Enemy::Draw()
 {
+	if (lives <= 0)
+	{
+		GameMap::Movables.remove(this);
+		GameMap::Colliders.remove(this->collider);
+		delete collider;
+		GameMap::ToDeletion.push_back(this);
+	}
 	if (attacked)
 	{
 		currentAttackFrame++;
@@ -51,16 +60,37 @@ void Enemy::Draw()
 			hitted = false;
 		}
 	}
-
-	al_draw_bitmap(Moving->GetNext(hitted), x, y, 0);
+	if (burning)
+	{
+		al_draw_tinted_bitmap(Moving->GetNext(hitted), al_map_rgba_f(1, 0.6, 0, 1), x, y, 0);
+	}
+	else if (speed_multiplier < 1)
+	{
+		al_draw_tinted_bitmap(Moving->GetNext(hitted), al_map_rgba_f(0, 1, 0.8, 1), x, y, 0);
+	}
+	else
+	{
+		al_draw_bitmap(Moving->GetNext(hitted), x, y, 0);
+	}
 }
 
 void Enemy::MoveTo(float next_x, float next_y)
 {
 	float normalizer = sqrt(pow((next_x - x),2) + pow((next_y - y),2));
-	float xNew = x + SLIME_SPEED*(next_x - x) / normalizer;
-	float yNew = y + SLIME_SPEED*(next_y - y) / normalizer;
-
+	float xNew = x + speed_multiplier*SLIME_SPEED*(next_x - x) / normalizer;
+	float yNew = y + speed_multiplier*SLIME_SPEED*(next_y - y) / normalizer;
+	if (speed_multiplier < 1)
+	{
+		speed_multiplier += SLIME_SPEED_RECOVERY;
+	}
+	else if (speed_multiplier > 1)
+	{
+		speed_multiplier = 1;
+	}
+	if (burning)
+	{
+		lives -= BURNING_DAMAGE;
+	}
 	collider->SetXY(xNew + SLIME_COLLIDER_SHIFT_X, yNew + SLIME_COLLIDER_SHIFT_Y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
@@ -99,7 +129,19 @@ void Enemy::MoveTo(float next_x, float next_y)
 
 void Enemy::Damage(int damageType, int value)
 {
-
+	if (damageType == ID_WATERBLAST)
+	{
+		speed_multiplier = 0;
+		lives -= value / 4;
+	}
+	else if (damageType == ID_ARCANEBALL)
+	{
+		lives -= value;
+	}
+	else if (damageType == ID_FIREBALL)
+	{
+		burning = true;
+	}
 }
 
 

@@ -9,4 +9,5 @@ namespace Gui
 	void InicializeGUI();
 	int MainMenu();
 	int PauseMenu();
+	int QuitMenu();
 }

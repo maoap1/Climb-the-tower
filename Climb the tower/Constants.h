@@ -36,6 +36,7 @@
 #define SPELL_MOVE_LENGTH 3
 #define SPELL_DEATH_LENGTH 5
 #define SLIME_ANIM_LENGTH 10
+#define SLIME_ANIM_ADDITIONAL 4
 
 #pragma endregion
 
@@ -81,8 +82,11 @@
 #pragma region Other stats
 
 #define SPELL_DAMAGE 10
+#define BURNING_DAMAGE 0.02
 #define SPELL_SPEED 5
 #define SLIME_SPEED 1
+#define SLIME_HEALTH 30
+#define SLIME_SPEED_RECOVERY 0.005
 #define SLIME_HITTED_ANIM_DELAY 25
 #define SLIME_ATTACK_DELAY 60
 #define AGGRO_INIT_DISTANCE 350

@@ -39,10 +39,12 @@ private:
 	bool attacked;
 	bool animAttacked;
 	int currentAttackFrame;
+	float lives;
 	
 public:
 
 	bool moved;
+	bool living;
 
 	/*
 	/// <summary>
@@ -60,7 +62,7 @@ public:
 
 	*/
 
-	Player(float x, float y);
+	Player(float x, float y, float lives);
 
 
 	/// <summary>
