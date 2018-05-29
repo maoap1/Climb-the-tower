@@ -7,6 +7,13 @@
 
 namespace ObjectsCreation
 {
+	/// <summary>
+	///  The instance of player
+	/// </summary>
 	extern Player* player;
+
+	/// <summary>
+	/// This inicializes the player
+	/// </summary>
 	void CreatePlayer();
 }

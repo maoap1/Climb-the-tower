@@ -7,6 +7,9 @@
 class Wall : public GameObject
 {
 private:
+	/// <summary>
+	/// The image of the wall
+	/// </summary>
 	ALLEGRO_BITMAP* image;
 
 public:
@@ -23,5 +26,8 @@ public:
 	/// </summary>
 	void Draw() override;
 	
+	/// <summary>
+	/// Finalizes an instance of the <see cref="Wall"/> class.
+	/// </summary>
 	~Wall() override;
 };

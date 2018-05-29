@@ -12,11 +12,7 @@ using namespace Setup;
 
 namespace Setup2
 {
-	ALLEGRO_BITMAP* snek = NULL;
 	bool redraw = true;
-
-	float snek_x;
-	float snek_y;
 
 	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X, KEY_C, KEY_V};
 
@@ -41,21 +37,6 @@ int main(int argc, char **argv)
 	if (!Init()) return 0;
 
 	if (!initialize()) return 0;
-
-#pragma region Kraviny, casem smazat
-	snek = al_load_bitmap("Resources/image.png");
-	snek_x = 0;
-	snek_y = 0;
-
-	if (!snek)
-	{
-		al_show_native_message_box(display, "Error", "Error", "Failed to load image!",
-			NULL, ALLEGRO_MESSAGEBOX_ERROR);
-		al_destroy_display(display);
-		return 0;
-	}
-
-#pragma endregion
 
 	using namespace GameMap;
 	using namespace ObjectsCreation;
@@ -91,6 +72,17 @@ int main(int argc, char **argv)
 			if (!player->living)
 			{
 				if (Gui::QuitMenu() == ID_QUIT)
+				{
+					al_flip_display();
+					al_rest(1);
+					al_destroy_display(display);
+					return 0;
+				}
+			}
+
+			if (livingEnemies <= 0)
+			{
+				if (Gui::WinMenu() == ID_QUIT)
 				{
 					al_flip_display();
 					al_rest(1);
@@ -248,24 +240,12 @@ int main(int argc, char **argv)
 				break;
 			}
 		}
-		else if (ev.type == ALLEGRO_EVENT_MOUSE_AXES ||
-			ev.type == ALLEGRO_EVENT_MOUSE_ENTER_DISPLAY) 
-		{
-
-			snek_x = ev.mouse.x;
-			snek_y = ev.mouse.y;
-		}
-		else if (ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) 
-		{
-			break;
-		}
 
 		if (redraw && al_is_event_queue_empty(event_queue)) 
 		{
 			redraw = false;
 
 			al_clear_to_color(al_map_rgb(0, 0, 0));
-			al_draw_scaled_bitmap(snek, 0, 0, 50, 50, 100, 100, 300, 300, 0);
 
 			for each (GameObject* it in Drawables)
 			{
@@ -285,13 +265,10 @@ int main(int argc, char **argv)
 			}
 			#endif // DEBUG
 
-			al_draw_bitmap(snek, snek_x, snek_y, 0);
-
 			al_flip_display();
 		}
 	}
 
-	al_draw_bitmap(snek, 0, 0, 0);
 	al_flip_display();
 	al_rest(1);
 	al_destroy_display(display);

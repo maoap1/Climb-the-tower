@@ -25,7 +25,7 @@
 #define SPELL_SIZE 50
 #define SLIME_SIZE 60
 #define PLAYER_INIT_ATTACK_ANIM_DELAY 30 //5 for testing // 30 originally
-
+#define START_LOCATION_Y 9
 #pragma endregion
 
 #pragma region Animations

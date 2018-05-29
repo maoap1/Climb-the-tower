@@ -106,11 +106,6 @@ void Player::Draw()
 	al_draw_bitmap(currentBitmap, x, y, 0);
 }
 
-Collider* Player::GetCollider()
-{
-	return collider;
-}
-
 void Player::Move(int direction)
 {
 	moved = true;

@@ -298,6 +298,9 @@ namespace AnimationInitialization
 		//END
 	}
 
+	/// <summary>
+	/// This function calls all the others in this namespace
+	/// </summary>
 	void AnimInit()
 	{
 		PlayerHorizontalInit();

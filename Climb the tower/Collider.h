@@ -35,6 +35,9 @@ private:
 	int width;
 
 public:
+	/// <summary>
+	/// True if collided
+	/// </summary>
 	bool collided;
 
 	/// <summary>
@@ -66,6 +69,11 @@ public:
 	/// </returns>
 	bool HasCollided(const Collider& other);
 
+	/// <summary>
+	/// Damages the parent of this collider
+	/// </summary>
+	/// <param name="damageType">Type of the damage.</param>
+	/// <param name="value">How much damage</param>
 	void DamageParent(int damageType, int value);
 
 	/// <summary>

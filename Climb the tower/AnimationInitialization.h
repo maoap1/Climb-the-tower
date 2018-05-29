@@ -2,6 +2,11 @@
 
 #include "Header.h"
 
+/// <summary>
+/// In this namespace are all animations initialized
+/// It just load a lot of images to the memory (into vectors) so that animations can easily work with them
+/// Mostly generated automatically. Where needed, there is a documentation of what do those names mean
+/// </summary>
 namespace AnimationInitialization
 {
 #pragma region Player
@@ -69,5 +74,8 @@ namespace AnimationInitialization
 	extern vector<ALLEGRO_BITMAP*> SlimeballDeathDown;
 #pragma endregion
 
+	/// <summary>
+	/// This function calls all the others in this namespace
+	/// </summary>
 	void AnimInit();
 }

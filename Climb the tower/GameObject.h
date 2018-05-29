@@ -1,6 +1,9 @@
 #pragma once
 #include "Header.h"
 
+/// <summary>
+/// Abstract class that allows us using of Draw() function or storing instances in some vectors
+/// </summary>
 class GameObject
 {
 protected:

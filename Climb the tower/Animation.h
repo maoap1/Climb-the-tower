@@ -5,7 +5,7 @@
 
 /// <summary>
 /// This is the animation class. It stores the pointer to vector of bitmaps created in AnimationInicialization.h.
-/// This class returns the pointer to bitmap which should be now drawn, according to the actual animation.
+/// This class returns the actual pointer to bitmap which should be drawn, according to the actual animation.
 /// The animation can contain attacks, and these animations follow the non-attack animation.
 /// </summary>
 class Animation

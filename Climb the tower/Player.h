@@ -9,6 +9,11 @@
 
 
 
+/// <summary>
+/// This is the player class. The player plays as this character.
+/// </summary>
+/// <seealso cref="GameObject" />
+/// <seealso cref="Damagable" />
 class Player : public GameObject, public Damagable
 {
 private:
@@ -43,33 +48,23 @@ private:
 	
 public:
 
+	/// <summary>
+	/// true if the player already moved
+	/// </summary>
 	bool moved;
+
+	/// <summary>
+	/// true if the player is still alive
+	/// </summary>
 	bool living;
 
-	/*
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Player"/> class.
 	/// </summary>
-	/// <param name="fileName">Name of the first sprite file.</param>
-	/// <param name="fileName2">Name of the second sprite file.</param>
 	/// <param name="x">The x coordinate</param>
 	/// <param name="y">The y coordinate</param>
-	/// <param name="collider">The collider of the player</param>
-	/// <param name="collider_shift_x">The x difference between origin of player and its collider</param>
-	/// <param name="collider_shift_y">The y difference between origin of player and its collider</param>
-	/// <param name="Colliders">The reference to the list of all colliders in the game</param>
-	Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders);
-
-	*/
-
+	/// <param name="lives">Maximum lives for this character</param>
 	Player(float x, float y, float lives);
-
-
-	/// <summary>
-	/// Returns the collider.
-	/// </summary>
-	/// <returns></returns>
-	Collider* GetCollider();
 
 	/// <summary>
 	/// Draws this instance.
@@ -96,15 +91,40 @@ public:
 	/// </summary>
 	void MoveRight();
 
+	/// <summary>
+	/// Tells the player that he is going to more than one direction
+	/// </summary>
+	/// <param name="moreDirections">if set to <c>true</c> [more directions].</param>
 	void MoreDirections(bool moreDirections);
 
+	/// <summary>
+	/// Creates spell as attack, if player can.
+	/// </summary>
+	/// <param name="spellID">ID of the spell -> see Constants.h</param>
 	void Attack(int spellID);
 
+	/// <summary>
+	/// Damages the player
+	/// </summary>
+	/// <param name="damageType">Type of the damage.</param>
+	/// <param name="value">How much damage.</param>
 	void Damage(int damageType, int value) override;
 
+	/// <summary>
+	/// Returns x coordinate of the player
+	/// </summary>
+	/// <returns></returns>
 	float Get_x();
+
+	/// <summary>
+	/// Returns y coordinate of the player
+	/// </summary>
+	/// <returns></returns>
 	float Get_y();
 
+	/// <summary>
+	/// Finalizes an instance of the <see cref="Player"/> class.
+	/// </summary>
 	~Player() override;
 };
 
