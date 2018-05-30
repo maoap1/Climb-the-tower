@@ -4,6 +4,9 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
+/// <summary>
+/// In this namespace are created all menus in the game
+/// </summary>
 namespace Gui
 {
 	/// <summary>

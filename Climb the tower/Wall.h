@@ -4,6 +4,10 @@
 #include "Header.h"
 #include "AllegroHandling.h"
 
+/// <summary>
+/// This is the basic wall object. It just stands in corners and creates a game map
+/// </summary>
+/// <seealso cref="GameObject" />
 class Wall : public GameObject
 {
 private:

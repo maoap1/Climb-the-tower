@@ -4,6 +4,10 @@
 #include "ActiveGameObject.h"
 #include "Collider.h"
 
+/// <summary>
+/// This is the Game Map namespace. It has a Map for initializations and the most basic game elements are stored here.
+/// For example vectors ToDeletion, Drawables, Movables, Colliders, ...
+/// </summary>
 namespace GameMap
 {
 	/// <summary>

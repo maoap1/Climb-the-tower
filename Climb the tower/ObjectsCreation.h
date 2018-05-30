@@ -5,6 +5,9 @@
 #include "Animation.h"
 #include "Collider.h"
 
+/// <summary>
+/// In this namespace is created the player.
+/// </summary>
 namespace ObjectsCreation
 {
 	/// <summary>

@@ -5,6 +5,10 @@
 #include "Animation.h"
 #include "Collider.h"
 
+/// <summary>
+/// This is a spell class. Player and enemies cast spells.
+/// </summary>
+/// <seealso cref="ActiveGameObject" />
 class Spell : public ActiveGameObject
 {
 private:

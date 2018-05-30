@@ -6,6 +6,11 @@
 #include "Collider.h"
 #include "Damagable.h"
 
+/// <summary>
+/// This is the enemy class. Since there is only slime in the game, then this draws itself as slime. Althought it can be easily changed.
+/// </summary>
+/// <seealso cref="ActiveGameObject" />
+/// <seealso cref="Damagable" />
 class Enemy : public ActiveGameObject, public Damagable
 {
 private:
