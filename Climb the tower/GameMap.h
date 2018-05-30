@@ -26,6 +26,15 @@ namespace GameMap
 	/// </summary>
 	extern list<Collider*> Colliders;
 
+	/// <summary>
+	/// The game map. Its size is determined by the size of the monitor.
+	/// Stores 0 for empty space, -1 for walls;  
+	/// Imagine we would like to work with Map[i][j].
+	/// 1.Then i is from 0 to heigth, j is from 0 to width. 
+	/// 2.Then coordinates of top left corner of this are:
+	/// x = (j + 1)*WALL_SIZE;
+	/// y = (i + 1)*WALL_SIZE;
+	/// </summary>
 	extern vector<vector<int>> Map;
 
 	/// <summary>

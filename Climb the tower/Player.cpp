@@ -3,18 +3,17 @@
 #include "GameMap.h"
 
 
-//Player::Player(const char* fileName, const char* fileName2, float x, float y, Collider* collider, int collider_shift_x, int collider_shift_y, list<Collider*>* Colliders) : GameObject(fileName, x, y)
 Player::Player(float x, float y, float lives) : GameObject(x, y)
 {
 	this->collider = new Collider(x + PLAYER_COLLIDER_SHIFT_X, y + PLAYER_COLLIDER_SHIFT_Y,
-								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Spell");
+								  PLAYER_COLLIDER_HEIGHT, PLAYER_COLLIDER_WIDTH, "Spell"); // creating the outer collider
 	this->spellCollider = new Collider(x + PLAYER_SPELL_COLLIDER_SHIFT_X, y + PLAYER_SPELL_COLLIDER_SHIFT_Y,
-								       PLAYER_SPELL_COLLIDER_HEIGHT, PLAYER_SPELL_COLLIDER_WIDTH, "Player",this);
+								       PLAYER_SPELL_COLLIDER_HEIGHT, PLAYER_SPELL_COLLIDER_WIDTH, "Player",this); // creating spell collider
 	GameMap::Colliders.push_back(this->collider);
 	GameMap::Colliders.push_back(this->spellCollider);
 
 	using namespace AnimationInitialization;
-
+	// now we would particular animations for this character
 	vector<int> HorizontalFrameDelays = { 6, 4, 6 };
 	vector<int> VerticalFrameDelays = { 8, 8 };
 
@@ -40,7 +39,7 @@ Player::Player(float x, float y, float lives) : GameObject(x, y)
 
 void Player::Draw()
 {
-	if (lives <= 0)
+	if (lives <= 0) // the player dies, the game ends with Game Over screen
 	{
 		living = false;
 	}
@@ -49,13 +48,13 @@ void Player::Draw()
 		currentAttackFrame++;
 		if (currentAttackFrame > attackDelay)
 		{
-			attacked = false;
+			attacked = false; // now expires the cooldown for spells
 		}
 		if (animAttacked)
 		{
 			if (currentAttackFrame > attackAnimDelay)
 			{
-				animAttacked = false;
+				animAttacked = false; // now we switch back to classic animation instead of attacking animation
 			}
 		}
 	}
@@ -82,7 +81,7 @@ void Player::Draw()
 			break;
 		}
 	}
-	else
+	else // just standing on one place -> Idle animation
 	{
 		switch (lastDirection)
 		{
@@ -137,7 +136,7 @@ void Player::Move(int direction)
 			// check for collision
 			if (collider->HasCollided(*it))
 			{
-				collider->SetXY(x+PLAYER_COLLIDER_SHIFT_X, y+PLAYER_COLLIDER_SHIFT_Y);
+				collider->SetXY(x+PLAYER_COLLIDER_SHIFT_X, y+PLAYER_COLLIDER_SHIFT_Y); // return collider back
 				return;
 			}
 		}
@@ -145,12 +144,12 @@ void Player::Move(int direction)
 	// if collision didnt occur
 	x = xNew;
 	y = yNew;
-	spellCollider->SetXY(x + PLAYER_SPELL_COLLIDER_SHIFT_X, y + PLAYER_SPELL_COLLIDER_SHIFT_Y);
+	spellCollider->SetXY(x + PLAYER_SPELL_COLLIDER_SHIFT_X, y + PLAYER_SPELL_COLLIDER_SHIFT_Y); // we should move also with spell Collider
 }
 
 void Player::MoveUp()
 {
-	if ((!moreDirections)||(lastDirection == ID_DOWN)) // The second condition is bugfix
+	if ((!moreDirections)||(lastDirection == ID_DOWN)) // The second condition is needed as bugfix
 	{
 		lastDirection = ID_UP;
 	}
@@ -159,7 +158,7 @@ void Player::MoveUp()
 
 void Player::MoveDown()
 {
-	if ((!moreDirections) || (lastDirection == ID_UP)) // The second condition is bugfix
+	if ((!moreDirections) || (lastDirection == ID_UP)) // The second condition is needed as bugfix
 	{
 		lastDirection = ID_DOWN;
 	}
@@ -168,7 +167,7 @@ void Player::MoveDown()
 
 void Player::MoveLeft()
 {
-	if ((!moreDirections) || (lastDirection == ID_RIGHT)) // The second condition is bugfix
+	if ((!moreDirections) || (lastDirection == ID_RIGHT)) // The second condition is needed as bugfix
 	{
 		lastDirection = ID_LEFT;
 	}
@@ -177,7 +176,7 @@ void Player::MoveLeft()
 
 void Player::MoveRight()
 {
-	if ((!moreDirections) || (lastDirection == ID_LEFT)) // The second condition is bugfix
+	if ((!moreDirections) || (lastDirection == ID_LEFT)) // The second condition is needed as bugfix
 	{
 		lastDirection = ID_RIGHT;
 	}
@@ -191,13 +190,13 @@ void Player::MoreDirections(bool moreDirections)
 
 void Player::Attack(int spellID)
 {
-	if (!attacked)
+	if (!attacked) // it means that cooldown of attack is expired
 	{
-		attacked = true;
-		animAttacked = true;
+		attacked = true; // starting cooldown
+		animAttacked = true; // now we would draw player with attack animations
 
 		switch (lastDirection)
-		{
+		{ // creates spells in the proper direction
 		case ID_LEFT:
 			GameMap::CreateSpell(x, y, lastDirection, spellID);
 			break;

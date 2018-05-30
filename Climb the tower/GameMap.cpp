@@ -56,7 +56,7 @@ namespace GameMap
 	/// <param name="map_height">Height of the map.</param>
 	void FirstGameMapInicialization(int map_width, int map_height)
 	{
-
+#pragma region Initialization of walls
 		int eastern_wall_x = WALL_SIZE*(map_width - 1);
 		int southern_wall_y = WALL_SIZE*(map_height - 1);
 
@@ -77,30 +77,35 @@ namespace GameMap
 		Colliders.push_back(new Collider(eastern_wall_x, WALL_SIZE, map_height*WALL_SIZE, WALL_SIZE));		// Eastern wall
 		Colliders.push_back(new Collider(WALL_SIZE, southern_wall_y, WALL_SIZE, map_width*WALL_SIZE));		// Southern wall
 
+#pragma endregion
 
-		Map_height = map_height - 2;
-		Map_width = map_width - 2;
+		Map_height = map_height - 2; // we subtracted northern and southern walls
+		Map_width = map_width - 2; // we subtracted eastern and western walls
 
-		Map.resize(Map_height);
+#pragma region Initialization of Map
+		Map.resize(Map_height); // makes Map with proper size as monitor is
 		for (int i = 0; i < Map_height; i++)
 			Map[i].resize(Map_width);
 
-		for (int i = 0; i < Map_height; i++)
+		for (int i = 0; i < Map_height; i++) // fills Map with zeros
 		{
 			for (int j = 0; j < Map_width; j++)
 			{
 				Map[i][j] = 0;
 			}
 		}
+#pragma endregion
 
-		// From here it isnt suitable for first game map inicialization
+		// This PART is just placing some walls into the game map
 		Map[3][5] = -1;
 		Map[3][6] = -1;
 		Map[3][7] = -1;
 		Map[4][6] = -1;
 		Map[5][6] = -1;
 		Map[6][6] = -1;
+		// end of PART
 
+		// It creates walls where needed
 		for (int i = 0; i < Map_height; i++)
 		{
 			for (int j = 0; j < Map_width; j++)
@@ -113,6 +118,8 @@ namespace GameMap
 			}
 		}
 
+		// Random generator initialization -> it should be different than in RandomEmptyPosition, becouse we don't want to spawn enemies
+		// in the starting area
 		auto generator = mt19937(random_device{}());
 
 		uniform_int_distribution<int> widthDistribution(START_LOCATION_Y, Map_width - 1);
@@ -120,15 +127,17 @@ namespace GameMap
 		auto rndWidth = bind(widthDistribution, generator);
 		auto rndHeight = bind(heightDistribution, generator);
 
+		// determining how much enemies do we want
 		int createdEnemies = 0;
 		int howMuchEnemies = 5;
 		livingEnemies = howMuchEnemies;
 
+		// creates enemies
 		while (createdEnemies != howMuchEnemies)
 		{
-			int x = rndHeight();
-			int y = rndWidth();
-			if (Map[x][y] == 0)
+			int x = rndHeight(); // gets random height
+			int y = rndWidth(); // gets random width
+			if (Map[x][y] == 0) // if the place is vacant
 			{
 				CreateEnemy((y + 1)*WALL_SIZE, (x + 1)*WALL_SIZE, SLIME_HEALTH);
 				Map[x][y] = 1;
@@ -144,6 +153,7 @@ namespace GameMap
 	/// <param name="y">The y coordinate of the random position</param>
 	void RandomEmptyPosition(float& x, float& y)
 	{
+		// initialization of the random generator
 		auto generator = mt19937(random_device{}());
 
 		uniform_int_distribution<int> widthDistribution(0, Map_width - 1);
@@ -152,11 +162,12 @@ namespace GameMap
 		auto rndHeight = bind(heightDistribution, generator);
 
 		int done = 0;
-		while (done != 1)
+		while (done != 1) // waiting until we find empty space in the map
 		{
 			int yy = rndHeight();
 			int xx = rndWidth();
-			if (Map[yy][xx] != -1) // it isnt wall
+			if (Map[yy][xx] != -1) // it isnt wall -> if Map[yy][xx] == 1 then it is fine, becouse there was just spawned an enemy and it
+				                   // has moved a lot since spawning
 			{
 				x = (xx + 1)*WALL_SIZE;
 				y = (yy + 1)*WALL_SIZE;

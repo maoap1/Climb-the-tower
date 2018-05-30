@@ -10,7 +10,7 @@
 
 
 /// <summary>
-/// This is the player class. The player plays as this character.
+/// This is the player class. The player plays with this character.
 /// </summary>
 /// <seealso cref="GameObject" />
 /// <seealso cref="Damagable" />
@@ -20,7 +20,7 @@ private:
 	const int speed = PLAYER_SPEED;
 	int attackAnimDelay = PLAYER_INIT_ATTACK_ANIM_DELAY; // the minimum of attackDelay ever
 	int attackDelay = PLAYER_INIT_ATTACK_DELAY; // podle me se bude zlepsovat s levelem
-	void Move(int direction);
+	
 	Animation* RunLeft;
 	Animation* RunRight;
 	Animation* RunUp;
@@ -30,7 +30,7 @@ private:
 	Animation* IdleUp;
 	Animation* IdleDown;
 	/// <summary>
-	/// The outer collider, immune to spells
+	/// The outer collider, immune to spells, for colliding with walls etc.
 	/// </summary>
 	Collider* collider;
 	/// <summary>
@@ -45,6 +45,12 @@ private:
 	bool animAttacked;
 	int currentAttackFrame;
 	float lives;
+
+	/// <summary>
+	/// Moves in the specified direction.
+	/// </summary>
+	/// <param name="direction">The direction to move</param>
+	void Move(int direction);
 	
 public:
 

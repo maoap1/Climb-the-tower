@@ -12,7 +12,7 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 	int collider_width;
 	int collider_height;
 
-	switch (orientation)
+	switch (orientation) // for every orientation is needed specific collider
 	{
 	case ID_LEFT:
 		collider_shift_x = 0;
@@ -39,18 +39,19 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 		collider_height = 44;
 		break;
 	}
-	if (spellID != ID_SLIMEBALL)
+	if (spellID != ID_SLIMEBALL) // creates collider for player spells
 	{
 		collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_width, "Spell");
 	}
-	else
+	else // creates collider for enemy spell
 	{
 		collider = new Collider(x + collider_shift_x, y + collider_shift_y, collider_height, collider_width, "EnemySpell");
 	}
 	GameMap::Colliders.push_back(collider);
 
+	// Now creates particular animations of the spell
 	vector<int> MoveFrameDelays = { 6, 6, 6 };
-	vector<int> DeathFrameDelays = { 6, 6, 6, 6, 6 }; //5 times 8
+	vector<int> DeathFrameDelays = { 6, 6, 6, 6, 6 };
 
 	using namespace AnimationInitialization;
 
@@ -119,7 +120,6 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 			break;
 		}
 		break;
-
 	case ID_SLIMEBALL:
 		switch (orientation)
 		{
@@ -146,24 +146,22 @@ Spell::Spell(float x, float y, int orientation, int spellID) : ActiveGameObject(
 
 void Spell::Draw()
 {
-	if (crashed == 1)
+	if (crashed == 1) // the spell has just crashed -> first phase of dying
 	{
 		GameMap::Movables.remove(this);
 		GameMap::Colliders.remove(this->collider);
 		delete collider;
-		crashed = 2;
+		crashed = 2; // now enters phase 2
 	}
 
-	if (crashed == 2)
+	if (crashed == 2) // the spell is still beeing drawn with Death animation
 	{
 
 		bool end = false;
-		ALLEGRO_BITMAP* bitmap = Death->GetNext(&end);
+		ALLEGRO_BITMAP* bitmap = Death->GetNext(&end); // if it is the last bitmap, then end is true
 		if (end)
 		{
-			/*delete Moving;
-			delete Death;*/
-			GameMap::ToDeletion.push_back(this);
+			GameMap::ToDeletion.push_back(this); // The spell is put for deletion
 		}
 		else
 		{
@@ -181,7 +179,7 @@ void Spell::Move()
 {
 	if (crashed)
 	{
-		return; // this should have been removed from Movables before this happens
+		return; // this should have been removed from Movables before this happens, but it is here for sure
 	}
 	int xNew = x;
 	int yNew = y;
@@ -205,9 +203,10 @@ void Spell::Move()
 	collider->SetXY(xNew + collider_shift_x, yNew + collider_shift_y); // check the new location for collisions
 	for each (Collider* it in GameMap::Colliders)
 	{
-		if ((it != collider)&&(it->flag != "Spell")&&(it->flag != "EnemySpell"))
+		if ((it != collider)&&(it->flag != "Spell")&&(it->flag != "EnemySpell")) // checking only colliders of other non-spell objects
 		{
 			if (((collider->flag == "Spell") && (it->flag != "Player"))||((collider->flag == "EnemySpell") && (it->flag != "Enemy")))
+			// If enemy spell, it collides with the player. If player spell, it collides with the enemy			
 			{
 				// check for collision
 				if (collider->HasCollided(*it))
@@ -217,8 +216,8 @@ void Spell::Move()
 						it->collided = true;
 						it->DamageParent(spellID, spellDamage);
 					}
-					crashed = 1;
-					collider->SetXY(x + collider_shift_x, y + collider_shift_y);
+					crashed = 1; // the spell crashed and goes to the first phase of dying
+					collider->SetXY(x + collider_shift_x, y + collider_shift_y); // returns collider back
 					return;
 				}
 			}

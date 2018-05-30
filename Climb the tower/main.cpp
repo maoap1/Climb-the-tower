@@ -9,49 +9,37 @@
 
 
 using namespace Setup;
+using namespace GameMap;
+using namespace ObjectsCreation;
 
-namespace Setup2
+enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X, KEY_C, KEY_V }; // used keys in this game except for the gui handling
+
+/// <summary>
+/// Initializes the game: (!should be called just once)
+/// Specifically: Game loop, display, animations, GUI.
+/// </summary>
+/// <returns></returns>
+void initialize()
 {
-	bool redraw = true;
-
-	enum KEYS { KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT, KEY_X, KEY_C, KEY_V};
-
-
-	int initialize()
-	{
-
-		al_clear_to_color(al_map_rgb(0, 0, 0));
-
-		al_flip_display();
-
-		al_start_timer(timer);
-
-		return 1;
-	}
+	al_clear_to_color(al_map_rgb(0, 0, 0));
+	al_flip_display();
+	al_start_timer(timer); // Starts the game loop
+	AnimationInitialization::AnimInit();
+	Gui::InicializeGUI();
 }
 
 int main(int argc, char **argv)
-{
-	using namespace Setup2;
-	
+{	
 	if (!Init()) return 0;
+	initialize();
 
-	if (!initialize()) return 0;
-
-	using namespace GameMap;
-	using namespace ObjectsCreation;
-
-
-	AnimationInitialization::AnimInit();
-
-
+	bool redraw = true;
 	bool key[NUMBER_OF_KEYS]{ false, false, false, false, false, false, false };
 
 	int map_width = al_get_display_width(display) / WALL_SIZE; // begins with 0
 	int map_height = al_get_display_height(display) / WALL_SIZE; // begins with 0
 	
-	Gui::InicializeGUI();
-	if (Gui::MainMenu() == ID_QUIT)
+	if (Gui::MainMenu() == ID_QUIT) // opens Main Menu
 	{
 		al_flip_display();
 		al_rest(1);
@@ -59,17 +47,17 @@ int main(int argc, char **argv)
 		return 0;
 	}
 
-	FirstGameMapInicialization(map_width, map_height);
-	CreatePlayer(); // this line should be after FirstGameMapInicialization
+	FirstGameMapInicialization(map_width, map_height); // initializes the Game Map for the first time
+	CreatePlayer(); // this line should be after FirstGameMapInicialization, creates player
 
-	while (1)
+	while (1) // game loop itself
 	{
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 
 		if (ev.type == ALLEGRO_EVENT_TIMER)
 		{
-			if (!player->living)
+			if (!player->living) // the player is death, we should quit the game with Game Over screen
 			{
 				if (Gui::QuitMenu() == ID_QUIT)
 				{
@@ -80,7 +68,7 @@ int main(int argc, char **argv)
 				}
 			}
 
-			if (livingEnemies <= 0)
+			if (livingEnemies <= 0) // all enemies are death, we should quit the game with Winning screen
 			{
 				if (Gui::WinMenu() == ID_QUIT)
 				{
@@ -91,7 +79,7 @@ int main(int argc, char **argv)
 				}
 			}
 			player->moved = false;
-			for each (ActiveGameObject* it in Movables)
+			for each (ActiveGameObject* it in Movables) // now we move with all the movable objects
 			{
 				it->Move();
 			}
@@ -143,7 +131,7 @@ int main(int argc, char **argv)
 		{
 			break;
 		}
-		else if (ev.type == ALLEGRO_EVENT_KEY_DOWN)
+		else if (ev.type == ALLEGRO_EVENT_KEY_DOWN) // now we just put the information that we hold a key to key[]
 		{
 			switch (ev.keyboard.keycode)
 			{
@@ -175,7 +163,7 @@ int main(int argc, char **argv)
 				key[KEY_V] = true;
 				break;
 
-			case ALLEGRO_KEY_P:
+			case ALLEGRO_KEY_P: // it pauses the game and displays Pause menu 
 				if (Gui::PauseMenu() == ID_QUIT)
 				{
 					al_flip_display();
@@ -203,12 +191,12 @@ int main(int argc, char **argv)
 				break;*/
 			case ALLEGRO_KEY_M:
 				/*
-				Mute or play music
+				Mutes or plays music
 				*/
 				break;
 			}
 		}
-		else if (ev.type == ALLEGRO_EVENT_KEY_UP) 
+		else if (ev.type == ALLEGRO_EVENT_KEY_UP) // now we just put the information that we stopped holding a key to key[]
 		{
 			switch (ev.keyboard.keycode) {
 			case ALLEGRO_KEY_UP:
@@ -241,17 +229,17 @@ int main(int argc, char **argv)
 			}
 		}
 
-		if (redraw && al_is_event_queue_empty(event_queue)) 
+		if (redraw && al_is_event_queue_empty(event_queue)) // a standard way how to in allegro separate the physics and drawing of the game
 		{
 			redraw = false;
 
 			al_clear_to_color(al_map_rgb(0, 0, 0));
 
-			for each (GameObject* it in Drawables)
+			for each (GameObject* it in Drawables) // draws every object
 			{
 				it->Draw();
 			}
-			for each (GameObject* it in ToDeletion)
+			for each (GameObject* it in ToDeletion) // delete those objects, that couldn't be deleted during drawing
 			{
 				Drawables.remove(it);
 				delete it;
@@ -259,7 +247,7 @@ int main(int argc, char **argv)
 			ToDeletion.clear();
 
 			#ifdef DEBUG
-			for each (Collider* it in Colliders)
+			for each (Collider* it in Colliders) // draws green rectagles for debugging collisions
 			{
 				it->Draw();
 			}
